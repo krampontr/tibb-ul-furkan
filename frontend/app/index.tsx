@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { View, StyleSheet, FlatList, TouchableOpacity, RefreshControl, Image, ImageBackground } from 'react-native';
+import { View, StyleSheet, FlatList, TouchableOpacity, RefreshControl, ImageBackground } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { Body, Button, Caption, Card, H1, H3, Label, Screen } from '@/src/ui';
@@ -55,6 +55,25 @@ export default function Home() {
           <View style={styles.actionsRow}>
             <Button title="Yeni Soy Analizi" onPress={startNew} testID="start-analysis-btn" style={{ flex: 1 }} />
           </View>
+
+          {/* Hızlı modüller: Tesbih & Kefaret */}
+          <View style={styles.quickRow}>
+            <TouchableOpacity style={{ flex: 1 }} onPress={() => router.push('/zikirmatik')} testID="zikirmatik-btn">
+              <View style={[styles.quickCard, { backgroundColor: colors.bgSecondary, borderColor: colors.accentSage }]}>
+                <Body style={{ fontSize: 28, color: colors.accentSage, fontFamily: fonts.bodyBold }}>☾</Body>
+                <H3 style={{ fontSize: 16, marginTop: 4 }}>Dijital Tesbih</H3>
+                <Caption>Zikirmatik · 1000&apos;e kadar</Caption>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={{ flex: 1, marginLeft: spacing.sm }} onPress={() => router.push('/kefaret')} testID="kefaret-btn">
+              <View style={[styles.quickCard, { backgroundColor: colors.maternalLight, borderColor: colors.maternalPrimary }]}>
+                <Body style={{ fontSize: 28, color: colors.maternalPrimary, fontFamily: fonts.bodyBold }}>✦</Body>
+                <H3 style={{ fontSize: 16, marginTop: 4, color: colors.maternalPrimary }}>Kefaretlerim</H3>
+                <Caption style={{ color: colors.maternalPrimary }}>Çabalamalarım</Caption>
+              </View>
+            </TouchableOpacity>
+          </View>
+
           <TouchableOpacity onPress={() => router.push('/diseases')} testID="diseases-library-btn">
             <Card style={styles.libraryCard}>
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -120,6 +139,14 @@ const styles = StyleSheet.create({
   title: { fontSize: 42, marginTop: spacing.sm },
   subtitle: { color: colors.textSecondary, marginTop: spacing.xs, fontFamily: fonts.body, fontStyle: 'italic' },
   actionsRow: { flexDirection: 'row', marginBottom: spacing.md },
+  quickRow: { flexDirection: 'row', marginBottom: spacing.md },
+  quickCard: {
+    padding: spacing.md,
+    borderRadius: radius.md,
+    borderWidth: 1,
+    alignItems: 'flex-start',
+    minHeight: 110,
+  },
   libraryCard: { marginTop: spacing.xs },
   profileCard: { flexDirection: 'row', alignItems: 'center' },
   avatar: {
