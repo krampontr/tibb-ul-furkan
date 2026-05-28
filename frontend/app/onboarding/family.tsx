@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, KeyboardAvoidingView, Platform, TouchableOpacity, Modal } from 'react-native';
+import { View, StyleSheet, KeyboardAvoidingView, Platform, TouchableOpacity, Modal, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Body, Button, Caption, Card, Chip, H2, H3, Input, KeyboardScroll, Label, ProgressBar, Screen } from '@/src/ui';
@@ -154,66 +154,80 @@ function AncestorEditModal({ visible, ancestor, onChange, onClose, onSave }: {
     <Modal visible={visible} animationType="slide" transparent onRequestClose={onClose}>
       <View style={styles.modalBackdrop}>
         <View style={styles.modalCard}>
-          <SafeAreaView edges={['bottom']}>
-            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-              <KeyboardScroll>
-                <View style={{ padding: spacing.lg }}>
-                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <H3 style={{ color: sideColor }}>{ancestor.relation}</H3>
-                    <TouchableOpacity onPress={onClose} testID="modal-close"><Body style={{ fontSize: 24 }}>×</Body></TouchableOpacity>
-                  </View>
+          <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={{ flex: 1 }}>
+            <View style={styles.modalHeader}>
+              <View style={{ flex: 1 }}>
+                <H3 style={{ color: sideColor }}>{ancestor.relation}</H3>
+                <Caption style={{ color: colors.textSecondary }}>
+                  {ancestor.side === 'maternal' ? 'Anne soyu' : 'Baba soyu'}
+                </Caption>
+              </View>
+              <TouchableOpacity onPress={onClose} testID="modal-close" hitSlop={10}>
+                <Body style={{ fontSize: 28, color: colors.textSecondary }}>×</Body>
+              </TouchableOpacity>
+            </View>
 
-                  <Input label="İsim (opsiyonel)" value={ancestor.name || ''} onChangeText={(t) => onChange({ ...ancestor, name: t })} placeholder="Örn: Ayşe Nine" testID="ancestor-name" />
+            <ScrollView
+              style={{ flex: 1 }}
+              contentContainerStyle={{ padding: spacing.lg, paddingBottom: spacing.xxl }}
+              keyboardShouldPersistTaps="handled"
+              showsVerticalScrollIndicator={true}
+              indicatorStyle="black"
+            >
+              <Input label="İsim (opsiyonel)" value={ancestor.name || ''} onChangeText={(t) => onChange({ ...ancestor, name: t })} placeholder="Örn: Ayşe Nine" testID="ancestor-name" />
 
-                  <Label style={{ marginTop: spacing.sm, marginBottom: spacing.sm }}>HASTALIKLARI</Label>
-                  <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
-                    <Input value={d} onChangeText={setD} placeholder="Örn: Şeker" style={{ flex: 1 }} testID="ancestor-disease-input" />
-                    <Button title="+" variant="secondary" onPress={() => addTo('diseases', d, () => setD(''))} style={{ marginLeft: spacing.sm, marginBottom: spacing.md, paddingHorizontal: 16 }} testID="ancestor-add-disease" />
-                  </View>
-                  <View style={styles.chipWrap}>
-                    {ancestor.diseases?.map((it, i) => (
-                      <Chip key={i} label={it} side={ancestor.side} onRemove={() => onChange({ ...ancestor, diseases: ancestor.diseases?.filter((_, x) => x !== i) })} />
-                    ))}
-                  </View>
+              <Label style={{ marginTop: spacing.sm, marginBottom: spacing.sm }}>HASTALIKLARI</Label>
+              <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
+                <Input value={d} onChangeText={setD} placeholder="Örn: Şeker" style={{ flex: 1 }} testID="ancestor-disease-input" />
+                <Button title="+" variant="secondary" onPress={() => addTo('diseases', d, () => setD(''))} style={{ marginLeft: spacing.sm, marginBottom: spacing.md, paddingHorizontal: 16 }} testID="ancestor-add-disease" />
+              </View>
+              <View style={styles.chipWrap}>
+                {ancestor.diseases?.map((it, i) => (
+                  <Chip key={i} label={it} side={ancestor.side} onRemove={() => onChange({ ...ancestor, diseases: ancestor.diseases?.filter((_, x) => x !== i) })} />
+                ))}
+              </View>
 
-                  <Label style={{ marginTop: spacing.sm, marginBottom: spacing.sm }}>YAŞADIĞI OLAYLAR</Label>
-                  <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
-                    <Input value={ev} onChangeText={setEv} placeholder="Örn: Eşi vefat etti, miras kavgası" style={{ flex: 1 }} />
-                    <Button title="+" variant="secondary" onPress={() => addTo('events', ev, () => setEv(''))} style={{ marginLeft: spacing.sm, marginBottom: spacing.md, paddingHorizontal: 16 }} />
-                  </View>
-                  <View style={styles.chipWrap}>
-                    {ancestor.events?.map((it, i) => (
-                      <Chip key={i} label={it} side={ancestor.side} onRemove={() => onChange({ ...ancestor, events: ancestor.events?.filter((_, x) => x !== i) })} />
-                    ))}
-                  </View>
+              <Label style={{ marginTop: spacing.sm, marginBottom: spacing.sm }}>YAŞADIĞI OLAYLAR</Label>
+              <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
+                <Input value={ev} onChangeText={setEv} placeholder="Örn: Eşi vefat etti, miras kavgası" style={{ flex: 1 }} />
+                <Button title="+" variant="secondary" onPress={() => addTo('events', ev, () => setEv(''))} style={{ marginLeft: spacing.sm, marginBottom: spacing.md, paddingHorizontal: 16 }} />
+              </View>
+              <View style={styles.chipWrap}>
+                {ancestor.events?.map((it, i) => (
+                  <Chip key={i} label={it} side={ancestor.side} onRemove={() => onChange({ ...ancestor, events: ancestor.events?.filter((_, x) => x !== i) })} />
+                ))}
+              </View>
 
-                  <Label style={{ marginTop: spacing.sm, marginBottom: spacing.sm }}>YARIM KALMIŞ ADAKLAR</Label>
-                  <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
-                    <Input value={v} onChangeText={setV} placeholder="Örn: Kurban adağı, hatim adağı" style={{ flex: 1 }} />
-                    <Button title="+" variant="secondary" onPress={() => addTo('unfulfilled_vows', v, () => setV(''))} style={{ marginLeft: spacing.sm, marginBottom: spacing.md, paddingHorizontal: 16 }} />
-                  </View>
-                  <View style={styles.chipWrap}>
-                    {ancestor.unfulfilled_vows?.map((it, i) => (
-                      <Chip key={i} label={it} side={ancestor.side} onRemove={() => onChange({ ...ancestor, unfulfilled_vows: ancestor.unfulfilled_vows?.filter((_, x) => x !== i) })} />
-                    ))}
-                  </View>
+              <Label style={{ marginTop: spacing.sm, marginBottom: spacing.sm }}>YARIM KALMIŞ ADAKLAR</Label>
+              <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
+                <Input value={v} onChangeText={setV} placeholder="Örn: Kurban adağı, hatim adağı" style={{ flex: 1 }} />
+                <Button title="+" variant="secondary" onPress={() => addTo('unfulfilled_vows', v, () => setV(''))} style={{ marginLeft: spacing.sm, marginBottom: spacing.md, paddingHorizontal: 16 }} />
+              </View>
+              <View style={styles.chipWrap}>
+                {ancestor.unfulfilled_vows?.map((it, i) => (
+                  <Chip key={i} label={it} side={ancestor.side} onRemove={() => onChange({ ...ancestor, unfulfilled_vows: ancestor.unfulfilled_vows?.filter((_, x) => x !== i) })} />
+                ))}
+              </View>
 
-                  <Label style={{ marginTop: spacing.sm, marginBottom: spacing.sm }}>BİLİNEN GÜNAHLAR / DURUMLAR</Label>
-                  <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
-                    <Input value={sin} onChangeText={setSin} placeholder="Örn: Faiz alıp verdi, zekat vermedi" style={{ flex: 1 }} />
-                    <Button title="+" variant="secondary" onPress={() => addTo('sins_admitted', sin, () => setSin(''))} style={{ marginLeft: spacing.sm, marginBottom: spacing.md, paddingHorizontal: 16 }} />
-                  </View>
-                  <View style={styles.chipWrap}>
-                    {ancestor.sins_admitted?.map((it, i) => (
-                      <Chip key={i} label={it} side={ancestor.side} onRemove={() => onChange({ ...ancestor, sins_admitted: ancestor.sins_admitted?.filter((_, x) => x !== i) })} />
-                    ))}
-                  </View>
+              <Label style={{ marginTop: spacing.sm, marginBottom: spacing.sm }}>BİLİNEN GÜNAHLAR / DURUMLAR</Label>
+              <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
+                <Input value={sin} onChangeText={setSin} placeholder="Örn: Faiz alıp verdi, zekat vermedi" style={{ flex: 1 }} />
+                <Button title="+" variant="secondary" onPress={() => addTo('sins_admitted', sin, () => setSin(''))} style={{ marginLeft: spacing.sm, marginBottom: spacing.md, paddingHorizontal: 16 }} />
+              </View>
+              <View style={styles.chipWrap}>
+                {ancestor.sins_admitted?.map((it, i) => (
+                  <Chip key={i} label={it} side={ancestor.side} onRemove={() => onChange({ ...ancestor, sins_admitted: ancestor.sins_admitted?.filter((_, x) => x !== i) })} />
+                ))}
+              </View>
+            </ScrollView>
 
-                  <Button title="Atayı Ekle" onPress={onSave} testID="save-ancestor" style={{ marginTop: spacing.lg }} />
-                </View>
-              </KeyboardScroll>
-            </KeyboardAvoidingView>
-          </SafeAreaView>
+            <SafeAreaView edges={['bottom']} style={styles.modalFooter}>
+              <View style={{ flexDirection: 'row', gap: spacing.sm, paddingHorizontal: spacing.lg, paddingTop: spacing.sm }}>
+                <Button title="İptal" variant="secondary" onPress={onClose} style={{ flex: 1 }} />
+                <Button title="✓ Atayı Ekle" onPress={onSave} testID="save-ancestor" style={{ flex: 1.4 }} />
+              </View>
+            </SafeAreaView>
+          </KeyboardAvoidingView>
         </View>
       </View>
     </Modal>
@@ -226,5 +240,19 @@ const styles = StyleSheet.create({
   ancestorCard: { borderLeftWidth: 4 },
   footer: { paddingBottom: spacing.md, paddingTop: spacing.sm },
   modalBackdrop: { flex: 1, backgroundColor: 'rgba(44,53,49,0.5)', justifyContent: 'flex-end' },
-  modalCard: { backgroundColor: colors.bgPrimary, borderTopLeftRadius: 24, borderTopRightRadius: 24, maxHeight: '90%' },
+  modalCard: { backgroundColor: colors.bgPrimary, borderTopLeftRadius: 24, borderTopRightRadius: 24, height: '90%' },
+  modalHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.md,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.borderSubtle,
+  },
+  modalFooter: {
+    borderTopWidth: 1,
+    borderTopColor: colors.borderSubtle,
+    backgroundColor: colors.bgPrimary,
+    paddingBottom: spacing.sm,
+  },
 });
