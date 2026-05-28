@@ -24,6 +24,7 @@ export type Ancestor = {
   id?: string;
   name?: string;
   relation: string;
+  relation_key?: string;  // Önceden tanımlı ilişki anahtarı (anne, baba, teyze vb.)
   side: 'maternal' | 'paternal';
   diseases?: string[];
   events?: string[];
@@ -89,6 +90,7 @@ export type MindMapNode = {
   type: 'self' | 'ancestor';
   side: 'self' | 'maternal' | 'paternal';
   relation?: string;
+  relation_key?: string;
   diseases?: string[];
   events?: string[];
   unfulfilled_vows?: string[];

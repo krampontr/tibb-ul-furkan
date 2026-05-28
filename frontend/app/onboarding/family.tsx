@@ -2,20 +2,30 @@ import React, { useState } from 'react';
 import { View, StyleSheet, KeyboardAvoidingView, Platform, TouchableOpacity, Modal, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { Body, Button, Caption, Card, Chip, H2, H3, Input, KeyboardScroll, Label, ProgressBar, Screen } from '@/src/ui';
+import { Body, Button, Caption, Card, Chip, H2, H3, Input, Label, ProgressBar, Screen } from '@/src/ui';
 import { useOnboarding } from '@/src/store';
 import { colors, fonts, radius, spacing } from '@/src/theme';
 import type { Ancestor } from '@/src/api';
 
-const RELATIONS = [
-  { id: 'anne', label: 'Anne', side: 'maternal' as const },
-  { id: 'anneanne', label: 'Anneanne', side: 'maternal' as const },
-  { id: 'dede_anne', label: 'Anne tarafı dede', side: 'maternal' as const },
-  { id: 'baba', label: 'Baba', side: 'paternal' as const },
-  { id: 'babaanne', label: 'Babaanne', side: 'paternal' as const },
-  { id: 'dede_baba', label: 'Baba tarafı dede', side: 'paternal' as const },
-  { id: 'diger_anne', label: 'Diğer (Anne soyu)', side: 'maternal' as const },
-  { id: 'diger_baba', label: 'Diğer (Baba soyu)', side: 'paternal' as const },
+// Tanımlı akrabalık ilişkileri - akrabalık ağacında pozisyonlandırmada kullanılır
+const MATERNAL_RELATIONS = [
+  { key: 'anne', label: 'Anne' },
+  { key: 'anneanne', label: 'Anneanne' },
+  { key: 'anne_dedesi', label: 'Anne tarafı dede' },
+  { key: 'teyze', label: 'Teyze' },
+  { key: 'dayi', label: 'Dayı' },
+  { key: 'anne_buyuk_anne', label: 'Anne büyük anne' },
+  { key: 'anne_buyuk_dede', label: 'Anne büyük dede' },
+];
+
+const PATERNAL_RELATIONS = [
+  { key: 'baba', label: 'Baba' },
+  { key: 'babaanne', label: 'Babaanne' },
+  { key: 'baba_dedesi', label: 'Baba tarafı dede' },
+  { key: 'hala', label: 'Hala' },
+  { key: 'amca', label: 'Amca' },
+  { key: 'baba_buyuk_anne', label: 'Baba büyük anne' },
+  { key: 'baba_buyuk_dede', label: 'Baba büyük dede' },
 ];
 
 export default function FamilyStage() {
@@ -23,10 +33,13 @@ export default function FamilyStage() {
   const { ancestors, set } = useOnboarding();
   const [modal, setModal] = useState(false);
   const [editing, setEditing] = useState<Ancestor | null>(null);
+  const [customMaternal, setCustomMaternal] = useState('');
+  const [customPaternal, setCustomPaternal] = useState('');
 
-  const openAdd = (relation: string, side: 'maternal' | 'paternal') => {
+  const openWithRelation = (relation: string, side: 'maternal' | 'paternal', relation_key?: string) => {
     setEditing({
       relation,
+      relation_key,
       side,
       name: '',
       diseases: [],
@@ -36,6 +49,14 @@ export default function FamilyStage() {
       is_alive: true,
     });
     setModal(true);
+  };
+
+  const addCustom = (side: 'maternal' | 'paternal') => {
+    const text = (side === 'maternal' ? customMaternal : customPaternal).trim();
+    if (!text) return;
+    openWithRelation(text, side); // relation_key boş → manuel akrabalık
+    if (side === 'maternal') setCustomMaternal('');
+    else setCustomPaternal('');
   };
 
   const saveAncestor = () => {
@@ -60,27 +81,53 @@ export default function FamilyStage() {
             </Body>
           </View>
 
-          <KeyboardScroll>
-            <Label style={{ marginTop: spacing.lg, marginBottom: spacing.sm, color: colors.maternalPrimary }}>ANNE SOYU</Label>
+          <ScrollView contentContainerStyle={{ paddingBottom: spacing.xxl }} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator>
+            {/* Anne soyu */}
+            <Label style={{ marginTop: spacing.lg, marginBottom: spacing.sm, color: colors.maternalPrimary }}>
+              ANNE SOYU
+            </Label>
             <View style={styles.chipWrap}>
-              {RELATIONS.filter((r) => r.side === 'maternal').map((r) => (
-                <TouchableOpacity key={r.id} onPress={() => openAdd(r.label, r.side)} testID={`add-rel-${r.id}`}>
+              {MATERNAL_RELATIONS.map((r) => (
+                <TouchableOpacity key={r.key} onPress={() => openWithRelation(r.label, 'maternal', r.key)} testID={`add-rel-${r.key}`}>
                   <View style={[styles.relChip, { backgroundColor: colors.maternalLight, borderColor: colors.maternalPrimary }]}>
                     <Body style={{ color: colors.maternalPrimary, fontFamily: fonts.bodyMedium, fontSize: 13 }}>+ {r.label}</Body>
                   </View>
                 </TouchableOpacity>
               ))}
             </View>
+            <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
+              <Input
+                value={customMaternal}
+                onChangeText={setCustomMaternal}
+                placeholder="Anne soyundan başka akrabalık (örn: kuzen)"
+                style={{ flex: 1 }}
+                testID="custom-maternal"
+              />
+              <Button title="+ Ekle" variant="secondary" onPress={() => addCustom('maternal')} style={{ marginLeft: spacing.sm, marginBottom: spacing.md }} testID="add-custom-maternal" />
+            </View>
 
-            <Label style={{ marginTop: spacing.md, marginBottom: spacing.sm, color: colors.paternalPrimary }}>BABA SOYU</Label>
+            {/* Baba soyu */}
+            <Label style={{ marginTop: spacing.md, marginBottom: spacing.sm, color: colors.paternalPrimary }}>
+              BABA SOYU
+            </Label>
             <View style={styles.chipWrap}>
-              {RELATIONS.filter((r) => r.side === 'paternal').map((r) => (
-                <TouchableOpacity key={r.id} onPress={() => openAdd(r.label, r.side)} testID={`add-rel-${r.id}`}>
+              {PATERNAL_RELATIONS.map((r) => (
+                <TouchableOpacity key={r.key} onPress={() => openWithRelation(r.label, 'paternal', r.key)} testID={`add-rel-${r.key}`}>
                   <View style={[styles.relChip, { backgroundColor: colors.paternalLight, borderColor: colors.paternalPrimary }]}>
                     <Body style={{ color: colors.paternalPrimary, fontFamily: fonts.bodyMedium, fontSize: 13 }}>+ {r.label}</Body>
                   </View>
                 </TouchableOpacity>
               ))}
+            </View>
+            <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
+              <Input
+                value={customPaternal}
+                onChangeText={setCustomPaternal}
+                placeholder="Baba soyundan başka akrabalık (örn: kuzen)"
+                style={{ flex: 1 }}
+                testID="custom-paternal"
+              />
+              <Button title="+ Ekle" variant="secondary" onPress={() => addCustom('paternal')} style={{ marginLeft: spacing.sm, marginBottom: spacing.md }} testID="add-custom-paternal" />
             </View>
 
             <Label style={{ marginTop: spacing.lg, marginBottom: spacing.sm }}>EKLENEN ATALAR ({ancestors.length})</Label>
@@ -93,7 +140,7 @@ export default function FamilyStage() {
                     <View style={{ flex: 1 }}>
                       <H3 style={{ fontSize: 18 }}>{a.relation}{a.name ? ` · ${a.name}` : ''}</H3>
                       <Caption style={{ color: a.side === 'maternal' ? colors.maternalPrimary : colors.paternalPrimary }}>
-                        {a.side === 'maternal' ? 'Anne soyu' : 'Baba soyu'}
+                        {a.side === 'maternal' ? 'Anne soyu' : 'Baba soyu'}{a.relation_key ? ` · ${a.relation_key}` : ' · özel'}
                       </Caption>
                       {(a.diseases?.length || 0) > 0 && <Caption style={{ marginTop: 4 }}>Hastalıklar: {a.diseases?.join(', ')}</Caption>}
                       {(a.events?.length || 0) > 0 && <Caption>Olaylar: {a.events?.join(', ')}</Caption>}
@@ -107,7 +154,7 @@ export default function FamilyStage() {
                 </Card>
               ))
             )}
-          </KeyboardScroll>
+          </ScrollView>
 
           <View style={styles.footer}>
             <View style={{ flexDirection: 'row', gap: spacing.sm }}>
@@ -171,10 +218,23 @@ function AncestorEditModal({ visible, ancestor, onChange, onClose, onSave }: {
               style={{ flex: 1 }}
               contentContainerStyle={{ padding: spacing.lg, paddingBottom: spacing.xxl }}
               keyboardShouldPersistTaps="handled"
-              showsVerticalScrollIndicator={true}
+              showsVerticalScrollIndicator
               indicatorStyle="black"
             >
-              <Input label="İsim (opsiyonel)" value={ancestor.name || ''} onChangeText={(t) => onChange({ ...ancestor, name: t })} placeholder="Örn: Ayşe Nine" testID="ancestor-name" />
+              <Input
+                label="AKRABALIK İLİŞKİSİ"
+                value={ancestor.relation}
+                onChangeText={(t) => onChange({ ...ancestor, relation: t })}
+                placeholder="Örn: Teyze, Dayı, Hala, Amca, Kuzen…"
+                testID="ancestor-relation"
+              />
+              <Input
+                label="İSİM (OPSİYONEL)"
+                value={ancestor.name || ''}
+                onChangeText={(t) => onChange({ ...ancestor, name: t })}
+                placeholder="Örn: Ayşe Nine"
+                testID="ancestor-name"
+              />
 
               <Label style={{ marginTop: spacing.sm, marginBottom: spacing.sm }}>HASTALIKLARI</Label>
               <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>

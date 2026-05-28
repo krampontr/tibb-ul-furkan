@@ -9,7 +9,16 @@ import { colors, fonts, radius, spacing } from '@/src/theme';
 
 const ANIMAL_TYPES = ['Koyun', 'Koç', 'Keçi', 'İnek', 'Boğa', 'Tavuk', 'Horoz', 'Kuzu'];
 const ACTION_TYPES = ['Oruç', 'Namaz', "Kur'an Okuma", 'Hatim', 'Yasin', 'Şifa Okuması', 'Ziyaret', 'Hac', 'Umre'];
-const ISSUE_TYPES = ['Açıkta kaldı', 'Çalındı', 'Usulsüz kesildi', 'Başkası tarafından yendi'];
+const ISSUE_TYPES = [
+  'Açıkta kaldı',
+  'Kendisi yedi',
+  'Aile yedi',
+  'Misafire yedirildi',
+  'Başkası tarafından yendi',
+  'Çalındı',
+  'Usulsüz kesildi',
+  'Fakire dağıtılmadı',
+];
 
 export default function SpiritualityStage() {
   const router = useRouter();

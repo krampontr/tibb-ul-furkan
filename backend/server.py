@@ -29,7 +29,8 @@ api_router = APIRouter(prefix="/api")
 class Ancestor(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     name: Optional[str] = ""
-    relation: str  # "anne", "baba", "anneanne", "babaanne", "dede_anne", "dede_baba", vb.
+    relation: str  # "anne", "baba", "teyze", "amca" veya kullanıcı yazısı
+    relation_key: Optional[str] = None  # Sabit anahtar (anne, baba, anneanne vb.)
     side: str  # "maternal" veya "paternal"
     diseases: List[str] = []
     events: List[str] = []  # yaşanan büyük olaylar
@@ -350,6 +351,7 @@ def build_mind_map(profile: dict, signals: Dict[str, List[Dict[str, Any]]]) -> D
             "id": nid,
             "label": anc.get("name") or anc.get("relation"),
             "relation": anc.get("relation"),
+            "relation_key": anc.get("relation_key"),
             "type": "ancestor",
             "side": anc.get("side"),
             "diseases": anc.get("diseases", []),
