@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react';
-import { View, StyleSheet, FlatList, TouchableOpacity, RefreshControl, ImageBackground } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, RefreshControl, ImageBackground, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect, useRouter } from 'expo-router';
-import { Body, Button, Caption, Card, H1, H3, Label, Screen } from '@/src/ui';
+import { Body, Button, Caption, Card, H1, H3, Label } from '@/src/ui';
 import { api, Profile } from '@/src/api';
 import { colors, fonts, radius, spacing } from '@/src/theme';
 import { useOnboarding } from '@/src/store';
@@ -36,7 +36,12 @@ export default function Home() {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.bgPrimary }}>
-      <Screen style={{ paddingHorizontal: 0 }}>
+      <ScrollView
+        style={{ flex: 1, backgroundColor: colors.bgPrimary }}
+        contentContainerStyle={{ paddingBottom: spacing.xxl }}
+        showsVerticalScrollIndicator
+        refreshControl={<RefreshControl refreshing={loading} onRefresh={load} tintColor={colors.textPrimary} />}
+      >
         <ImageBackground
           source={{ uri: PATTERN_URL }}
           imageStyle={{ opacity: 0.08, resizeMode: 'cover' }}
@@ -51,7 +56,7 @@ export default function Home() {
           </View>
         </ImageBackground>
 
-        <View style={{ paddingHorizontal: spacing.lg, flex: 1 }}>
+        <View style={{ paddingHorizontal: spacing.lg }}>
           <View style={styles.actionsRow}>
             <Button title="Yeni Soy Analizi" onPress={startNew} testID="start-analysis-btn" style={{ flex: 1 }} />
           </View>
@@ -87,7 +92,7 @@ export default function Home() {
             </Card>
           </TouchableOpacity>
 
-          <Label style={{ marginTop: spacing.lg, marginBottom: spacing.sm }}>KAYITLI PROFİLLER</Label>
+          <Label style={{ marginTop: spacing.lg, marginBottom: spacing.sm }}>KAYITLI PROFİLLER ({profiles.length})</Label>
 
           {profiles.length === 0 && !loading ? (
             <Card>
@@ -96,30 +101,25 @@ export default function Home() {
               </Body>
             </Card>
           ) : (
-            <FlatList
-              data={profiles}
-              keyExtractor={(p) => p.id}
-              refreshControl={<RefreshControl refreshing={loading} onRefresh={load} tintColor={colors.textPrimary} />}
-              renderItem={({ item }) => (
-                <TouchableOpacity onPress={() => router.push(`/profile/${item.id}`)} testID={`profile-${item.id}`}>
-                  <Card style={styles.profileCard}>
-                    <View style={styles.avatar}>
-                      <Body style={{ color: colors.bgPrimary, fontFamily: fonts.bodyBold }}>
-                        {(item.first_name?.[0] || '?').toUpperCase()}
-                      </Body>
-                    </View>
-                    <View style={{ flex: 1, marginLeft: spacing.md }}>
-                      <H3 style={{ fontSize: 18 }}>{item.first_name} {item.last_name}</H3>
-                      <Caption>{item.gender === 'erkek' ? '♂ Erkek' : '♀ Kadın'} · {item.ancestors?.length || 0} ata · {(item.animal_vows?.length || 0) + (item.action_vows?.length || 0)} adak</Caption>
-                    </View>
-                    <Body style={{ fontSize: 24, color: colors.accentSage }}>›</Body>
-                  </Card>
-                </TouchableOpacity>
-              )}
-            />
+            profiles.map((item) => (
+              <TouchableOpacity key={item.id} onPress={() => router.push(`/profile/${item.id}`)} testID={`profile-${item.id}`}>
+                <Card style={styles.profileCard}>
+                  <View style={styles.avatar}>
+                    <Body style={{ color: colors.bgPrimary, fontFamily: fonts.bodyBold }}>
+                      {(item.first_name?.[0] || '?').toUpperCase()}
+                    </Body>
+                  </View>
+                  <View style={{ flex: 1, marginLeft: spacing.md }}>
+                    <H3 style={{ fontSize: 18 }}>{item.first_name} {item.last_name}</H3>
+                    <Caption>{item.gender === 'erkek' ? '♂ Erkek' : '♀ Kadın'} · {item.ancestors?.length || 0} ata · {(item.animal_vows?.length || 0) + (item.action_vows?.length || 0)} adak</Caption>
+                  </View>
+                  <Body style={{ fontSize: 24, color: colors.accentSage }}>›</Body>
+                </Card>
+              </TouchableOpacity>
+            ))
           )}
         </View>
-      </Screen>
+      </ScrollView>
     </SafeAreaView>
   );
 }
