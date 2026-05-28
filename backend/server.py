@@ -516,7 +516,10 @@ ATALAR:
     
     except Exception as e:
         logging.exception("LLM analysis failed")
-        raise HTTPException(500, f"LLM analizi başarısız: {str(e)}")
+        msg = str(e)
+        if "Budget" in msg or "budget" in msg or "credit" in msg.lower():
+            raise HTTPException(503, "Yapay zekâ kredisi tükenmiş. Lütfen Emergent profilinizden Universal Key bakiyenizi yükleyin.")
+        raise HTTPException(500, f"LLM analizi şu anda yapılamıyor: {msg[:160]}")
 
 app.include_router(api_router)
 

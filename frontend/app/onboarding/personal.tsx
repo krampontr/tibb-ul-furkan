@@ -57,7 +57,11 @@ export default function PersonalStage() {
                 ))}
               </View>
 
-              {error ? <Caption style={{ color: colors.errorVow, marginTop: spacing.md }}>{error}</Caption> : null}
+              {error ? (
+                <View style={styles.errorBox} testID="validation-error">
+                  <Body style={{ color: colors.errorVow }}>⚠ {error}</Body>
+                </View>
+              ) : null}
             </View>
           </KeyboardScroll>
 
@@ -82,5 +86,13 @@ const styles = StyleSheet.create({
   },
   genderBtnActive: { backgroundColor: colors.textPrimary, borderColor: colors.textPrimary },
   genderText: { fontFamily: fonts.bodyMedium },
+  errorBox: {
+    marginTop: spacing.md,
+    padding: spacing.md,
+    borderRadius: radius.md,
+    backgroundColor: '#F8E1DE',
+    borderWidth: 1,
+    borderColor: colors.errorVow,
+  },
   footer: { paddingBottom: spacing.md, paddingTop: spacing.sm },
 });
