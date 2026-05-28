@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, Modal, ScrollView, useWindowDimensions } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Modal, ScrollView } from 'react-native';
 import Svg, { Circle, Line, Text as SvgText, G, Defs, Marker, Path } from 'react-native-svg';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
@@ -27,10 +27,27 @@ const PARENT_MAP: Record<string, string> = {
   baba_buyuk_dede: 'baba_dedesi',
 };
 
+// Düğüm içinde gösterilecek kısa etiket (akrabalık tarafı renkle ayırt edilir)
+const NODE_LABEL: Record<string, string> = {
+  anne: 'Anne',
+  baba: 'Baba',
+  anneanne: 'Anneanne',
+  anne_dedesi: 'Dede',
+  teyze: 'Teyze',
+  dayi: 'Dayı',
+  babaanne: 'Babaanne',
+  baba_dedesi: 'Dede',
+  hala: 'Hala',
+  amca: 'Amca',
+  anne_buyuk_anne: 'B.Anne',
+  anne_buyuk_dede: 'B.Dede',
+  baba_buyuk_anne: 'B.Anne',
+  baba_buyuk_dede: 'B.Dede',
+};
+
 export default function MindMapScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
-  const { width } = useWindowDimensions();
   const [analysis, setAnalysis] = useState<AnalysisResult | null>(null);
   const [selected, setSelected] = useState<MindMapNode | null>(null);
 
@@ -44,12 +61,12 @@ export default function MindMapScreen() {
 
   const nodes = useMemo(() => analysis?.mind_map?.nodes || [], [analysis]);
 
-  // Genişlik mobil için 390, web preview için tam ekran
-  const W = Math.min(width, 720);
-  const H = 720;
+  // Sabit geniş canvas — 2D pannable (yatay + dikey ScrollView içine sığar)
+  const W = 1200;
+  const H = 1000;
   const cx = W / 2;
   const cy = H / 2;
-  const R = Math.min(W, H) * 0.15;
+  const R = 200; // taban yarıçap — düğümler arasında geniş mesafe
 
   // Akrabalık ağacı ile pozisyonlama
   const { positions, edges } = useMemo(() => {
@@ -85,14 +102,17 @@ export default function MindMapScreen() {
     const place = (parentId: string, parentPos: Pos, dirAngle: number, spread: number, radius: number, depth: number) => {
       const kids = childrenOf[parentId] || [];
       if (kids.length === 0) return;
+      // Çocuk sayısına göre minimum yarıçap (iç içe girmesin)
+      const minR = 100 + kids.length * 12;
+      const r = Math.max(radius, minR);
       kids.forEach((k, i) => {
         const t = kids.length === 1 ? 0 : i / (kids.length - 1) - 0.5;
         const angle = dirAngle + t * spread;
-        const x = parentPos.x + Math.cos(angle) * radius;
-        const y = parentPos.y + Math.sin(angle) * radius;
+        const x = parentPos.x + Math.cos(angle) * r;
+        const y = parentPos.y + Math.sin(angle) * r;
         pos[k.id] = { x, y };
         // Çocuğun çocukları için aynı yönde devam et (dış dünyaya)
-        place(k.id, pos[k.id], angle, spread * 0.75, radius * 0.78, depth + 1);
+        place(k.id, pos[k.id], angle, spread * 0.7, r * 0.85, depth + 1);
       });
     };
 
@@ -101,12 +121,12 @@ export default function MindMapScreen() {
     const anneNode = byKey['anne'];
     const babaNode = byKey['baba'];
 
-    if (anneNode) pos[anneNode.id] = { x: cx - R * 1.5, y: cy };
-    if (babaNode) pos[babaNode.id] = { x: cx + R * 1.5, y: cy };
+    if (anneNode) pos[anneNode.id] = { x: cx - R * 1.2, y: cy };
+    if (babaNode) pos[babaNode.id] = { x: cx + R * 1.2, y: cy };
 
-    // Anne ve baba'nın torunları
-    if (anneNode) place(anneNode.id, pos[anneNode.id], Math.PI, Math.PI * 0.85, R * 1.15, 1);
-    if (babaNode) place(babaNode.id, pos[babaNode.id], 0, Math.PI * 0.85, R * 1.15, 1);
+    // Anne ve baba'nın torunları — geniş yayılım, iç içe girmesin
+    if (anneNode) place(anneNode.id, pos[anneNode.id], Math.PI, Math.PI * 1.0, R * 1.0, 1);
+    if (babaNode) place(babaNode.id, pos[babaNode.id], 0, Math.PI * 1.0, R * 1.0, 1);
 
     // Anne/baba dışındaki self çocukları (manuel akrabalık veya anne/baba eklenmemiş ama atalar var)
     const otherSelfKids = selfKids.filter((n) => n.id !== anneNode?.id && n.id !== babaNode?.id);
@@ -114,13 +134,13 @@ export default function MindMapScreen() {
     const patOthers = otherSelfKids.filter((n) => n.side === 'paternal');
 
     matOthers.forEach((n, i) => {
-      // Sol yarım daire üstünde
-      const angle = Math.PI + (Math.PI * 0.6) * ((i + 1) / (matOthers.length + 1) - 0.5);
-      pos[n.id] = { x: cx + Math.cos(angle) * R * 2.2, y: cy + Math.sin(angle) * R * 2.2 };
+      // Sol alt fan
+      const angle = Math.PI - (Math.PI * 0.4) * ((i + 1) / (matOthers.length + 1) - 0.5);
+      pos[n.id] = { x: cx + Math.cos(angle) * R * 1.8, y: cy + Math.sin(angle) * R * 1.8 };
     });
     patOthers.forEach((n, i) => {
-      const angle = 0 + (Math.PI * 0.6) * ((i + 1) / (patOthers.length + 1) - 0.5);
-      pos[n.id] = { x: cx + Math.cos(angle) * R * 2.2, y: cy + Math.sin(angle) * R * 2.2 };
+      const angle = 0 + (Math.PI * 0.4) * ((i + 1) / (patOthers.length + 1) - 0.5);
+      pos[n.id] = { x: cx + Math.cos(angle) * R * 1.8, y: cy + Math.sin(angle) * R * 1.8 };
     });
 
     // Pozisyonu hesaplanmamış kalanlar (zinciri kopuk - fallback)
@@ -128,7 +148,7 @@ export default function MindMapScreen() {
       if (n.id === 'self') return;
       if (!pos[n.id]) {
         const side = n.side === 'maternal' ? -1 : 1;
-        pos[n.id] = { x: cx + side * R * 2.5, y: cy + (i - nodes.length / 2) * 60 };
+        pos[n.id] = { x: cx + side * R * 2.6, y: cy + (i - nodes.length / 2) * 80 };
       }
     });
 
@@ -180,83 +200,91 @@ export default function MindMapScreen() {
         </View>
       </View>
 
-      <ScrollView>
-        <ScrollView horizontal contentContainerStyle={{ alignItems: 'center' }} showsHorizontalScrollIndicator>
-          <Svg width={W} height={H}>
-            <Defs>
-              <Marker id="arrowMat" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                <Path d="M0,0 L10,5 L0,10 Z" fill={colors.maternalPrimary} />
-              </Marker>
-              <Marker id="arrowPat" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                <Path d="M0,0 L10,5 L0,10 Z" fill={colors.paternalPrimary} />
-              </Marker>
-            </Defs>
+      <ScrollView style={{ flex: 1 }}>
+        {/* Harita kutusu — 2D pannable (sağa/sola + yukarı/aşağı) */}
+        <View style={styles.mapBox}>
+          <ScrollView horizontal showsHorizontalScrollIndicator nestedScrollEnabled>
+            <ScrollView showsVerticalScrollIndicator nestedScrollEnabled>
+              <Svg width={W} height={H}>
+                <Defs>
+                  <Marker id="arrowMat" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                    <Path d="M0,0 L10,5 L0,10 Z" fill={colors.maternalPrimary} />
+                  </Marker>
+                  <Marker id="arrowPat" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                    <Path d="M0,0 L10,5 L0,10 Z" fill={colors.paternalPrimary} />
+                  </Marker>
+                </Defs>
 
-            {/* Edges (oklarla) */}
-            {edges.map((e, i) => {
-              const from = positions[e.from];
-              const to = positions[e.to];
-              if (!from || !to) return null;
-              const stroke = e.side === 'maternal' ? colors.maternalPrimary : colors.paternalPrimary;
-              // Ucu node yakınına kadar getir
-              const dx = to.x - from.x;
-              const dy = to.y - from.y;
-              const len = Math.sqrt(dx * dx + dy * dy);
-              const endR = 28;
-              const tx = to.x - (dx / len) * endR;
-              const ty = to.y - (dy / len) * endR;
-              return (
-                <Line
-                  key={i}
-                  x1={from.x}
-                  y1={from.y}
-                  x2={tx}
-                  y2={ty}
-                  stroke={stroke}
-                  strokeWidth={1.6}
-                  strokeOpacity={0.7}
-                  markerEnd={e.side === 'maternal' ? 'url(#arrowMat)' : 'url(#arrowPat)'}
-                />
-              );
-            })}
+                {/* Edges (oklarla) */}
+                {edges.map((e, i) => {
+                  const from = positions[e.from];
+                  const to = positions[e.to];
+                  if (!from || !to) return null;
+                  const stroke = e.side === 'maternal' ? colors.maternalPrimary : colors.paternalPrimary;
+                  const dx = to.x - from.x;
+                  const dy = to.y - from.y;
+                  const len = Math.sqrt(dx * dx + dy * dy);
+                  const startR = e.from === 'self' ? 42 : 32;
+                  const endR = 36;
+                  const sx = from.x + (dx / len) * startR;
+                  const sy = from.y + (dy / len) * startR;
+                  const tx = to.x - (dx / len) * endR;
+                  const ty = to.y - (dy / len) * endR;
+                  return (
+                    <Line
+                      key={i}
+                      x1={sx}
+                      y1={sy}
+                      x2={tx}
+                      y2={ty}
+                      stroke={stroke}
+                      strokeWidth={2}
+                      strokeOpacity={0.75}
+                      markerEnd={e.side === 'maternal' ? 'url(#arrowMat)' : 'url(#arrowPat)'}
+                    />
+                  );
+                })}
 
-            {/* Nodes */}
-            {nodes.map((n) => {
-              const p = positions[n.id];
-              if (!p) return null;
-              const isSelf = n.type === 'self';
-              const fill = n.side === 'maternal' ? colors.maternalLight : n.side === 'paternal' ? colors.paternalLight : colors.bgCard;
-              const stroke = n.side === 'maternal' ? colors.maternalPrimary : n.side === 'paternal' ? colors.paternalPrimary : colors.textPrimary;
-              const r = isSelf ? 36 : 26;
-              const hasIssue = (n.unfulfilled_vows?.length || 0) > 0 || (n.sins_admitted?.length || 0) > 0 || (n.diseases?.length || 0) > 0;
-              const labelText = isSelf
-                ? n.label.split(' ')[0]
-                : (n.relation || n.label).slice(0, 9);
-              return (
-                <G key={n.id} onPress={() => setSelected(n)}>
-                  {hasIssue && (
-                    <Circle cx={p.x} cy={p.y} r={r + 5} fill="transparent" stroke={colors.errorVow} strokeWidth={1} strokeOpacity={0.4} strokeDasharray="3,3" />
-                  )}
-                  <Circle cx={p.x} cy={p.y} r={r} fill={fill} stroke={stroke} strokeWidth={2} />
-                  <SvgText
-                    x={p.x}
-                    y={p.y + 3}
-                    fontSize={isSelf ? 11 : 9}
-                    fontWeight="600"
-                    textAnchor="middle"
-                    fill={stroke}
-                  >
-                    {labelText}
-                  </SvgText>
-                </G>
-              );
-            })}
-          </Svg>
-        </ScrollView>
+                {/* Nodes */}
+                {nodes.map((n) => {
+                  const p = positions[n.id];
+                  if (!p) return null;
+                  const isSelf = n.type === 'self';
+                  const fill = n.side === 'maternal' ? colors.maternalLight : n.side === 'paternal' ? colors.paternalLight : colors.bgCard;
+                  const stroke = n.side === 'maternal' ? colors.maternalPrimary : n.side === 'paternal' ? colors.paternalPrimary : colors.textPrimary;
+                  const r = isSelf ? 40 : 32;
+                  const hasIssue = (n.unfulfilled_vows?.length || 0) > 0 || (n.sins_admitted?.length || 0) > 0 || (n.diseases?.length || 0) > 0;
+                  // Kısa düğüm etiketi: relation_key varsa ondan, yoksa relation'dan ilk kelime
+                  const shortLabel = isSelf
+                    ? (n.label?.split(' ')[0] || 'Kişi')
+                    : (n.relation_key && NODE_LABEL[n.relation_key]) || (n.relation || n.label || '').split(' ')[0];
+                  return (
+                    <G key={n.id} onPress={() => setSelected(n)}>
+                      {hasIssue && (
+                        <Circle cx={p.x} cy={p.y} r={r + 6} fill="transparent" stroke={colors.errorVow} strokeWidth={1.2} strokeOpacity={0.45} strokeDasharray="3,3" />
+                      )}
+                      <Circle cx={p.x} cy={p.y} r={r} fill={fill} stroke={stroke} strokeWidth={2.2} />
+                      <SvgText
+                        x={p.x}
+                        y={p.y + 4}
+                        fontSize={isSelf ? 12 : 11}
+                        fontWeight="600"
+                        textAnchor="middle"
+                        fill={stroke}
+                      >
+                        {shortLabel}
+                      </SvgText>
+                    </G>
+                  );
+                })}
+              </Svg>
+            </ScrollView>
+          </ScrollView>
+        </View>
 
         <View style={{ paddingHorizontal: spacing.lg, marginTop: spacing.md }}>
           <Caption style={{ color: colors.textSecondary, textAlign: 'center', fontStyle: 'italic' }}>
-            Düğümler akrabalık ağacına göre yerleşir. Oklar ebeveyn → çocuk yönüne (üst soydan kişiye sızan iz) işaret eder.
+            Haritayı sağa-sola ve yukarı-aşağı kaydırabilirsiniz. Oklar ebeveynden çocuğa (üst soydan kişiye sızan iz) yönelir.
           </Caption>
         </View>
 
@@ -375,6 +403,14 @@ const styles = StyleSheet.create({
   legendItem: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   dot: { width: 8, height: 8, borderRadius: 4 },
   invCard: { borderLeftWidth: 4 },
+  mapBox: {
+    height: 520,
+    backgroundColor: colors.bgCard,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderColor: colors.borderSubtle,
+    overflow: 'hidden',
+  },
   modalBackdrop: { flex: 1, backgroundColor: 'rgba(44,53,49,0.55)', justifyContent: 'flex-end' },
   modalCard: { backgroundColor: colors.bgPrimary, borderTopLeftRadius: 24, borderTopRightRadius: 24, maxHeight: '88%' },
   sideBadge: { paddingHorizontal: 10, paddingVertical: 4, borderRadius: radius.round, alignSelf: 'flex-start' },
