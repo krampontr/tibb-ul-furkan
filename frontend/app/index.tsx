@@ -51,7 +51,7 @@ export default function Home() {
             <Caption style={{ letterSpacing: 4, color: colors.accentSage }}>ﺗﺐ ﺍﻟﻔﺮﻗﺎﻥ</Caption>
             <H1 style={styles.title} testID="app-title">Tıbb-ul Furkan</H1>
             <Body style={styles.subtitle}>
-              Soy yüküm, manevi izlerim ve dualarımın haritası
+              Şifaya açılan kapı, genetik yüklerden arınma vakti
             </Body>
           </View>
         </ImageBackground>
