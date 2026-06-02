@@ -25,9 +25,9 @@ export default function PersonalStage() {
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={{ flex: 1 }}>
         <Screen>
           <View style={{ paddingTop: spacing.md }}>
-            <Caption style={{ color: colors.accentSage }}>1. AŞAMA / 4</Caption>
+            <Caption style={{ color: colors.accentSage }}>1. AŞAMA / 3</Caption>
             <View style={{ marginTop: spacing.xs, marginBottom: spacing.lg }}>
-              <ProgressBar step={1} total={4} />
+              <ProgressBar step={1} total={3} />
             </View>
             <H2>Kişisel Bilgiler</H2>
             <Body style={{ color: colors.textSecondary, marginTop: spacing.xs }}>

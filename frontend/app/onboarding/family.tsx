@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, KeyboardAvoidingView, Platform, TouchableOpacity, Modal, ScrollView } from 'react-native';
+import { View, StyleSheet, KeyboardAvoidingView, Platform, TouchableOpacity, Modal, ScrollView, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Body, Button, Caption, Card, Chip, H2, H3, Input, Label, ProgressBar, Screen } from '@/src/ui';
 import { useOnboarding } from '@/src/store';
 import { colors, fonts, radius, spacing } from '@/src/theme';
+import { api } from '@/src/api';
 import type { Ancestor } from '@/src/api';
 
 // Tanımlı akrabalık ilişkileri - akrabalık ağacında pozisyonlandırmada kullanılır
@@ -30,11 +31,30 @@ const PATERNAL_RELATIONS = [
 
 export default function FamilyStage() {
   const router = useRouter();
-  const { ancestors, set } = useOnboarding();
+  const state = useOnboarding();
+  const { ancestors, set, toCreatePayload } = state;
   const [modal, setModal] = useState(false);
   const [editing, setEditing] = useState<Ancestor | null>(null);
   const [customMaternal, setCustomMaternal] = useState('');
   const [customPaternal, setCustomPaternal] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const submit = async () => {
+    if (!state.first_name) {
+      Alert.alert('Eksik bilgi', 'Lütfen önce 1. aşamadan başlayın.');
+      return;
+    }
+    setLoading(true);
+    try {
+      const payload = toCreatePayload();
+      const profile = await api.createProfile(payload);
+      router.replace(`/profile/${profile.id}`);
+    } catch (e: any) {
+      Alert.alert('Hata', e.message || 'Profil oluşturulamadı.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const openWithRelation = (relation: string, side: 'maternal' | 'paternal', relation_key?: string) => {
     setEditing({
@@ -71,9 +91,9 @@ export default function FamilyStage() {
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={{ flex: 1 }}>
         <Screen>
           <View style={{ paddingTop: spacing.md }}>
-            <Caption style={{ color: colors.accentSage }}>3. AŞAMA / 4</Caption>
+            <Caption style={{ color: colors.accentSage }}>3. AŞAMA / 3</Caption>
             <View style={{ marginTop: spacing.xs, marginBottom: spacing.lg }}>
-              <ProgressBar step={3} total={4} />
+              <ProgressBar step={3} total={3} />
             </View>
             <H2>Aile & Soy Ağacı</H2>
             <Body style={{ color: colors.textSecondary, marginTop: spacing.xs }}>
@@ -159,7 +179,7 @@ export default function FamilyStage() {
           <View style={styles.footer}>
             <View style={{ flexDirection: 'row', gap: spacing.sm }}>
               <Button title="Geri" variant="secondary" onPress={() => router.back()} style={{ flex: 1 }} testID="back-btn" />
-              <Button title="Devam Et" onPress={() => router.push('/onboarding/spirituality')} style={{ flex: 1 }} testID="next-btn" />
+              <Button title={loading ? 'Analiz Ediliyor…' : 'Analizi Tamamla'} onPress={submit} disabled={loading} style={{ flex: 1.4 }} testID="submit-btn" />
             </View>
           </View>
         </Screen>

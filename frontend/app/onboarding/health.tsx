@@ -30,9 +30,9 @@ export default function HealthStage() {
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={{ flex: 1 }}>
         <Screen>
           <View style={{ paddingTop: spacing.md }}>
-            <Caption style={{ color: colors.accentSage }}>2. AŞAMA / 4</Caption>
+            <Caption style={{ color: colors.accentSage }}>2. AŞAMA / 3</Caption>
             <View style={{ marginTop: spacing.xs, marginBottom: spacing.lg }}>
-              <ProgressBar step={2} total={4} />
+              <ProgressBar step={2} total={3} />
             </View>
             <H2>Sağlık, Alerji ve Olaylar</H2>
             <Body style={{ color: colors.textSecondary, marginTop: spacing.xs }}>
