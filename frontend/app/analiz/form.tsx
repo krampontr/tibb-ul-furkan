@@ -1,19 +1,29 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { View, StyleSheet, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Body, Button, Caption, Card, H2, H3, Input, Label, ProgressBar } from '@/src/ui';
-import { useFormStore } from '@/src/formStore';
+import { useFormStore, serializeForBackend, ElderKey, YNKey } from '@/src/formStore';
 import { formApi } from '@/src/formApi';
 import { colors, fonts, radius, spacing } from '@/src/theme';
 
-const YN_KEYS: Array<{ key: keyof ReturnType<typeof useFormStore.getState>; label: string }> = [
+const ELDERS: Array<{ key: ElderKey; label: string }> = [
+  { key: 'anne', label: 'Anne' },
+  { key: 'baba', label: 'Baba' },
+  { key: 'anneanne', label: 'Anneanne' },
+  { key: 'anne_babasi', label: 'Annenin Babası' },
+  { key: 'babaanne', label: 'Babaanne' },
+  { key: 'baba_babasi', label: 'Babanın Babası' },
+];
+
+// Tam 17 soru — Tıbb-ul Furkan formundaki Sorular bölümü
+const QUESTIONS: Array<{ key: YNKey; label: string }> = [
   { key: 'adak_yemin', label: 'Geçmişte adak adamış mı? Yemin edip bozmuş mu?' },
   { key: 'muska_okunmus_su', label: 'Muska takmış mı? Okunmuş su içmiş mi?' },
   { key: 'miras_sorunu', label: 'Akrabalar arası miras sorunu var mı?' },
   { key: 'beddua_hak_haram', label: 'Herhangi birine beddua veya hak haram etmiş mi?' },
   { key: 'intihar', label: 'İntihar girişimi oldu mu?' },
-  { key: 'anne_baba_ofke', label: 'Anne babaya karşı öfke var mı?' },
+  { key: 'anne_baba_ofke', label: 'Anne-babaya karşı öfke var mı?' },
   { key: 'es_soguklugu', label: 'Eşine karşı aşırı soğukluk / evlilikte problem var mı?' },
   { key: 'sehvet', label: 'Şehvet yüksekliği var mı?' },
   { key: 'duygusallik', label: 'Duygusallık var mı?' },
@@ -31,36 +41,25 @@ export default function AnalizForm() {
   const router = useRouter();
   const state = useFormStore();
   const [loading, setLoading] = useState(false);
+  const [err, setErr] = useState('');
+
+  const faizValidationError = useMemo(() => {
+    if (state.faiz === 'evet' && !state.faiz_aciklama.trim()) {
+      return 'Faizli kredi için Evet seçildi — lütfen kısa bir açıklama yazın.';
+    }
+    return '';
+  }, [state.faiz, state.faiz_aciklama]);
 
   const submit = async () => {
+    setErr('');
+    if (faizValidationError) {
+      setErr(faizValidationError);
+      return;
+    }
     setLoading(true);
     try {
-      const submission = await formApi.create({
-        ad_soyad: state.ad_soyad,
-        yas: state.yas,
-        tlf: state.tlf,
-        medeni_durum: state.medeni_durum,
-        cocuk_sayisi: state.cocuk_sayisi,
-        memleket: state.memleket,
-        dogum_tarihi: state.dogum_tarihi,
-        cinsiyet: state.cinsiyet || undefined,
-        anne_durum: state.anne_durum, baba_durum: state.baba_durum,
-        anneanne_durum: state.anneanne_durum, anne_babasi_durum: state.anne_babasi_durum,
-        babaanne_durum: state.babaanne_durum, baba_babasi_durum: state.baba_babasi_durum,
-        zekat_veriyor: state.zekat_veriyor, faizli_kredi: state.faizli_kredi,
-        anne_hastalik: state.anne_hastalik, baba_hastalik: state.baba_hastalik,
-        cocuk_hastalik: state.cocuk_hastalik,
-        rahatsizliklar: state.rahatsizliklar,
-        adak_yemin: state.adak_yemin, muska_okunmus_su: state.muska_okunmus_su,
-        miras_sorunu: state.miras_sorunu, beddua_hak_haram: state.beddua_hak_haram,
-        intihar: state.intihar, anne_baba_ofke: state.anne_baba_ofke,
-        es_soguklugu: state.es_soguklugu, sehvet: state.sehvet,
-        duygusallik: state.duygusallik, kin: state.kin,
-        kusme_alinganlik: state.kusme_alinganlik, ofke: state.ofke,
-        nefret: state.nefret, supheci: state.supheci,
-        uyku_sorunu: state.uyku_sorunu, aniden_parlama: state.aniden_parlama,
-        alaycilik: state.alaycilik,
-      });
+      const payload = serializeForBackend(state);
+      const submission = await formApi.create(payload as any);
       router.replace(`/analiz/sonuc/${submission.id}`);
     } catch (e: any) {
       Alert.alert('Hata', e.message || 'Form gönderilemedi');
@@ -74,61 +73,200 @@ export default function AnalizForm() {
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={{ flex: 1 }}>
         <View style={styles.body}>
           <Caption style={{ color: colors.accentSage }}>2. AŞAMA / 2</Caption>
-          <View style={{ marginTop: spacing.xs, marginBottom: spacing.lg }}><ProgressBar step={2} total={2} /></View>
+          <View style={{ marginTop: spacing.xs, marginBottom: spacing.lg }}>
+            <ProgressBar step={2} total={2} />
+          </View>
           <H2>Tespit Formu</H2>
-          <Body style={{ color: colors.textSecondary, marginTop: 4 }}>Aile büyükleri, mali durum, hastalıklar ve manevi sorular.</Body>
+          <Body style={{ color: colors.textSecondary, marginTop: 4 }}>
+            Aile büyükleri, mali durum, hastalıklar ve manevi sorular.
+          </Body>
 
           <ScrollView contentContainerStyle={{ paddingBottom: spacing.xxl }} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator>
+            {/* AİLE BÜYÜKLERİ */}
             <Card>
               <H3 style={{ fontSize: 16 }}>Aile Büyükleri</H3>
-              <Caption style={{ marginBottom: spacing.sm }}>Sağ mı / vefat mı? Notlarınızı yazın.</Caption>
-              <Input label="ANNE" value={state.anne_durum} onChangeText={(t) => state.set({ anne_durum: t })} placeholder="Örn: Sağ, 60 yaşında" />
-              <Input label="BABA" value={state.baba_durum} onChangeText={(t) => state.set({ baba_durum: t })} placeholder="Örn: Vefat etti, 2015" />
-              <Input label="ANNEANNE" value={state.anneanne_durum} onChangeText={(t) => state.set({ anneanne_durum: t })} placeholder="Sağ / Vefat" />
-              <Input label="ANNENİN BABASI" value={state.anne_babasi_durum} onChangeText={(t) => state.set({ anne_babasi_durum: t })} placeholder="Sağ / Vefat" />
-              <Input label="BABAANNE" value={state.babaanne_durum} onChangeText={(t) => state.set({ babaanne_durum: t })} placeholder="Sağ / Vefat" />
-              <Input label="BABANIN BABASI" value={state.baba_babasi_durum} onChangeText={(t) => state.set({ baba_babasi_durum: t })} placeholder="Sağ / Vefat" />
+              <Caption style={{ marginBottom: spacing.md }}>Her büyüğünüz için "Sağ" veya "Vefat" seçin; ardından yaşını veya vefat yılını girin.</Caption>
+              {ELDERS.map((e) => {
+                const elder = state[e.key];
+                return (
+                  <View key={e.key} style={styles.elderRow}>
+                    <Label>{e.label.toUpperCase()}</Label>
+                    <View style={styles.radioRow}>
+                      <RadioPill
+                        label="● Sağ"
+                        active={elder.status === 'sag'}
+                        onPress={() => state.setElder(e.key, { status: 'sag', value: elder.status === 'sag' ? elder.value : '' })}
+                        testID={`${e.key}-sag`}
+                      />
+                      <RadioPill
+                        label="✕ Vefat"
+                        active={elder.status === 'vefat'}
+                        onPress={() => state.setElder(e.key, { status: 'vefat', value: elder.status === 'vefat' ? elder.value : '' })}
+                        testID={`${e.key}-vefat`}
+                      />
+                    </View>
+                    {elder.status ? (
+                      <Input
+                        value={elder.value}
+                        onChangeText={(t) => state.setElder(e.key, { value: t.replace(/\D/g, '').slice(0, 4) })}
+                        placeholder={elder.status === 'sag' ? 'Yaşı (Örn: 65)' : 'Vefat yılı (Örn: 2010)'}
+                        keyboardType="number-pad"
+                        style={styles.softInput}
+                      />
+                    ) : null}
+                  </View>
+                );
+              })}
             </Card>
 
+            {/* MALİ DURUM */}
             <Card>
               <H3 style={{ fontSize: 16 }}>Mali Durum</H3>
-              <Input label="ZEKAT VERİYOR MU?" value={state.zekat_veriyor} onChangeText={(t) => state.set({ zekat_veriyor: t })} placeholder="Evet / Hayır / Bilmiyorum" />
-              <Input label="FAİZLİ KREDİ ÇEKTİ Mİ?" value={state.faizli_kredi} onChangeText={(t) => state.set({ faizli_kredi: t })} placeholder="Evet / Hayır + açıklama" />
+
+              <View style={styles.qBlock}>
+                <Label>ZEKATINI VERİYOR MU?</Label>
+                <View style={styles.radioRow}>
+                  <RadioPill label="Evet" active={state.zekat === 'evet'} onPress={() => state.set({ zekat: 'evet' })} testID="zekat-evet" />
+                  <RadioPill label="Hayır" active={state.zekat === 'hayir'} onPress={() => state.set({ zekat: 'hayir' })} testID="zekat-hayir" />
+                </View>
+              </View>
+
+              <View style={styles.qBlock}>
+                <Label>FAİZLİ KREDİ ÇEKTİ Mİ?</Label>
+                <View style={styles.radioRow}>
+                  <RadioPill
+                    label="Evet"
+                    active={state.faiz === 'evet'}
+                    onPress={() => state.set({ faiz: 'evet' })}
+                    testID="faiz-evet"
+                  />
+                  <RadioPill
+                    label="Hayır"
+                    active={state.faiz === 'hayir'}
+                    onPress={() => state.set({ faiz: 'hayir', faiz_aciklama: '' })}
+                    testID="faiz-hayir"
+                  />
+                </View>
+                {state.faiz === 'evet' ? (
+                  <Input
+                    value={state.faiz_aciklama}
+                    onChangeText={(t) => state.set({ faiz_aciklama: t })}
+                    placeholder="Açıklama (zorunlu): ne zaman, miktarı, kapatıldı mı?"
+                    style={[
+                      styles.softInput,
+                      !state.faiz_aciklama.trim() ? { borderBottomColor: colors.errorVow } : null,
+                    ]}
+                    multiline
+                  />
+                ) : null}
+              </View>
             </Card>
 
+            {/* AİLEDEKİ HASTALIKLAR */}
             <Card>
               <H3 style={{ fontSize: 16 }}>Ailedeki Hastalıklar</H3>
-              <Input label="ANNEDE HASTALIK VAR MI?" value={state.anne_hastalik} onChangeText={(t) => state.set({ anne_hastalik: t })} placeholder="Örn: Şeker, tansiyon, yok" multiline />
-              <Input label="BABADA HASTALIK VAR MI?" value={state.baba_hastalik} onChangeText={(t) => state.set({ baba_hastalik: t })} placeholder="Örn: Kalp, astım, yok" multiline />
-              <Input label="ÇOCUKLARDA HASTALIK VAR MI?" value={state.cocuk_hastalik} onChangeText={(t) => state.set({ cocuk_hastalik: t })} placeholder="Örn: Yok / hangi çocukta ne" multiline />
+              <Caption style={{ marginBottom: spacing.sm }}>Tüm detayları yazabilirsiniz (varsa hangi hastalık, ne zamandır).</Caption>
+              <Input
+                label="ANNEDE HASTALIK VAR MI?"
+                value={state.anne_hastalik}
+                onChangeText={(t) => state.set({ anne_hastalik: t })}
+                placeholder="Örn: Tansiyon, şeker, romatizma — yok"
+                multiline
+                style={styles.softInput}
+              />
+              <Input
+                label="BABADA HASTALIK VAR MI?"
+                value={state.baba_hastalik}
+                onChangeText={(t) => state.set({ baba_hastalik: t })}
+                placeholder="Örn: Kalp, prostat, astım — yok"
+                multiline
+                style={styles.softInput}
+              />
+              <Input
+                label="ÇOCUKLARDA HASTALIK VAR MI?"
+                value={state.cocuk_hastalik}
+                onChangeText={(t) => state.set({ cocuk_hastalik: t })}
+                placeholder="Örn: Hangi çocukta ne — yok"
+                multiline
+                style={styles.softInput}
+              />
             </Card>
 
+            {/* YAŞANILAN RUHSAL VE FİZİKSEL RAHATSIZLIKLAR */}
             <Card>
               <H3 style={{ fontSize: 16 }}>Yaşanılan Ruhsal ve Fiziksel Rahatsızlıklar</H3>
-              <Caption style={{ marginBottom: spacing.sm }}>Mevcut hastalıklar, semptomlar, korkular, geçmiş travmalar — serbest yazın.</Caption>
-              <Input value={state.rahatsizliklar} onChangeText={(t) => state.set({ rahatsizliklar: t })} placeholder="Örn: Sürekli migren, panik atak, baş ağrısı, eşle iletişim problemi…" multiline style={{ minHeight: 100, textAlignVertical: 'top' }} />
+              <Caption style={{ marginBottom: spacing.sm }}>
+                Mevcut hastalıklar, semptomlar, korkular, geçmiş travmalar — detaylı yazınız.
+              </Caption>
+              <Input
+                value={state.rahatsizliklar}
+                onChangeText={(t) => state.set({ rahatsizliklar: t })}
+                placeholder="Örn: Migren, panik atak, uyku sorunu, eşle iletişim problemi, sık baş ağrısı…"
+                multiline
+                style={[styles.softInput, { minHeight: 110, textAlignVertical: 'top' }]}
+              />
             </Card>
 
+            {/* 17 SORU */}
             <Card>
               <H3 style={{ fontSize: 16 }}>Sorular</H3>
-              <Caption style={{ marginBottom: spacing.sm }}>Her soruyu cevaplayın: var ise "Evet" + açıklama, yok ise "Yok".</Caption>
-              {YN_KEYS.map((q) => (
-                <View key={q.key as string} style={{ marginBottom: spacing.sm }}>
-                  <Caption style={styles.qLabel}>{q.label}</Caption>
-                  <View style={{ flexDirection: 'row', gap: spacing.xs, marginBottom: 4 }}>
-                    <YnPill active={isYes(state[q.key] as string)} label="Evet" onPress={() => state.set({ [q.key]: 'Evet' } as any)} />
-                    <YnPill active={isNo(state[q.key] as string)} label="Yok" onPress={() => state.set({ [q.key]: 'Yok' } as any)} />
+              <Caption style={{ marginBottom: spacing.md }}>
+                Her soru için Evet/Hayır seçiniz. Açıklama alanı opsiyoneldir.
+              </Caption>
+              {QUESTIONS.map((q, idx) => {
+                const yn = state[q.key];
+                return (
+                  <View key={q.key as string} style={styles.qBlock}>
+                    <View style={{ flexDirection: 'row', alignItems: 'flex-start', marginBottom: spacing.xs }}>
+                      <Caption style={styles.qNum}>{idx + 1}.</Caption>
+                      <Caption style={styles.qLabel}>{q.label}</Caption>
+                    </View>
+                    <View style={styles.radioRow}>
+                      <RadioPill
+                        label="Evet"
+                        active={yn.status === 'evet'}
+                        onPress={() => state.setYN(q.key, { status: 'evet' })}
+                        testID={`${q.key}-evet`}
+                      />
+                      <RadioPill
+                        label="Hayır"
+                        active={yn.status === 'hayir'}
+                        onPress={() => state.setYN(q.key, { status: 'hayir', note: '' })}
+                        testID={`${q.key}-hayir`}
+                      />
+                    </View>
+                    {/* Şeffaf açıklama — sadece "Evet"te göster, opsiyonel */}
+                    {yn.status === 'evet' ? (
+                      <Input
+                        value={yn.note}
+                        onChangeText={(t) => state.setYN(q.key, { note: t })}
+                        placeholder="Açıklama (opsiyonel) — detay vermek isterseniz"
+                        style={styles.softInput}
+                        multiline
+                      />
+                    ) : null}
                   </View>
-                  <Input value={state[q.key] as string} onChangeText={(t) => state.set({ [q.key]: t } as any)} placeholder="Açıklama (opsiyonel)" />
-                </View>
-              ))}
+                );
+              })}
             </Card>
+
+            {err ? (
+              <View style={styles.errBox}>
+                <Body style={{ color: colors.errorVow }}>⚠ {err}</Body>
+              </View>
+            ) : null}
           </ScrollView>
 
           <View style={styles.footer}>
             <View style={{ flexDirection: 'row', gap: spacing.sm }}>
               <Button title="Geri" variant="secondary" onPress={() => router.back()} style={{ flex: 1 }} testID="back-btn" />
-              <Button title={loading ? 'Gönderiliyor…' : 'Analizi Başlat'} onPress={submit} disabled={loading} style={{ flex: 1.4 }} testID="submit-btn" />
+              <Button
+                title={loading ? 'Gönderiliyor…' : 'Analizi Başlat'}
+                onPress={submit}
+                disabled={loading}
+                style={{ flex: 1.4 }}
+                testID="submit-btn"
+              />
             </View>
           </View>
         </View>
@@ -137,21 +275,49 @@ export default function AnalizForm() {
   );
 }
 
-function isYes(v?: string) { return !!v && v.trim().toLowerCase().startsWith('evet'); }
-function isNo(v?: string) { return !!v && ['yok', 'hayır', 'hayir'].includes(v.trim().toLowerCase()); }
-
-function YnPill({ active, label, onPress }: { active: boolean; label: string; onPress: () => void }) {
+function RadioPill({ label, active, onPress, testID }: { label: string; active: boolean; onPress: () => void; testID?: string }) {
   return (
-    <TouchableOpacity onPress={onPress} style={[styles.pill, active && styles.pillActive]}>
-      <Caption style={[{ color: colors.textPrimary, fontFamily: fonts.bodyMedium }, active && { color: colors.bgPrimary }]}>{label}</Caption>
+    <TouchableOpacity onPress={onPress} style={[styles.pill, active && styles.pillActive]} testID={testID} activeOpacity={0.7}>
+      <Caption style={[styles.pillText, active && { color: colors.bgPrimary }]}>{label}</Caption>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   body: { flex: 1, paddingHorizontal: spacing.lg, paddingTop: spacing.md },
-  qLabel: { fontFamily: fonts.bodyMedium, color: colors.textPrimary, fontSize: 13, marginBottom: 4 },
-  pill: { paddingHorizontal: 14, paddingVertical: 6, borderRadius: radius.round, borderWidth: 1, borderColor: colors.borderSubtle, backgroundColor: colors.bgCard },
+
+  elderRow: { marginBottom: spacing.md },
+  qBlock: { marginBottom: spacing.md },
+
+  qNum: { fontFamily: fonts.bodyBold, color: colors.accentSage, width: 22, marginTop: 1 },
+  qLabel: { fontFamily: fonts.bodyMedium, color: colors.textPrimary, fontSize: 14, flex: 1, lineHeight: 19 },
+
+  radioRow: { flexDirection: 'row', gap: spacing.sm, marginVertical: spacing.xs },
+
+  pill: {
+    paddingHorizontal: 18, paddingVertical: 8,
+    borderRadius: radius.round,
+    borderWidth: 1, borderColor: colors.borderSubtle,
+    backgroundColor: colors.bgCard,
+    minWidth: 78, alignItems: 'center',
+  },
   pillActive: { backgroundColor: colors.textPrimary, borderColor: colors.textPrimary },
+  pillText: { color: colors.textPrimary, fontFamily: fonts.bodyMedium, fontSize: 13 },
+
+  // Şeffaf, soluk görünümlü açıklama girdisi
+  softInput: {
+    backgroundColor: 'rgba(248, 244, 235, 0.55)',
+    borderRadius: radius.sm,
+    paddingHorizontal: spacing.sm,
+    paddingVertical: 6,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.borderSubtle,
+    fontSize: 14,
+    color: colors.textPrimary,
+    marginTop: 4,
+  },
+
+  errBox: { padding: spacing.md, borderRadius: radius.md, backgroundColor: '#F8E1DE', borderWidth: 1, borderColor: colors.errorVow, marginTop: spacing.sm },
+
   footer: { paddingBottom: spacing.md, paddingTop: spacing.sm },
 });
