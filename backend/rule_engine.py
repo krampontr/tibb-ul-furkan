@@ -1,0 +1,360 @@
+"""
+Kural Tabanlı Analiz Motoru (AI'sız, ücretsiz)
+
+Kullanıcının form yanıtlarını knowledge_base.py'deki örüntülerle ve templates.py'deki
+şablonlarla eşleştirerek Markdown çıktı üretir. Çıktı, AI'nın ürettiği formatla AYNI:
+
+  ## Aile Büyükleri & Soy Yükü
+  - madde 1
+  - madde 2
+
+  ## Mali Durum
+  - ...
+
+  Lütfen seans alınız.
+"""
+
+from typing import Dict, List
+from collections import Counter
+
+from knowledge_base import (
+    DISEASE_PATTERNS,
+    FORM_QUESTION_HINTS,
+    CAUSE_CATEGORIES,
+)
+from templates import (
+    TEMPLATES_MALI,
+    TEMPLATES_SORULAR,
+    KAPANIS,
+)
+
+
+# ============================================================
+# Yardımcılar
+# ============================================================
+def _f(doc: Dict, key: str) -> str:
+    v = (doc.get(key) or "")
+    return v.strip() if isinstance(v, str) else ""
+
+
+def _is_evet(value: str) -> bool:
+    """'Evet', 'Evet — ...' vs gibi başlangıçları algılar."""
+    return value.strip().lower().startswith("evet")
+
+
+def _is_hayir(value: str) -> bool:
+    return value.strip().lower().startswith("hayır")
+
+
+def _elder_status(value: str) -> str:
+    """'Sağ, 65 yaşında' → 'sag', 'Vefat, 2010' → 'vefat', boş → ''"""
+    v = value.strip().lower()
+    if v.startswith("sağ"):
+        return "sag"
+    if v.startswith("vefat"):
+        return "vefat"
+    return ""
+
+
+# ============================================================
+# Bölüm 1 — Aile Büyükleri & Soy Yükü
+# ============================================================
+ELDER_KEYS = [
+    ("anne_durum", "anne"),
+    ("baba_durum", "baba"),
+    ("anneanne_durum", "anneanne"),
+    ("anne_babasi_durum", "annenin babası"),
+    ("babaanne_durum", "babaanne"),
+    ("baba_babasi_durum", "babanın babası"),
+]
+
+
+def build_aile(doc: Dict) -> List[str]:
+    bullets: List[str] = []
+
+    statuses = {label: _elder_status(_f(doc, key)) for key, label in ELDER_KEYS}
+    vefat = [label for label, s in statuses.items() if s == "vefat"]
+    sag = [label for label, s in statuses.items() if s == "sag"]
+
+    if vefat:
+        if len(vefat) == 1:
+            bullets.append(
+                f"Bildirilen vefat: **{vefat[0].capitalize()}**. Vefat eden yakın için dua ve helalleşme; "
+                f"varsa onun adına yarım kalmış adak/zekat gibi yükümlülüklerin tamamlanması önerilebilir."
+            )
+        else:
+            isim_listesi = ", ".join([x.capitalize() for x in vefat])
+            bullets.append(
+                f"Bildirilen vefatlar: **{isim_listesi}**. Vefat edenler için dua ve helalleşme; "
+                f"onlardan kalmış olası adak veya hak yükümlülüklerinin gözden geçirilmesi faydalı olabilir."
+            )
+
+    if sag:
+        if len(sag) == 1:
+            bullets.append(
+                f"Hayatta olduğu bildirilen: **{sag[0].capitalize()}**. Onunla helalleşme ve dua, soy hattındaki "
+                f"manevi dengeyi olumlu yönde etkileyebilir."
+            )
+        else:
+            isim_listesi = ", ".join([x.capitalize() for x in sag])
+            bullets.append(
+                f"Hayatta olduğu bildirilenler: **{isim_listesi}**. Yaşayan büyüklerle gönül kazanma ve helalleşme süreci, "
+                f"soy hattındaki olası yükleri hafifletmede önemli olabilir."
+            )
+
+    # Annenin babası + Babanın babası ikisi de vefat → ek bilgi
+    if (statuses.get("annenin babası") == "vefat" and statuses.get("babanın babası") == "vefat"):
+        bullets.append(
+            "Her iki dede tarafının da vefat etmiş olması durumunda; geçmiş kuşaktan gelmiş olabilecek "
+            "adak, beddua, hak helalleşmesi gibi yüklerin tespitinde manevi rehberlik faydalı olabilir."
+        )
+
+    return bullets
+
+
+# ============================================================
+# Bölüm 2 — Mali Durum
+# ============================================================
+def build_mali(doc: Dict) -> List[str]:
+    bullets: List[str] = []
+    zekat = _f(doc, "zekat_veriyor").lower()
+    faiz = _f(doc, "faizli_kredi").lower()
+
+    for tpl in TEMPLATES_MALI:
+        m = tpl["match"]
+        val = _f(doc, m["field"]).lower()
+        if "equals_lower" in m and val == m["equals_lower"]:
+            bullets.append(tpl["text"])
+        elif "starts_with_lower" in m and val.startswith(m["starts_with_lower"]):
+            bullets.append(tpl["text"])
+
+    return bullets
+
+
+# ============================================================
+# Bölüm 3 — Aile Hastalıkları
+# ============================================================
+def _match_diseases(text: str) -> List[Dict]:
+    """Verilen serbest metinde geçen anahtar kelimeleri DISEASE_PATTERNS ile eşleştirir."""
+    if not text:
+        return []
+    t = text.lower()
+    matched = []
+    for d in DISEASE_PATTERNS:
+        # İsim eşleşmesi
+        name_l = d["name"].lower()
+        # Birinci kelime çoğunlukla anahtardır (örn. "Migren", "Diyabet", "Otizm")
+        first_word = name_l.split()[0].split("/")[0].strip()
+        hit = first_word in t
+        # Semptom eşleşmesi
+        if not hit:
+            for sym in d["symptoms"]:
+                if sym.lower() in t:
+                    hit = True
+                    break
+        if hit:
+            matched.append(d)
+    return matched
+
+
+def _causes_to_labels(causes: List[str]) -> str:
+    """['zekat', 'beddua'] → 'Zekat, Beddua' (Türkçe başlık listesi)"""
+    labels = [CAUSE_CATEGORIES.get(c, c) for c in causes]
+    if len(labels) > 4:
+        labels = labels[:4]
+    return ", ".join(labels)
+
+
+def build_aile_hastalik(doc: Dict) -> List[str]:
+    bullets: List[str] = []
+    for key, who in [("anne_hastalik", "Annede"), ("baba_hastalik", "Babada"), ("cocuk_hastalik", "Çocuklarda")]:
+        txt = _f(doc, key)
+        if not txt:
+            continue
+        diseases = _match_diseases(txt)
+        if diseases:
+            for d in diseases[:2]:  # Bir alan için en fazla 2 hastalık göster
+                bullets.append(
+                    f"{who} bildirilen **{d['name']}** durumu; bilgi tabanında "
+                    f"_{_causes_to_labels(d['causes'])}_ kategorileriyle ilişkilendirilebilir. "
+                    f"Öneri: {d['remedy']}"
+                )
+        else:
+            # Eşleşme yok ama dolu — genel ifade
+            bullets.append(
+                f"{who} bildirilen rahatsızlıklar (\"{txt[:60]}{'…' if len(txt) > 60 else ''}\") "
+                f"manevi yön açısından değerlendirilebilir; uygun kategorinin tespiti için seans önerilir."
+            )
+    return bullets
+
+
+# ============================================================
+# Bölüm 4 — Yaşanılan Ruhsal & Fiziksel Rahatsızlıklar
+# ============================================================
+def build_rahatsizlik(doc: Dict) -> List[str]:
+    bullets: List[str] = []
+    txt = _f(doc, "rahatsizliklar")
+    if not txt:
+        return bullets
+
+    diseases = _match_diseases(txt)
+    if not diseases:
+        bullets.append(
+            f"Bildirdiğiniz rahatsızlıklar (\"{txt[:80]}{'…' if len(txt) > 80 else ''}\") "
+            "bilgi tabanındaki örüntülerle birebir eşleşmemektedir; daha detaylı manevi değerlendirme için seans önerilir."
+        )
+        return bullets
+
+    for d in diseases[:5]:  # En fazla 5 hastalık göster
+        bullets.append(
+            f"**{d['name']}** ile uyumlu işaretler; bilgi tabanında _{_causes_to_labels(d['causes'])}_ "
+            f"kategorileriyle ilişkilendirilebilir."
+        )
+    return bullets
+
+
+# ============================================================
+# Bölüm 5 — Manevi İşaretler (17 sorudan "Evet" olanlar)
+# ============================================================
+QUESTION_DISPLAY = {
+    "adak_yemin": "Adak / Yemin",
+    "muska_okunmus_su": "Muska / Okunmuş Su",
+    "miras_sorunu": "Miras Sorunu",
+    "beddua_hak_haram": "Beddua / Hak Haram",
+    "intihar": "İntihar Girişimi",
+    "anne_baba_ofke": "Anne-Babaya Öfke",
+    "es_soguklugu": "Eş Soğukluğu",
+    "sehvet": "Şehvet",
+    "duygusallik": "Duygusallık",
+    "kin": "Kin",
+    "kusme_alinganlik": "Küsme / Alınganlık",
+    "ofke": "Öfke",
+    "nefret": "Nefret",
+    "supheci": "Şüphecilik",
+    "uyku_sorunu": "Uyku Sorunu",
+    "aniden_parlama": "Aniden Parlama",
+    "alaycilik": "Alaycılık",
+}
+
+
+def build_manevi(doc: Dict) -> List[str]:
+    bullets: List[str] = []
+    for q_key, label in QUESTION_DISPLAY.items():
+        val = _f(doc, q_key)
+        if not _is_evet(val):
+            continue
+        text = TEMPLATES_SORULAR.get(q_key, "")
+        # Kullanıcı açıklama yazdıysa parantez içinde ekle
+        note = ""
+        v_lower = val.lower()
+        if "—" in v_lower or "-" in val:
+            parts = val.split("—") if "—" in val else val.split("-", 1)
+            if len(parts) > 1:
+                user_note = parts[-1].strip()
+                if user_note and user_note.lower() != "evet":
+                    note = f' (Kişisel not: "{user_note[:80]}{"…" if len(user_note) > 80 else ""}")'
+        if text:
+            bullets.append(f"**{label}**: {text}{note}")
+    return bullets
+
+
+# ============================================================
+# Bölüm 6 — Genel Değerlendirme (en güçlü kategoriler)
+# ============================================================
+def build_genel(doc: Dict) -> List[str]:
+    """Tüm sinyal kaynaklarını toplayıp en sık geçen kategorileri öne çıkarır."""
+    counter = Counter()
+
+    # Sorular → kategoriler
+    for q_key, hints in FORM_QUESTION_HINTS.items():
+        if _is_evet(_f(doc, q_key)):
+            for c in hints:
+                counter[c] += 2  # Sorular daha güçlü sinyal
+
+    # Hastalıklar → kategoriler
+    all_text = " ".join([_f(doc, k) for k in ["rahatsizliklar", "anne_hastalik", "baba_hastalik", "cocuk_hastalik"]])
+    diseases = _match_diseases(all_text)
+    for d in diseases:
+        for c in d["causes"]:
+            counter[c] += 1
+
+    # Mali sinyaller
+    if _f(doc, "zekat_veriyor").lower() == "hayır":
+        counter["zekat"] += 3
+    if _f(doc, "faizli_kredi").lower().startswith("evet"):
+        counter["faiz"] += 3
+
+    bullets: List[str] = []
+    if not counter:
+        bullets.append("Form yanıtlarınız üzerinden bilgi tabanında belirgin örüntü tespit edilmemiştir; "
+                       "daha kapsamlı bir değerlendirme için seans önerilir.")
+        return bullets
+
+    top = counter.most_common(3)
+    labels = [CAUSE_CATEGORIES.get(c, c) for c, _ in top]
+    bullets.append(
+        f"Tüm yanıtlarınız birlikte değerlendirildiğinde, en güçlü öne çıkan kategoriler: "
+        f"**{labels[0]}**{', **' + labels[1] + '**' if len(labels) > 1 else ''}"
+        f"{' ve **' + labels[2] + '**' if len(labels) > 2 else ''}."
+    )
+    bullets.append(
+        "Bu kategoriler doğrultusunda; tövbe, helalleşme, varsa adak/zekat eksiklerinin tamamlanması "
+        "ve manevi rehberlik öncelikli adımlar olarak değerlendirilebilir."
+    )
+    bullets.append(
+        "Bu çıktı; bildirilen verilere göre _olası_ işaretleri özetler. Kesin tespit ve uygulamaya yönelik "
+        "yönlendirme için seans alınması önerilir."
+    )
+    return bullets
+
+
+# ============================================================
+# ANA ÜRETİCİ
+# ============================================================
+def generate_analysis(doc: Dict) -> Dict:
+    """Form dökümünü alır, Markdown analiz metni ve sinyal özeti döner."""
+    sections = []
+
+    aile = build_aile(doc)
+    if aile:
+        sections.append(("Aile Büyükleri & Soy Yükü", aile))
+
+    mali = build_mali(doc)
+    if mali:
+        sections.append(("Mali Durum", mali))
+
+    aile_hast = build_aile_hastalik(doc)
+    if aile_hast:
+        sections.append(("Aile Hastalıkları", aile_hast))
+
+    rahatsizlik = build_rahatsizlik(doc)
+    if rahatsizlik:
+        sections.append(("Ruhsal & Fiziksel Rahatsızlıklar", rahatsizlik))
+
+    manevi = build_manevi(doc)
+    if manevi:
+        sections.append(("Manevi İşaretler", manevi))
+
+    genel = build_genel(doc)
+    if genel:
+        sections.append(("Genel Değerlendirme", genel))
+
+    # Markdown oluştur
+    lines = []
+    for title, bullets in sections:
+        lines.append(f"## {title}")
+        lines.append("")
+        for b in bullets:
+            lines.append(f"- {b}")
+        lines.append("")
+    lines.append(KAPANIS)
+    markdown = "\n".join(lines)
+
+    # Sinyal özeti (Counter çıktısı - debug/info için)
+    signals: Dict[str, List[str]] = {}
+    for q_key, hints in FORM_QUESTION_HINTS.items():
+        if _is_evet(_f(doc, q_key)):
+            for c in hints:
+                signals.setdefault(c, []).append(QUESTION_DISPLAY.get(q_key, q_key))
+
+    return {"ai_analysis": markdown, "signals": signals}
