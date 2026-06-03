@@ -61,19 +61,6 @@ export default function Home() {
             <Button title="Yeni Soy Analizi" onPress={startNew} testID="start-analysis-btn" style={{ flex: 1 }} />
           </View>
 
-          <TouchableOpacity onPress={() => router.push('/diseases')} testID="diseases-library-btn">
-            <Card style={styles.libraryCard}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                <View style={{ flex: 1 }}>
-                  <Label style={{ color: colors.accentSage, marginBottom: 4 }}>KÜTÜPHANE</Label>
-                  <H3>Hastalık & Soy Yükü Rehberi</H3>
-                  <Caption style={{ marginTop: 4 }}>50+ hastalığın manevi izleri ve kefaretleri</Caption>
-                </View>
-                <Body style={{ fontSize: 24, color: colors.accentSage }}>›</Body>
-              </View>
-            </Card>
-          </TouchableOpacity>
-
           <Label style={{ marginTop: spacing.lg, marginBottom: spacing.sm }}>KAYITLI PROFİLLER ({profiles.length})</Label>
 
           {profiles.length === 0 && !loading ? (
