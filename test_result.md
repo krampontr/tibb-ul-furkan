@@ -101,3 +101,83 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: |
+  "Tıbb-ul Furkan" - PDF kitap içeriğine dayalı AI destekli soy yükü tespit ve analiz uygulaması.
+  İki ana bölüm: (1) Analiz: Form üzerinden AI yorumu, (2) Soy Ağacı: Etkileşimli zihin haritası.
+  Form, kullanıcının yüklediği fiziksel formdaki alanlardan (Meslek ve Sığınma HARİÇ) oluşur.
+  AI çıktısı serbest biçimde olabilir; ancak çıktının sonunda "Lütfen seans alınız" metni yer almalıdır.
+
+backend:
+  - task: "FormSubmission CRUD endpoints (POST/GET list/GET id/DELETE)"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        -working: "NA"
+        -agent: "main"
+        -comment: "FormSubmission model ve /api/form-submissions endpointleri eklendi. Manuel curl ile list endpointi 200 dönüyor. Test edilmesi gereken: POST/GET/DELETE tüm akış."
+
+  - task: "AI Form Analysis endpoint (POST /form-submissions/{id}/analyze)"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        -working: "NA"
+        -agent: "main"
+        -comment: "Endpoint Claude Sonnet 4.6 ile (emergentintegrations) entegre. knowledge_base.py'den system_message yapılandırılıyor. Çıktı serbest biçimde, sonunda 'Lütfen seans alınız.' metni eklenmesi gerekiyor (system prompt'a yazıldı)."
+
+frontend:
+  - task: "Ana sayfa - 2 ana bölüm (Analiz / Soy Ağacı) + listeler"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/app/index.tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        -working: "NA"
+        -agent: "main"
+        -comment: "Screenshot ile UI doğrulandı: 2 bölüm net görünüyor; analiz ve profil listeleri yükleniyor."
+
+  - task: "Analiz akışı (personal -> form -> sonuc)"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/app/analiz/"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        -working: "NA"
+        -agent: "main"
+        -comment: "personal.tsx, form.tsx ve sonuc/[id].tsx yapıldı. Form sadece kullanıcının fiziksel formundaki alanları içeriyor (Meslek ve Sığınma yok). Sonuç ekranı otomatik analiz başlatıyor."
+
+metadata:
+  created_by: "main_agent"
+  version: "2.0"
+  test_sequence: 1
+  run_ui: false
+
+test_plan:
+  current_focus:
+    - "FormSubmission CRUD endpoints (POST/GET list/GET id/DELETE)"
+    - "AI Form Analysis endpoint (POST /form-submissions/{id}/analyze)"
+  stuck_tasks: []
+  test_all: false
+  test_priority: "high_first"
+
+agent_communication:
+    -agent: "main"
+    -message: |
+      Backend test'i için 2 endpoint kritik:
+      1) Form CRUD: POST/GET list/GET by id/DELETE /api/form-submissions
+      2) AI analiz: POST /api/form-submissions/{fid}/analyze
+         - Çıktı (ai_analysis) sonunda mutlaka "Lütfen seans alınız" metnini içermeli
+         - Claude Sonnet 4.6 üzerinden çalışıyor (EMERGENT_LLM_KEY)
+      Frontend'i test etmenize gerek YOK (manuel doğrulandı).

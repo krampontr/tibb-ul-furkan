@@ -11,6 +11,7 @@ import uuid
 from datetime import datetime, timezone
 
 from disease_data import DISEASES, CAUSE_CATEGORIES
+from knowledge_base import build_system_message, FORM_QUESTION_HINTS, CAUSE_CATEGORIES as KB_CATEGORIES
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -522,6 +523,185 @@ ATALAR:
         if "Budget" in msg or "budget" in msg or "credit" in msg.lower():
             raise HTTPException(503, "Yapay zekâ kredisi tükenmiş. Lütfen Emergent profilinizden Universal Key bakiyenizi yükleyin.")
         raise HTTPException(500, f"LLM analizi şu anda yapılamıyor: {msg[:160]}")
+
+# ===========================
+# FORM ANALYSIS (PDF Bilgi Tabanı tabanlı AI analizi)
+# ===========================
+
+class FormSubmissionCreate(BaseModel):
+    ad_soyad: str
+    yas: Optional[str] = ""
+    tlf: Optional[str] = ""
+    medeni_durum: Optional[str] = ""
+    cocuk_sayisi: Optional[str] = ""
+    memleket: Optional[str] = ""
+    dogum_tarihi: Optional[str] = ""
+    cinsiyet: Optional[str] = ""
+    anne_durum: Optional[str] = ""
+    baba_durum: Optional[str] = ""
+    anneanne_durum: Optional[str] = ""
+    anne_babasi_durum: Optional[str] = ""
+    babaanne_durum: Optional[str] = ""
+    baba_babasi_durum: Optional[str] = ""
+    zekat_veriyor: Optional[str] = ""
+    faizli_kredi: Optional[str] = ""
+    anne_hastalik: Optional[str] = ""
+    baba_hastalik: Optional[str] = ""
+    cocuk_hastalik: Optional[str] = ""
+    rahatsizliklar: Optional[str] = ""
+    adak_yemin: Optional[str] = ""
+    muska_okunmus_su: Optional[str] = ""
+    miras_sorunu: Optional[str] = ""
+    beddua_hak_haram: Optional[str] = ""
+    intihar: Optional[str] = ""
+    anne_baba_ofke: Optional[str] = ""
+    es_soguklugu: Optional[str] = ""
+    sehvet: Optional[str] = ""
+    duygusallik: Optional[str] = ""
+    kin: Optional[str] = ""
+    kusme_alinganlik: Optional[str] = ""
+    ofke: Optional[str] = ""
+    nefret: Optional[str] = ""
+    supheci: Optional[str] = ""
+    uyku_sorunu: Optional[str] = ""
+    aniden_parlama: Optional[str] = ""
+    alaycilik: Optional[str] = ""
+
+class FormSubmission(FormSubmissionCreate):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+    ai_analysis: Optional[str] = None
+
+def _is_positive(text: str) -> bool:
+    if not text:
+        return False
+    t = text.strip().lower()
+    if not t or t in ("yok", "hayır", "hayir", "yok.", "-", "0"):
+        return False
+    return True
+
+def _summarize_signals(form: dict) -> Dict[str, List[str]]:
+    signals: Dict[str, List[str]] = {}
+    for q_key, cats in FORM_QUESTION_HINTS.items():
+        val = form.get(q_key, "")
+        if _is_positive(val):
+            for c in cats:
+                signals.setdefault(c, []).append(f"{q_key}: {val}")
+    z = form.get("zekat_veriyor", "").strip().lower()
+    if z in ("hayır", "hayir", "yok", "vermiyor"):
+        signals.setdefault("zekat", []).append("Zekat verilmiyor")
+    if _is_positive(form.get("faizli_kredi", "")):
+        signals.setdefault("faiz", []).append(f"Faizli kredi: {form['faizli_kredi']}")
+    return signals
+
+@api_router.post("/form-submissions", response_model=FormSubmission)
+async def create_form(payload: FormSubmissionCreate):
+    fs = FormSubmission(**payload.dict())
+    await db.form_submissions.insert_one(fs.dict())
+    return fs
+
+@api_router.get("/form-submissions/{fid}", response_model=FormSubmission)
+async def get_form(fid: str):
+    doc = await db.form_submissions.find_one({"id": fid}, {"_id": 0})
+    if not doc:
+        raise HTTPException(404, "Form bulunamadı")
+    return FormSubmission(**doc)
+
+@api_router.get("/form-submissions", response_model=List[FormSubmission])
+async def list_forms():
+    docs = await db.form_submissions.find({}, {"_id": 0}).sort("created_at", -1).to_list(200)
+    return [FormSubmission(**d) for d in docs]
+
+@api_router.delete("/form-submissions/{fid}")
+async def delete_form(fid: str):
+    await db.form_submissions.delete_one({"id": fid})
+    return {"ok": True}
+
+@api_router.post("/form-submissions/{fid}/analyze")
+async def analyze_form(fid: str):
+    doc = await db.form_submissions.find_one({"id": fid}, {"_id": 0})
+    if not doc:
+        raise HTTPException(404, "Form bulunamadı")
+    try:
+        from emergentintegrations.llm.chat import LlmChat, UserMessage
+        api_key = os.environ.get("EMERGENT_LLM_KEY")
+        if not api_key:
+            raise HTTPException(500, "LLM anahtarı bulunamadı")
+
+        signals = _summarize_signals(doc)
+        signal_lines = [f"  • {KB_CATEGORIES.get(c, c)}: {'; '.join(items)}" for c, items in signals.items()]
+        signals_text = "\n".join(signal_lines) if signal_lines else "  (Açık sinyal yok)"
+
+        user_text = f"""DANIŞAN FORMU:
+
+Ad-Soyad: {doc.get('ad_soyad')}
+Yaş: {doc.get('yas')}   Cinsiyet: {doc.get('cinsiyet')}   Doğum: {doc.get('dogum_tarihi')}
+Medeni durum: {doc.get('medeni_durum')}   Çocuk sayısı: {doc.get('cocuk_sayisi')}
+Memleket: {doc.get('memleket')}
+
+AİLE BÜYÜKLERİ:
+- Anne: {doc.get('anne_durum')}
+- Baba: {doc.get('baba_durum')}
+- Anneanne: {doc.get('anneanne_durum')}
+- Annenin babası: {doc.get('anne_babasi_durum')}
+- Babaanne: {doc.get('babaanne_durum')}
+- Babanın babası: {doc.get('baba_babasi_durum')}
+
+MALİ DURUM:
+- Zekat veriyor mu: {doc.get('zekat_veriyor')}
+- Faizli kredi: {doc.get('faizli_kredi')}
+
+AİLEDEKİ HASTALIKLAR:
+- Annede: {doc.get('anne_hastalik')}
+- Babada: {doc.get('baba_hastalik')}
+- Çocuklarda: {doc.get('cocuk_hastalik')}
+
+YAŞANILAN RAHATSIZLIKLAR:
+{doc.get('rahatsizliklar')}
+
+SORULAR:
+- Adak/yemin: {doc.get('adak_yemin')}
+- Muska/okunmuş su: {doc.get('muska_okunmus_su')}
+- Miras sorunu: {doc.get('miras_sorunu')}
+- Beddua / hak haram: {doc.get('beddua_hak_haram')}
+- İntihar girişimi: {doc.get('intihar')}
+- Anne-babaya öfke: {doc.get('anne_baba_ofke')}
+- Eş soğukluğu: {doc.get('es_soguklugu')}
+- Şehvet: {doc.get('sehvet')}
+- Duygusallık: {doc.get('duygusallik')}
+- Kin: {doc.get('kin')}
+- Küsme/alınganlık: {doc.get('kusme_alinganlik')}
+- Öfke: {doc.get('ofke')}
+- Nefret: {doc.get('nefret')}
+- Şüphecilik: {doc.get('supheci')}
+- Uyku sorunu: {doc.get('uyku_sorunu')}
+- Aniden parlama: {doc.get('aniden_parlama')}
+- Alaycılık: {doc.get('alaycilik')}
+
+KURAL TABANLI SİNYAL ÖZETİ:
+{signals_text}
+
+>>> Yukarıdaki yapıya uygun şekilde 5 bölümden oluşan analizi hazırla."""
+
+        chat = LlmChat(
+            api_key=api_key,
+            session_id=f"form-{fid}",
+            system_message=build_system_message(),
+        ).with_model("anthropic", "claude-sonnet-4-6")
+
+        response = await chat.send_message(UserMessage(text=user_text))
+
+        await db.form_submissions.update_one({"id": fid}, {"$set": {"ai_analysis": response}})
+        return {"ai_analysis": response, "signals": signals}
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logging.exception("Form analysis failed")
+        msg = str(e)
+        if "Budget" in msg or "credit" in msg.lower():
+            raise HTTPException(503, "Yapay zekâ kredisi tükenmiş. Lütfen Universal Key bakiyenizi yükleyin.")
+        raise HTTPException(500, f"Analiz yapılamadı: {msg[:200]}")
 
 app.include_router(api_router)
 
