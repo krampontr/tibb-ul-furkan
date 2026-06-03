@@ -618,10 +618,13 @@ async def delete_form(fid: str):
     return {"ok": True}
 
 @api_router.post("/form-submissions/{fid}/analyze")
-async def analyze_form(fid: str):
+async def analyze_form(fid: str, force: bool = False):
     doc = await db.form_submissions.find_one({"id": fid}, {"_id": 0})
     if not doc:
         raise HTTPException(404, "Form bulunamadı")
+    # Idempotent: cached varsa onu döndür (force=true ile yeniden üretilir)
+    if not force and doc.get("ai_analysis"):
+        return {"ai_analysis": doc["ai_analysis"], "signals": _summarize_signals(doc), "cached": True}
     try:
         from emergentintegrations.llm.chat import LlmChat, UserMessage
         api_key = os.environ.get("EMERGENT_LLM_KEY")

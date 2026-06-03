@@ -62,6 +62,12 @@ export const formApi = {
   get: (id: string) => call<FormSubmission>(`/form-submissions/${id}`),
   list: () => call<FormSubmission[]>('/form-submissions'),
   remove: (id: string) => call<{ ok: boolean }>(`/form-submissions/${id}`, { method: 'DELETE' }),
-  analyze: (id: string) =>
-    call<{ ai_analysis: string; signals: Record<string, string[]> }>(`/form-submissions/${id}/analyze`, { method: 'POST' }),
+  analyze: (
+    id: string,
+    opts: { force?: boolean; signal?: AbortSignal } = {},
+  ) =>
+    call<{ ai_analysis: string; signals: Record<string, string[]>; cached?: boolean }>(
+      `/form-submissions/${id}/analyze${opts.force ? '?force=true' : ''}`,
+      { method: 'POST', signal: opts.signal },
+    ),
 };
