@@ -681,7 +681,8 @@ SORULAR:
 KURAL TABANLI SİNYAL ÖZETİ:
 {signals_text}
 
->>> Yukarıdaki yapıya uygun şekilde 5 bölümden oluşan analizi hazırla."""
+>>> Yukarıdaki form yanıtlarını ve sinyal özetini bilgi tabanındaki örüntülerle birlikte değerlendir.
+Akıcı, sade bir analiz metni hazırla; SONUNDA mutlaka "Lütfen seans alınız." cümlesini ayrı bir satırda ekle."""
 
         chat = LlmChat(
             api_key=api_key,
