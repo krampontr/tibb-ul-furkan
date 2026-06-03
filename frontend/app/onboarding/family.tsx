@@ -8,26 +8,54 @@ import { colors, fonts, radius, spacing } from '@/src/theme';
 import { api } from '@/src/api';
 import type { Ancestor } from '@/src/api';
 
-// Tanımlı akrabalık ilişkileri - akrabalık ağacında pozisyonlandırmada kullanılır
+// Sabit hızlı seçenekler — sadece Anne ve Baba. Diğer akrabaları kullanıcı manuel ekler.
 const MATERNAL_RELATIONS = [
   { key: 'anne', label: 'Anne' },
-  { key: 'anneanne', label: 'Anneanne' },
-  { key: 'anne_dedesi', label: 'Anne tarafı dede' },
-  { key: 'teyze', label: 'Teyze' },
-  { key: 'dayi', label: 'Dayı' },
-  { key: 'anne_buyuk_anne', label: 'Anne büyük anne' },
-  { key: 'anne_buyuk_dede', label: 'Anne büyük dede' },
 ];
 
 const PATERNAL_RELATIONS = [
   { key: 'baba', label: 'Baba' },
-  { key: 'babaanne', label: 'Babaanne' },
-  { key: 'baba_dedesi', label: 'Baba tarafı dede' },
-  { key: 'hala', label: 'Hala' },
-  { key: 'amca', label: 'Amca' },
-  { key: 'baba_buyuk_anne', label: 'Baba büyük anne' },
-  { key: 'baba_buyuk_dede', label: 'Baba büyük dede' },
 ];
+
+// Kullanıcı yazısından akrabalık anahtarı tespiti — zihin haritası ağacı için
+const MATERNAL_KEYWORDS: Record<string, string> = {
+  anne: 'anne',
+  anneanne: 'anneanne',
+  'anne tarafı dede': 'anne_dedesi',
+  'anne dede': 'anne_dedesi',
+  dede: 'anne_dedesi',
+  teyze: 'teyze',
+  dayı: 'dayi',
+  dayi: 'dayi',
+  'anne büyük anne': 'anne_buyuk_anne',
+  'anne büyük dede': 'anne_buyuk_dede',
+};
+
+const PATERNAL_KEYWORDS: Record<string, string> = {
+  baba: 'baba',
+  babaanne: 'babaanne',
+  'baba tarafı dede': 'baba_dedesi',
+  'baba dede': 'baba_dedesi',
+  dede: 'baba_dedesi',
+  hala: 'hala',
+  amca: 'amca',
+  'baba büyük anne': 'baba_buyuk_anne',
+  'baba büyük dede': 'baba_buyuk_dede',
+};
+
+function detectRelationKey(text: string, side: 'maternal' | 'paternal'): string | undefined {
+  const t = text.trim().toLowerCase();
+  if (!t) return undefined;
+  const map = side === 'maternal' ? MATERNAL_KEYWORDS : PATERNAL_KEYWORDS;
+  // Önce tam eşleşme
+  if (map[t]) return map[t];
+  // Sonra alt-dize eşleşmesi (en uzun önce)
+  const keys = Object.keys(map).sort((a, b) => b.length - a.length);
+  for (const k of keys) {
+    if (t.includes(k)) return map[k];
+  }
+  return undefined;
+}
 
 export default function FamilyStage() {
   const router = useRouter();
@@ -119,7 +147,7 @@ export default function FamilyStage() {
               <Input
                 value={customMaternal}
                 onChangeText={setCustomMaternal}
-                placeholder="Anne soyundan başka akrabalık (örn: kuzen)"
+                placeholder="Soydan başkasını ekle (ör: anneanne, teyze, dayı, dede...)"
                 style={{ flex: 1 }}
                 testID="custom-maternal"
               />
@@ -143,7 +171,7 @@ export default function FamilyStage() {
               <Input
                 value={customPaternal}
                 onChangeText={setCustomPaternal}
-                placeholder="Baba soyundan başka akrabalık (örn: kuzen)"
+                placeholder="Soydan başkasını ekle (ör: babaanne, hala, amca, dede...)"
                 style={{ flex: 1 }}
                 testID="custom-paternal"
               />
