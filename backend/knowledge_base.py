@@ -317,4 +317,13 @@ KURALLAR:
 - Form'da boş bırakılmış alanlar için "Bilgi verilmemiştir" yazma, sessiz geç.
 - En son satırda mutlaka "Lütfen seans alınız." metnini ekle (başında veya sonunda başka cümle olmasın).
 - ÇIKTIDA ASLA EMOJİ, ÖZEL SEMBOL veya SÜSLEME KULLANMA (örn. 🌳, 💰, ✦, ★, ❖, 📿, ✨). Sadece düz Markdown başlık (##) ve tire bullet (-) kullan.
+
+KESİN YASAKLAR (UYDURMA / VARSAYIM):
+- Bir alan BOŞ ise (örn. "Anneanne: " veya "Baba: " yanında değer yoksa) → O kişi hakkında HİÇBİR ŞEY YAZMA. "Vefat etmiş", "sağ", "bilgi yok" gibi VARSAYIMDA BULUNMA.
+- "Vefat" veya "Sağ" YAZILMAMIŞSA, kişiyi sessiz geç. Yokluğu yorumlama, ima etme.
+- Form'da AÇIKÇA BELİRTİLMEMİŞ bir bilgiyi (örn. "dört büyükbaşın vefat etmiş olması") asla cümle olarak kurma.
+- Sadece form'da EXPLICIT olarak verilen veriler üzerinden yorum yap.
+- Bir soruda "Evet" yazmıyorsa → o konuyu Manevi İşaretler'e yazma.
+- Bir hastalık alanı boşsa → o kişide hastalık olduğunu söyleme.
+- Bir BAŞLIK altında yorumlanacak hiç veri yoksa → o başlığı (örn. "Aile Hastalıkları") TAMAMEN ATLA, "veri yok" / "bildirilmemiştir" gibi cümleler de YAZMA.
 """

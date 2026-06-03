@@ -635,56 +635,99 @@ async def analyze_form(fid: str, force: bool = False):
         signal_lines = [f"  • {KB_CATEGORIES.get(c, c)}: {'; '.join(items)}" for c, items in signals.items()]
         signals_text = "\n".join(signal_lines) if signal_lines else "  (Açık sinyal yok)"
 
-        user_text = f"""DANIŞAN FORMU:
+        # Boş alanları AI'ya hiç gönderme — sadece dolu olanları listele
+        def _f(key: str) -> str:
+            v = (doc.get(key) or "").strip()
+            return v
 
-Ad-Soyad: {doc.get('ad_soyad')}
-Yaş: {doc.get('yas')}   Cinsiyet: {doc.get('cinsiyet')}   Doğum: {doc.get('dogum_tarihi')}
-Medeni durum: {doc.get('medeni_durum')}   Çocuk sayısı: {doc.get('cocuk_sayisi')}
-Memleket: {doc.get('memleket')}
+        def _line(label: str, key: str) -> str:
+            v = _f(key)
+            return f"- {label}: {v}" if v else ""
 
-AİLE BÜYÜKLERİ:
-- Anne: {doc.get('anne_durum')}
-- Baba: {doc.get('baba_durum')}
-- Anneanne: {doc.get('anneanne_durum')}
-- Annenin babası: {doc.get('anne_babasi_durum')}
-- Babaanne: {doc.get('babaanne_durum')}
-- Babanın babası: {doc.get('baba_babasi_durum')}
+        def _section(title: str, lines: list) -> str:
+            lines = [l for l in lines if l]
+            if not lines:
+                return ""
+            return f"\n{title}:\n" + "\n".join(lines)
 
-MALİ DURUM:
-- Zekat veriyor mu: {doc.get('zekat_veriyor')}
-- Faizli kredi: {doc.get('faizli_kredi')}
+        # Kişisel bilgi
+        kisisel_lines = []
+        if _f('ad_soyad'): kisisel_lines.append(f"Ad-Soyad: {_f('ad_soyad')}")
+        misc = []
+        if _f('yas'): misc.append(f"Yaş: {_f('yas')}")
+        if _f('cinsiyet'): misc.append(f"Cinsiyet: {_f('cinsiyet')}")
+        if _f('dogum_tarihi'): misc.append(f"Doğum: {_f('dogum_tarihi')}")
+        if misc: kisisel_lines.append("   ".join(misc))
+        misc2 = []
+        if _f('medeni_durum'): misc2.append(f"Medeni durum: {_f('medeni_durum')}")
+        if _f('cocuk_sayisi'): misc2.append(f"Çocuk sayısı: {_f('cocuk_sayisi')}")
+        if misc2: kisisel_lines.append("   ".join(misc2))
+        if _f('memleket'): kisisel_lines.append(f"Memleket: {_f('memleket')}")
 
-AİLEDEKİ HASTALIKLAR:
-- Annede: {doc.get('anne_hastalik')}
-- Babada: {doc.get('baba_hastalik')}
-- Çocuklarda: {doc.get('cocuk_hastalik')}
+        kisisel_txt = "\n".join(kisisel_lines) if kisisel_lines else ""
 
-YAŞANILAN RAHATSIZLIKLAR:
-{doc.get('rahatsizliklar')}
+        # Aile büyükleri — sadece dolu olanlar
+        elder_block = _section("AİLE BÜYÜKLERİ (sadece bildirilenler)", [
+            _line("Anne", "anne_durum"),
+            _line("Baba", "baba_durum"),
+            _line("Anneanne", "anneanne_durum"),
+            _line("Annenin babası", "anne_babasi_durum"),
+            _line("Babaanne", "babaanne_durum"),
+            _line("Babanın babası", "baba_babasi_durum"),
+        ])
 
-SORULAR:
-- Adak/yemin: {doc.get('adak_yemin')}
-- Muska/okunmuş su: {doc.get('muska_okunmus_su')}
-- Miras sorunu: {doc.get('miras_sorunu')}
-- Beddua / hak haram: {doc.get('beddua_hak_haram')}
-- İntihar girişimi: {doc.get('intihar')}
-- Anne-babaya öfke: {doc.get('anne_baba_ofke')}
-- Eş soğukluğu: {doc.get('es_soguklugu')}
-- Şehvet: {doc.get('sehvet')}
-- Duygusallık: {doc.get('duygusallik')}
-- Kin: {doc.get('kin')}
-- Küsme/alınganlık: {doc.get('kusme_alinganlik')}
-- Öfke: {doc.get('ofke')}
-- Nefret: {doc.get('nefret')}
-- Şüphecilik: {doc.get('supheci')}
-- Uyku sorunu: {doc.get('uyku_sorunu')}
-- Aniden parlama: {doc.get('aniden_parlama')}
-- Alaycılık: {doc.get('alaycilik')}
+        mali_block = _section("MALİ DURUM", [
+            _line("Zekat veriyor mu", "zekat_veriyor"),
+            _line("Faizli kredi", "faizli_kredi"),
+        ])
+
+        hastalik_block = _section("AİLEDEKİ HASTALIKLAR (sadece bildirilenler)", [
+            _line("Annede", "anne_hastalik"),
+            _line("Babada", "baba_hastalik"),
+            _line("Çocuklarda", "cocuk_hastalik"),
+        ])
+
+        rahatsizlik_txt = _f('rahatsizliklar')
+        rahatsizlik_block = f"\nYAŞANILAN RAHATSIZLIKLAR:\n{rahatsizlik_txt}" if rahatsizlik_txt else ""
+
+        # Sorular — sadece cevaplananlar
+        sorular_block = _section("SORULAR (sadece yanıtlananlar)", [
+            _line("Adak/yemin", "adak_yemin"),
+            _line("Muska/okunmuş su", "muska_okunmus_su"),
+            _line("Miras sorunu", "miras_sorunu"),
+            _line("Beddua / hak haram", "beddua_hak_haram"),
+            _line("İntihar girişimi", "intihar"),
+            _line("Anne-babaya öfke", "anne_baba_ofke"),
+            _line("Eş soğukluğu", "es_soguklugu"),
+            _line("Şehvet", "sehvet"),
+            _line("Duygusallık", "duygusallik"),
+            _line("Kin", "kin"),
+            _line("Küsme/alınganlık", "kusme_alinganlik"),
+            _line("Öfke", "ofke"),
+            _line("Nefret", "nefret"),
+            _line("Şüphecilik", "supheci"),
+            _line("Uyku sorunu", "uyku_sorunu"),
+            _line("Aniden parlama", "aniden_parlama"),
+            _line("Alaycılık", "alaycilik"),
+        ])
+
+        user_text = f"""DANIŞAN FORMU (sadece açıkça bildirilen alanlar listelenmiştir; aşağıda görünmeyen hiçbir bilgi YOK kabul edilmelidir):
+
+{kisisel_txt}
+{elder_block}
+{mali_block}
+{hastalik_block}
+{rahatsizlik_block}
+{sorular_block}
 
 KURAL TABANLI SİNYAL ÖZETİ:
 {signals_text}
 
->>> Yukarıdaki form yanıtlarını ve sinyal özetini bilgi tabanındaki örüntülerle birlikte değerlendir.
+ÖNEMLİ KURAL:
+- Yukarıda görünmeyen bir alan/kişi/durum hakkında ASLA yorum yapma, varsayımda bulunma.
+- "Anneanne" / "Baba" gibi bir kişi yukarıda yer almıyorsa → onun hakkında hiçbir cümle kurma (vefat etmiş, sağ, bilgi yok dahil).
+- Sadece SORULAR bölümünde "Evet" yazan başlıkları "Manevi İşaretler"e ekle. "Hayır" veya hiç görünmeyenleri yazma.
+
 Akıcı, sade bir analiz metni hazırla; SONUNDA mutlaka "Lütfen seans alınız." cümlesini ayrı bir satırda ekle."""
 
         chat = LlmChat(
