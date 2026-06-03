@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { View, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
+import { View, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Body, Button, Caption, Card, H1, Label } from '@/src/ui';
 import { formApi, FormSubmission } from '@/src/formApi';
-import { colors, fonts, radius, spacing } from '@/src/theme';
+import { colors, spacing } from '@/src/theme';
+import { AnalysisDisplay } from '@/src/AnalysisDisplay';
 
 export default function AnalizSonuc() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -177,10 +178,12 @@ export default function AnalizSonuc() {
         )}
 
         {analysis && !running && (
-          <Card style={{ marginTop: spacing.lg, backgroundColor: colors.bgSecondary, borderColor: colors.accentSage }}>
-            <Label style={{ color: colors.accentSage, marginBottom: spacing.sm }}>✦ OLASI TESPİTLER</Label>
-            <Body style={{ lineHeight: 24 }}>{analysis}</Body>
-          </Card>
+          <View style={{ marginTop: spacing.lg }}>
+            <Label style={{ color: colors.accentSage, marginBottom: spacing.sm, letterSpacing: 2 }}>
+              ✦  OLASI TESPİTLER
+            </Label>
+            <AnalysisDisplay markdown={analysis} />
+          </View>
         )}
 
         {errorMsg ? (
