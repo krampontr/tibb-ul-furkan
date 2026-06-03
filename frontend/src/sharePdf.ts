@@ -45,14 +45,6 @@ function parseAnalysisToSections(md: string): { sections: Section[]; closing: st
   return { sections: sections.filter((s) => s.bullets.length > 0), closing };
 }
 
-const SECTION_ICON: Record<string, string> = {
-  aile_buyukleri: '🌳',
-  mali: '💰',
-  hastalik: '🩺',
-  rahatsizlik: '💭',
-  manevi: '🕊️',
-  genel: '✨',
-};
 const SECTION_COLOR: Record<string, string> = {
   aile_buyukleri: '#7B9A8E',
   mali: '#B89B5E',
@@ -92,12 +84,11 @@ function buildHtml(opts: {
     .map((s) => {
       const key = pickKey(s.title);
       const color = SECTION_COLOR[key];
-      const icon = SECTION_ICON[key];
       const bullets = s.bullets.map((b) => `<li>${esc(b)}</li>`).join('');
       return `
         <div class="section" style="border-left-color:${color};">
           <div class="section-head">
-            <span class="section-icon">${icon}</span>
+            <span class="title-bar" style="background:${color};"></span>
             <h2>${esc(s.title)}</h2>
           </div>
           <ul>${bullets}</ul>
@@ -170,7 +161,7 @@ function buildHtml(opts: {
     page-break-inside: avoid;
   }
   .section-head { display: flex; align-items: center; gap: 8px; }
-  .section-icon { font-size: 18px; }
+  .title-bar { width: 4px; height: 18px; border-radius: 2px; display: inline-block; }
   .section h2 {
     font-family: Georgia, serif;
     font-size: 15px;
@@ -188,7 +179,6 @@ function buildHtml(opts: {
     margin-top: 16px;
     page-break-inside: avoid;
   }
-  .closing .icon { font-size: 22px; display: block; margin-bottom: 4px; }
   .closing .text {
     font-family: Georgia, serif;
     font-size: 16px;
@@ -216,11 +206,11 @@ function buildHtml(opts: {
     <div class="meta">${esc(meta)}</div>
   </div>
 
-  <div class="label">✦  Olası Tespitler</div>
+  <div class="label">Olası Tespitler</div>
 
   ${sectionsHtml}
 
-  ${closing ? `<div class="closing"><span class="icon">📿</span><div class="text">${esc(closing)}</div></div>` : ''}
+  ${closing ? `<div class="closing"><div class="text">${esc(closing)}</div></div>` : ''}
 
   <div class="footer">
     Bu içerik tıbbi tavsiye değildir, yalnızca manevi yönden olası işaretleri sunar.
@@ -237,7 +227,7 @@ function buildTextSummary(opts: { ad_soyad: string; analysis: string }): string 
     for (const b of s.bullets) out += `• ${b}\n`;
     out += `\n`;
   }
-  if (closing) out += `📿  *${closing}*\n`;
+  if (closing) out += `*${closing}*\n`;
   return out.trim();
 }
 

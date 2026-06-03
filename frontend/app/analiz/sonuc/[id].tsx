@@ -181,7 +181,7 @@ export default function AnalizSonuc() {
         {analysis && !running && (
           <View style={{ marginTop: spacing.lg }}>
             <Label style={{ color: colors.accentSage, marginBottom: spacing.sm, letterSpacing: 2 }}>
-              ✦  OLASI TESPİTLER
+              OLASI TESPİTLER
             </Label>
             <AnalysisDisplay markdown={analysis} />
 
@@ -198,7 +198,6 @@ export default function AnalizSonuc() {
                 testID="share-pdf"
                 activeOpacity={0.85}
               >
-                <Body style={styles.shareIcon}>📄</Body>
                 <Caption style={styles.shareLabelLight}>PDF İndir / Yazdır</Caption>
               </TouchableOpacity>
 
@@ -208,7 +207,6 @@ export default function AnalizSonuc() {
                 testID="share-whatsapp"
                 activeOpacity={0.85}
               >
-                <Body style={styles.shareIcon}>💬</Body>
                 <Caption style={styles.shareLabelDark}>WhatsApp ile Paylaş</Caption>
               </TouchableOpacity>
             </View>
@@ -222,12 +220,12 @@ export default function AnalizSonuc() {
         ) : null}
 
         {!analysis && !running && (
-          <Button title="✦ Analizi Başlat" onPress={() => runAnalysis(false)} style={{ marginTop: spacing.lg }} testID="run-analysis" />
+          <Button title="Analizi Başlat" onPress={() => runAnalysis(false)} style={{ marginTop: spacing.lg }} testID="run-analysis" />
         )}
 
         {analysis && !running && (
           <Button
-            title="↻ Yeniden Analiz Et"
+            title="Yeniden Analiz Et"
             variant="secondary"
             onPress={() => runAnalysis(true)}
             style={{ marginTop: spacing.md }}

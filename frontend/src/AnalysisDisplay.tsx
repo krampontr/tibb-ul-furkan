@@ -8,16 +8,16 @@ type Section = {
   bullets: string[];
 };
 
-const SECTION_META: Record<string, { icon: string; color: string }> = {
-  'Aile Büyükleri & Soy Yükü': { icon: '🌳', color: colors.maternalPrimary },
-  'Mali Durum': { icon: '💰', color: '#B89B5E' },
-  'Aile Hastalıkları': { icon: '🩺', color: '#9C6F8E' },
-  'Ruhsal & Fiziksel Rahatsızlıklar': { icon: '💭', color: '#7C8CA8' },
-  'Manevi İşaretler': { icon: '🕊️', color: colors.accentSage },
-  'Genel Değerlendirme': { icon: '✨', color: colors.textPrimary },
+const SECTION_META: Record<string, { color: string }> = {
+  'Aile Büyükleri & Soy Yükü': { color: colors.maternalPrimary },
+  'Mali Durum': { color: '#B89B5E' },
+  'Aile Hastalıkları': { color: '#9C6F8E' },
+  'Ruhsal & Fiziksel Rahatsızlıklar': { color: '#7C8CA8' },
+  'Manevi İşaretler': { color: colors.accentSage },
+  'Genel Değerlendirme': { color: colors.textPrimary },
 };
 
-const FALLBACK_META = { icon: '◆', color: colors.accentSage };
+const FALLBACK_META = { color: colors.accentSage };
 
 // Esnek başlık eşleştirici — küçük harf, "ve" / "&" / "ile" gibi farkları yok sayar
 function matchMeta(title: string) {
@@ -31,12 +31,14 @@ function matchMeta(title: string) {
   return FALLBACK_META;
 }
 
-// Çöp karakterleri ve ayraçları temizle
+// Çöp karakterleri ve ayraçları temizle (emoji dahil)
+const EMOJI_REGEX = /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{2300}-\u{23FF}\u{2B00}-\u{2BFF}\u{2700}-\u{27BF}\u{FE0F}\u{200D}]/gu;
 function cleanText(s: string): string {
   return s
-    .replace(/\s*[-–—]{2,}\s*$/, '') // bitiş "--" veya "---"
-    .replace(/^\s*[-–—]{2,}\s*/, '') // baş "--"
-    .replace(/[*_]/g, '')             // markdown vurgu işaretleri
+    .replace(/\s*[-–—]{2,}\s*$/, '')
+    .replace(/^\s*[-–—]{2,}\s*/, '')
+    .replace(/[*_]/g, '')
+    .replace(EMOJI_REGEX, '')
     .replace(/\s+/g, ' ')
     .trim();
 }
@@ -138,7 +140,7 @@ export function AnalysisDisplay({ markdown }: { markdown: string }) {
         return (
           <View key={`${s.title}-${i}`} style={[styles.sectionCard, { borderLeftColor: meta.color }]}>
             <View style={styles.headerRow}>
-              <Body style={[styles.icon, { color: meta.color }]}>{meta.icon}</Body>
+              <View style={[styles.titleBar, { backgroundColor: meta.color }]} />
               <H3 style={styles.sectionTitle}>{s.title}</H3>
             </View>
             <View style={styles.divider} />
@@ -154,7 +156,6 @@ export function AnalysisDisplay({ markdown }: { markdown: string }) {
 
       {closing && (
         <View style={styles.closingCard}>
-          <Body style={styles.closingIcon}>📿</Body>
           <Body style={styles.closingText}>{closing}</Body>
         </View>
       )}
@@ -187,7 +188,7 @@ const styles = StyleSheet.create({
   },
 
   headerRow: { flexDirection: 'row', alignItems: 'center', marginBottom: spacing.xs },
-  icon: { fontSize: 20, marginRight: spacing.sm },
+  titleBar: { width: 4, height: 18, borderRadius: 2, marginRight: spacing.sm },
   sectionTitle: { fontSize: 17, color: colors.textPrimary, flex: 1 },
 
   divider: {
@@ -205,7 +206,6 @@ const styles = StyleSheet.create({
   bulletText: { flex: 1, fontSize: 14.5, lineHeight: 22, color: colors.textPrimary },
 
   closingCard: {
-    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.bgSecondary,
@@ -216,6 +216,5 @@ const styles = StyleSheet.create({
     borderColor: colors.accentSage,
     marginTop: spacing.sm,
   },
-  closingIcon: { fontSize: 22, marginRight: spacing.sm },
   closingText: { fontFamily: fonts.bodySemi, fontSize: 16, color: colors.accentSage, letterSpacing: 0.5 },
 });

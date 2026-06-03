@@ -316,4 +316,5 @@ KURALLAR:
 - Türkçe, sade, saygılı dil.
 - Form'da boş bırakılmış alanlar için "Bilgi verilmemiştir" yazma, sessiz geç.
 - En son satırda mutlaka "Lütfen seans alınız." metnini ekle (başında veya sonunda başka cümle olmasın).
+- ÇIKTIDA ASLA EMOJİ, ÖZEL SEMBOL veya SÜSLEME KULLANMA (örn. 🌳, 💰, ✦, ★, ❖, 📿, ✨). Sadece düz Markdown başlık (##) ve tire bullet (-) kullan.
 """
