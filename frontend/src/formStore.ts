@@ -168,3 +168,36 @@ export function formatBirthDate(input: string): string {
   if (digits.length <= 4) return `${dd}.${mm}`;
   return `${dd}.${mm}.${yyyy}`;
 }
+
+// Form tamamlanma yüzdesi hesaplama
+// Soruları toplam alan sayısı üzerinden değerlendirir. Sadece doldurulanlar sayılır.
+export function computeCompletion(s: FormData): { percent: number; filled: number; total: number } {
+  // Personal: 8 alan (ad_soyad, yas, tlf, medeni_durum, cocuk_sayisi, memleket, dogum_tarihi, cinsiyet)
+  const personalFields = [s.ad_soyad, s.yas, s.tlf, s.medeni_durum, s.cocuk_sayisi, s.memleket, s.dogum_tarihi, s.cinsiyet];
+  const personalFilled = personalFields.filter((v) => (v || '').trim() !== '').length;
+
+  // Elders: 6 elder (her birinde status seçilmesi yeterli; value bonus)
+  const elders: Elder[] = [s.anne, s.baba, s.anneanne, s.anne_babasi, s.babaanne, s.baba_babasi];
+  const eldersFilled = elders.filter((e) => e.status !== '').length;
+
+  // Mali: 2 (zekat, faiz)
+  const maliFilled = (s.zekat !== '' ? 1 : 0) + (s.faiz !== '' ? 1 : 0);
+
+  // Hastalık + rahatsızlık serbest metinleri: 4
+  const healthFields = [s.anne_hastalik, s.baba_hastalik, s.cocuk_hastalik, s.rahatsizliklar];
+  const healthFilled = healthFields.filter((v) => (v || '').trim() !== '').length;
+
+  // 17 soru — sadece status (evet/hayır) seçilmiş olması yeterli
+  const yns: YN[] = [
+    s.adak_yemin, s.muska_okunmus_su, s.miras_sorunu, s.beddua_hak_haram,
+    s.intihar, s.anne_baba_ofke, s.es_soguklugu, s.sehvet,
+    s.duygusallik, s.kin, s.kusme_alinganlik, s.ofke,
+    s.nefret, s.supheci, s.uyku_sorunu, s.aniden_parlama, s.alaycilik,
+  ];
+  const ynsFilled = yns.filter((y) => y.status !== '').length;
+
+  const total = personalFields.length + elders.length + 2 + healthFields.length + yns.length; // 8 + 6 + 2 + 4 + 17 = 37
+  const filled = personalFilled + eldersFilled + maliFilled + healthFilled + ynsFilled;
+  const percent = Math.round((filled / total) * 100);
+  return { percent, filled, total };
+}

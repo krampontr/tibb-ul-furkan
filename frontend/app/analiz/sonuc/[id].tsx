@@ -4,8 +4,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Body, Button, Caption, Card, H1, Label } from '@/src/ui';
 import { formApi, FormSubmission } from '@/src/formApi';
-import { colors, spacing } from '@/src/theme';
+import { colors, fonts, radius, spacing } from '@/src/theme';
 import { AnalysisDisplay } from '@/src/AnalysisDisplay';
+import { shareAnalysisAsPdf, shareAnalysisAsText } from '@/src/sharePdf';
 
 export default function AnalizSonuc() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -183,6 +184,34 @@ export default function AnalizSonuc() {
               ✦  OLASI TESPİTLER
             </Label>
             <AnalysisDisplay markdown={analysis} />
+
+            {/* PAYLAŞIM ARAÇLARI */}
+            <View style={styles.shareRow}>
+              <TouchableOpacity
+                onPress={() => shareAnalysisAsPdf({
+                  ad_soyad: submission.ad_soyad,
+                  cinsiyet: submission.cinsiyet,
+                  dogum_tarihi: submission.dogum_tarihi,
+                  analysis,
+                })}
+                style={[styles.shareBtn, styles.shareBtnPrimary]}
+                testID="share-pdf"
+                activeOpacity={0.85}
+              >
+                <Body style={styles.shareIcon}>📄</Body>
+                <Caption style={styles.shareLabelLight}>PDF İndir / Yazdır</Caption>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={() => shareAnalysisAsText({ ad_soyad: submission.ad_soyad, analysis })}
+                style={[styles.shareBtn, styles.shareBtnSecondary]}
+                testID="share-whatsapp"
+                activeOpacity={0.85}
+              >
+                <Body style={styles.shareIcon}>💬</Body>
+                <Caption style={styles.shareLabelDark}>WhatsApp ile Paylaş</Caption>
+              </TouchableOpacity>
+            </View>
           </View>
         )}
 
@@ -216,4 +245,15 @@ export default function AnalizSonuc() {
 
 const styles = StyleSheet.create({
   header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: spacing.lg, paddingVertical: spacing.sm },
+  shareRow: { flexDirection: 'row', gap: spacing.sm, marginTop: spacing.lg },
+  shareBtn: {
+    flex: 1, paddingVertical: spacing.md, paddingHorizontal: spacing.sm,
+    borderRadius: radius.md, alignItems: 'center', justifyContent: 'center',
+    borderWidth: 1.5,
+  },
+  shareBtnPrimary: { backgroundColor: colors.textPrimary, borderColor: colors.textPrimary },
+  shareBtnSecondary: { backgroundColor: '#25D366', borderColor: '#25D366' },
+  shareIcon: { fontSize: 22, marginBottom: 2 },
+  shareLabelLight: { color: colors.bgPrimary, fontFamily: fonts.bodySemi, letterSpacing: 0.5, fontSize: 12, textAlign: 'center' },
+  shareLabelDark: { color: '#FFFFFF', fontFamily: fonts.bodySemi, letterSpacing: 0.5, fontSize: 12, textAlign: 'center' },
 });

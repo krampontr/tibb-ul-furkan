@@ -3,7 +3,7 @@ import { View, StyleSheet, KeyboardAvoidingView, Platform, ScrollView, Touchable
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Body, Button, Caption, Card, H2, H3, Input, Label, ProgressBar } from '@/src/ui';
-import { useFormStore, serializeForBackend, ElderKey, YNKey } from '@/src/formStore';
+import { useFormStore, serializeForBackend, ElderKey, YNKey, computeCompletion } from '@/src/formStore';
 import { formApi } from '@/src/formApi';
 import { colors, fonts, radius, spacing } from '@/src/theme';
 
@@ -50,6 +50,13 @@ export default function AnalizForm() {
     return '';
   }, [state.faiz, state.faiz_aciklama]);
 
+  // Tamamlanma yüzdesi (her değişiklikte yeniden hesaplanır)
+  const completion = useMemo(() => computeCompletion(state), [state]);
+  const progressColor =
+    completion.percent < 30 ? '#C97A6A'
+    : completion.percent < 70 ? '#B89B5E'
+    : colors.accentSage;
+
   const submit = async () => {
     setErr('');
     if (faizValidationError) {
@@ -80,6 +87,26 @@ export default function AnalizForm() {
           <Body style={{ color: colors.textSecondary, marginTop: 4 }}>
             Aile büyükleri, mali durum, hastalıklar ve manevi sorular.
           </Body>
+
+          {/* TAMAMLANMA YÜZDESİ */}
+          <View style={styles.completionWrap}>
+            <View style={styles.completionRow}>
+              <Caption style={{ color: colors.textSecondary, letterSpacing: 1 }}>
+                FORM TAMAMLANMA
+              </Caption>
+              <Caption style={[styles.completionPct, { color: progressColor }]}>
+                %{completion.percent}  ·  {completion.filled}/{completion.total}
+              </Caption>
+            </View>
+            <View style={styles.completionTrack}>
+              <View
+                style={[
+                  styles.completionFill,
+                  { width: `${completion.percent}%`, backgroundColor: progressColor },
+                ]}
+              />
+            </View>
+          </View>
 
           <ScrollView contentContainerStyle={{ paddingBottom: spacing.xxl }} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator>
             {/* AİLE BÜYÜKLERİ */}
@@ -258,6 +285,10 @@ export default function AnalizForm() {
           </ScrollView>
 
           <View style={styles.footer}>
+            {/* Footer'da küçük yüzde özeti */}
+            <Caption style={styles.footerHint}>
+              {completion.percent === 100 ? '✓ Form eksiksiz' : `Form %${completion.percent} dolduruldu`}
+            </Caption>
             <View style={{ flexDirection: 'row', gap: spacing.sm }}>
               <Button title="Geri" variant="secondary" onPress={() => router.back()} style={{ flex: 1 }} testID="back-btn" />
               <Button
@@ -320,4 +351,20 @@ const styles = StyleSheet.create({
   errBox: { padding: spacing.md, borderRadius: radius.md, backgroundColor: '#F8E1DE', borderWidth: 1, borderColor: colors.errorVow, marginTop: spacing.sm },
 
   footer: { paddingBottom: spacing.md, paddingTop: spacing.sm },
+  footerHint: { color: colors.textSecondary, textAlign: 'center', marginBottom: spacing.xs, fontStyle: 'italic' },
+
+  completionWrap: {
+    backgroundColor: colors.bgCard,
+    borderRadius: radius.md,
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
+    marginTop: spacing.md,
+    marginBottom: spacing.sm,
+    borderWidth: 1,
+    borderColor: colors.borderSubtle,
+  },
+  completionRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 },
+  completionPct: { fontFamily: fonts.bodyBold, fontSize: 13, letterSpacing: 0.5 },
+  completionTrack: { height: 6, borderRadius: 3, backgroundColor: colors.bgSecondary, overflow: 'hidden' },
+  completionFill: { height: '100%', borderRadius: 3 },
 });
