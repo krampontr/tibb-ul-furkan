@@ -21,6 +21,123 @@ ADAK HAYVANLARININ ÖZELLİKLERİ:
 - Adak hayvanı çalındı / başkası yedi / usulsüz kesildi ise: kefareti tekrar verilmelidir.
 - 5-6 adetten fazla adak (çoklu adak) ağır hastalık tetikleyebilir (örn. ensefalit, bipolar, otizm).
 - Adak hayvanın ciğeri, kemiği, kafası yenirse o organa yönelik rahatsızlık tetiklenebilir.
+- Hayvan adakları yendiği zaman egzamaya, reflüye sebep olur.
+- Rüyada sıçrama olursa büyükbaş hayvan adağı işaretidir.
+- Büyükbaş hayvan adakları gece uyutmaz.
+
+KOYUN / DİŞİ KUZU ADAĞI BELİRTİLERİ:
+- Çok uyutur, tembellik yapar
+- Harama çağırıldığında hemen gider
+- Aşırı duygusaldır ve ağlar
+- Hayır diyemez, boyun eğer
+- İntihara teşvik ederek yüksek yerden atlatır
+- Koyun sayısı arttıkça duygusallık ve uyku etkisi artar
+
+KOÇ / ERKEK KUZU ADAĞI BELİRTİLERİ:
+- Kadında bazen erkek sesi çıkartır
+- Kadının alnında sivilce çıkartır
+- Erkekte şehvet yapar, kadında cinsel soğukluk yapar
+- Kafa atar, inatçıdır, kincidir
+- Geçmişi hatırlatır, gösterişi sever
+- Kadınlarda erkeksi yapıya sebep olur
+- Erkeklerde dik başlılık yapar
+- Affedemez, geçmişi unutmaz, helallik veremez
+- İntihara teşvik ederek yüksek yerden atlatır
+
+KEÇİ ADAĞI BELİRTİLERİ:
+- Küser, aşırı inatçıdır
+- Yüksek yerleri sever, yeşilliği sever
+- Çocuklarda belirtisi: yüksek yerlere çıkma, koltuklarda zıplama
+- İnsan içine çıkmak istememeye, sıkılmaya sebep olur
+- Yemeklere tuz atmayı sever
+- Çabuk kalbi kırılır, hemen küser, boynunu büker
+- Yalnız kalmayı sever
+- Yüksek yerden intihara teşvik ettirir
+
+BOĞA / TOSUN ADAĞI BELİRTİLERİ:
+- Kafasını duvara vurarak sinirlenir
+- Erkeklerde aşırı şehvete neden olur
+- Kadında erkeksi yapı ve cinsel soğukluk yapar
+- Aniden öfke patlamasına neden olur
+- Eliyle temas eder (kavga eder, vurar, kırar)
+- Öfkelendiğinde evi yıkar, kendini durduramaz, sonra pişman olur ağlar
+- "Ben erkek değil miyim? Benim sözüm neden tutulmuyor?" der
+
+İNEK ADAĞI BELİRTİLERİ:
+- Aşırı şüphecidir
+- "Büyük memeli inek keseceğim" sözü göğüs irileşmesine sebep olur
+- "Kız gibi oğlum olsun inek keseceğim" sözü erkeklerde hormon bozukluğu ve yumuşak göğüse sebep olur
+- Kadında yüksek şehvet yapar, zinaya sevk eder
+- Kadınların üst baldırlarında (basende) genişlemeye neden olur
+- Takıntı yapar, vesvese yapar, gözüyle gördüğüne inanmaz
+- Gök bilimleri, astroloji merakı yapar
+- İmanda şüpheye düşürmeye çalışır
+
+EŞEK ADAĞI BELİRTİLERİ:
+- Eli kolu kalkmama, yavaş hareket etme, tembellik yapar
+- Gece yemek yeme isteği yapar
+- Sürekli şüpheye yönlendirmek ister
+- Susmayan konuşmaya sebep olur, çok konuşturur
+- Bir konuyu bir cümleyle anlatacağına yüz cümleyle anlatır
+- Kekemeliğe sebep olabilir
+- Aniden parlayıp çok konuşturur
+
+HOROZ ADAĞI BELİRTİLERİ:
+- Eşini aşırı kıskanmaya sebep olur
+- "S" harfini söylemede sıkıntı olur
+- Dövüşürken ısırır
+- Konuşmada pelteklik yapar
+- (Peltek insanları kınamak da peltekliğe sebep olabilir)
+- İnsanı gıcık eder, dalga geçer
+
+KÖPEK ADAĞI BELİRTİLERİ:
+- Çok sinirli olabilir
+- Kincidir, inatçıdır
+- Tükürür
+
+KELLE PAÇA ADAĞI BELİRTİLERİ:
+- İnsanın yüzünde, boynunda, kafasında kızarıklıklara ve kaşıntıya sebep olur
+- Hayvanın neresi yendiyse o bölge kaşınır (işaret)
+- Kelebek hastalığına sebep olur, kişinin yüzü boynu kıpkırmızı olur
+
+DİĞER ADAKLAR VE BELİRTİLERİ:
+
+TÜRBE ZİYARETİ ADAĞI:
+- Türbe ziyareti adanmış ve bunu adayan ölmüş işaretidir
+
+YORGAN/BATTANİYE DAĞITMA ADAĞI:
+- Gece vücudun yorganı atmasına sebep olur
+- Ayak istemsiz yorganı teper
+- "Dağıtacağım" denmiş ama fakire ulaşmamış
+
+FAKİR GİYDİRME ADAĞI:
+- Kişi üşüyorsa fakir giydirme adağı olabilir
+- O fakir giydirilmedikçe kişi üşümeye devam eder
+- Cilt rahatsızlıklarında ruhsatı vardır, kaşıntı yapabilir
+
+UN/BUĞDAY DAĞITMA ADAĞI VE BUĞDAY TARLASI YAKMA:
+- Glüten alerjisine sebep olur
+- Çölyak hastalığına sebep olur
+
+FAKİR DOYURMA ADAĞI:
+- Yeme isteği çok olur
+- Kilo yapar, adaklar çok fazlaysa zayıflamaya sebep olur
+- Çocuklarda yemek yememeye neden olur
+
+ÇOCUK SEVİNDİRME ADAĞI:
+- Kişiyi çocuksu bir hale çevirir
+- Çocuk gibi hareketler yapar
+
+KUR'AN-I KERİM OKUMA ADAĞI:
+- Kur'an okumada zorlanmaya sebep olur
+- Yakını görememeye neden olur (miyop)
+- "Her gece Yasin okuyacağım" adağı tavukkarası göz hastalığına sebep olur (kişi gece göremez)
+
+AĞAÇ DİKME ADAĞI:
+- Ciltte kuruluk, susuzluk yapabilir
+
+UYKU HARAM OLSUN SÖZÜ:
+- "Uyku bana/sana haram olsun" sözü uyutmaz
 """
 
 # ============================================================
@@ -461,6 +578,175 @@ DISEASE_PATTERNS = [
      "symptoms": ["tüm hastalıkların temeli", "akrabalar arası küslük", "aşırı cimrilik", "aşırı savurganlık"],
      "causes": ["zekat"],
      "remedy": "Zekât vücudun patronudur. Tüm hastalıkların temelidir. Zekât tamamlanmalı."},
+
+    # === MİRAS LÂNETİ, HAK HARAMLIĞI, YUVA YIKMA ===
+    
+    {"name": "Kalp Çarpıntısı (Miras Lâneti)", "category": "Kardiyak",
+     "symptoms": ["kalp çarpıntısı", "çarpıntı", "taşikardi"],
+     "causes": ["miras_laneti"],
+     "remedy": "Mal miras üzerine okunan lânettir. Miras lâneti için helallik alabilme niyeti yapılmalıdır."},
+
+    {"name": "Panik Atak (Miras Lâneti)", "category": "Psikiyatrik",
+     "symptoms": ["panik atak", "anksiyete", "korku atakları"],
+     "causes": ["miras_laneti"],
+     "remedy": "Miras lâneti için helallik alabilme niyeti yapılmalıdır."},
+
+    {"name": "Guatr", "category": "Endokrin",
+     "symptoms": ["guatr", "tiroid büyümesi", "boğazda şişlik"],
+     "causes": ["miras_laneti"],
+     "remedy": "'Zehir zıkkım olsun' sözü guatr yapar. Miras lâneti için helallik alınmalıdır."},
+
+    {"name": "Topuk Dikeni", "category": "Ortopedik",
+     "symptoms": ["topuk dikeni", "topuk ağrısı", "ayak ağrısı"],
+     "causes": ["miras_laneti"],
+     "remedy": "Miras lâneti için helallik alabilme niyeti yapılmalıdır."},
+
+    {"name": "Parasal Sıkıntı (Miras Lâneti)", "category": "Mali/Manevi",
+     "symptoms": ["parasal sıkıntı", "maddi sıkıntı", "borç"],
+     "causes": ["miras_laneti", "faiz", "zekat"],
+     "remedy": "Miras lâneti için helallik alabilme niyeti yapılmalıdır."},
+
+    {"name": "Hak Haramlığı Belirtileri", "category": "Manevi/Fiziksel",
+     "symptoms": ["boğaz sıkışması", "göğüste huzursuzluk", "karabasan", "uykuda baskı hissi"],
+     "causes": ["hak_haram", "kul_hakki"],
+     "remedy": "Hak haramlığı boğazı sıkar, göğüste huzursuzluk ve uykuda karabasan yapar. Helalleşme gerekir."},
+
+    {"name": "Yuva Yıkılması / Evlenememe (Narsist)", "category": "Sosyal/Aile",
+     "symptoms": ["yuva yıkılması", "eşle sürekli kavga", "aşağılanma", "evlenememe"],
+     "causes": ["narsist_zulum", "gelin_zulum"],
+     "remedy": "Yuva yıkma ve sevenleri ayırma zulmüdür. 'Oğluma/kızıma layık değilsin' demek, geline zina iftirasıyla yuva yıkmak, evladı anne babadan ayırmak bu ruhsata sebep olur."},
+
+    {"name": "Hapis / Mahkûmiyet Ruhsatı", "category": "Sosyal/Manevi",
+     "symptoms": ["hapis düşme", "mahkûmiyet", "suça bulaşma"],
+     "causes": ["hasta_mahkum_zulum", "zulum_insan"],
+     "remedy": "Soydan mahkûma zulüm, insanları hainlikle mahkûm etme. Mahkûma zulüm narsistin zirvelerindendir - yalancı şahitlikle insanlar mahkûm olduklarında ailelerinden ayrı kalırlar."},
+
+    {"name": "Servet Kaybı / İşlerin Bozulması", "category": "Mali/Manevi",
+     "symptoms": ["servet kaybı", "işlerin bozulması", "her iş son anda bozulma", "iflas"],
+     "causes": ["zekat", "adak_eylem"],
+     "remedy": "Sebeplerinden biri zekât vermeme, diğeri Allah'a iş/servet üzerine verilen sözlerdir. Örn: 'Şu işlerim yolunda giderse kurban keseceğim' sözü. 'Evlenirsem tüm servetimi Allah yolunda harcayacağım' sözü."},
+
+    # === HAYVAN ADAĞI KAYNAKLARI HASTALIKLAR ===
+
+    {"name": "Aşırı Uyku / Tembellik", "category": "Davranışsal",
+     "symptoms": ["aşırı uyku", "tembellik", "uyuşukluk"],
+     "causes": ["adak_hayvan"],
+     "remedy": "Koyun/kuzu adağı belirtisi olabilir. Hayvan adağı tespiti için seans alınması gerekir."},
+
+    {"name": "Aşırı Duygusallık / Ağlama", "category": "Psikolojik",
+     "symptoms": ["aşırı duygusallık", "çok ağlama", "hassasiyet"],
+     "causes": ["adak_hayvan"],
+     "remedy": "Koyun/kuzu adağı belirtisi olabilir. Hayvan adağı tespiti için seans alınması gerekir."},
+
+    {"name": "Hayır Diyememe / Boyun Eğme", "category": "Davranışsal",
+     "symptoms": ["hayır diyememe", "boyun eğme", "karşı koyamama"],
+     "causes": ["adak_hayvan"],
+     "remedy": "Koyun adağı belirtisi. Hayvan adağı tespiti için seans alınması gerekir."},
+
+    {"name": "İntihar Düşüncesi / Yüksekten Atlama İsteği", "category": "Psikiyatrik",
+     "symptoms": ["intihar düşüncesi", "yüksek yerden atlama isteği", "yükseklik çekimi"],
+     "causes": ["adak_hayvan", "intihar"],
+     "remedy": "Koyun, koç veya keçi adağı intihara teşvik ederek yüksek yerden atlatır. Acil seans alınmalı."},
+
+    {"name": "İnatçılık / Affetmeme", "category": "Davranışsal",
+     "symptoms": ["inatçılık", "affetmeme", "geçmişi unutmama", "helallik verememe"],
+     "causes": ["adak_hayvan"],
+     "remedy": "Koç/erkek kuzu adağı belirtisi. Hayvan adağı tespiti için seans alınması gerekir."},
+
+    {"name": "Kadında Erkeksi Yapı", "category": "Hormonal/Cinsel",
+     "symptoms": ["kadında erkeksi yapı", "kadında kalın ses", "erkeksi davranış"],
+     "causes": ["adak_hayvan"],
+     "remedy": "Koç veya boğa adağı kadında erkeksi yapıya sebep olur."},
+
+    {"name": "Şüphecilik / Vesvese", "category": "Psikiyatrik",
+     "symptoms": ["aşırı şüphecilik", "vesvese", "takıntı", "gördüğüne inanamama"],
+     "causes": ["adak_hayvan"],
+     "remedy": "İnek adağı belirtisi. Takıntı ve vesvese yapar, imanda şüpheye düşürmeye çalışır."},
+
+    {"name": "Göğüs Büyümesi (Erkekte)", "category": "Hormonal",
+     "symptoms": ["erkekte göğüs büyümesi", "jinekomasti", "yumuşak göğüs"],
+     "causes": ["adak_hayvan"],
+     "remedy": "'Kız gibi oğlum olsun inek keseceğim' sözü erkeklerde hormon bozukluğuna sebep olur."},
+
+    {"name": "Kadında Aşırı Şehvet", "category": "Cinsel",
+     "symptoms": ["kadında yüksek şehvet", "zinaya eğilim"],
+     "causes": ["adak_hayvan"],
+     "remedy": "İnek adağı kadında yüksek şehvet yapar, zinaya sevk eder."},
+
+    {"name": "Basende Genişleme", "category": "Fiziksel",
+     "symptoms": ["kalça genişlemesi", "basen genişlemesi", "üst baldır genişlemesi"],
+     "causes": ["adak_hayvan"],
+     "remedy": "İnek adağı kadınların baseninde genişlemeye neden olur."},
+
+    {"name": "Çok Konuşma / Susamama", "category": "Davranışsal",
+     "symptoms": ["çok konuşma", "susamamak", "bir cümleyi yüz cümleyle anlatma"],
+     "causes": ["adak_hayvan"],
+     "remedy": "Eşek adağı belirtisi. Susmayan konuşmaya sebep olur."},
+
+    {"name": "Pelteklik / S Harfi Zorluğu", "category": "Konuşma",
+     "symptoms": ["pelteklik", "S harfini söyleyememe", "konuşma bozukluğu"],
+     "causes": ["adak_hayvan", "kinama"],
+     "remedy": "Horoz adağı belirtisi. Peltek insanları kınamak da peltekliğe sebep olabilir."},
+
+    {"name": "Aşırı Kıskançlık", "category": "Psikolojik",
+     "symptoms": ["aşırı kıskançlık", "eşi kıskanma"],
+     "causes": ["adak_hayvan"],
+     "remedy": "Horoz adağı eşini aşırı kıskanmaya sebep olur."},
+
+    {"name": "Yüz/Boyun Kızarıklığı ve Kaşıntı", "category": "Dermatolojik",
+     "symptoms": ["yüzde kızarıklık", "boyunda kızarıklık", "kafada kaşıntı"],
+     "causes": ["adak_hayvan", "adak_eti"],
+     "remedy": "Kelle paça adağı belirtisi. Hayvanın neresi yendiyse o bölge kaşınır."},
+
+    {"name": "Gece Uyuyamama (Büyükbaş Adak)", "category": "Uyku",
+     "symptoms": ["gece uyuyamama", "uykusuzluk", "rüyada sıçrama"],
+     "causes": ["adak_hayvan"],
+     "remedy": "Büyükbaş hayvan adağı gece uyutmaz. Rüyada sıçrama büyükbaş adak işaretidir."},
+
+    {"name": "Gece Yorgan Atma", "category": "Uyku",
+     "symptoms": ["yorgan atma", "yorgan tepme", "gece üşüme"],
+     "causes": ["adak_eylem"],
+     "remedy": "'Yorgan/battaniye dağıtacağım' adağı yerine getirilmemiş. Ayak istemsiz yorganı teper."},
+
+    {"name": "Sürekli Üşüme", "category": "Genel",
+     "symptoms": ["üşüme", "sürekli üşüme", "ısınamama"],
+     "causes": ["adak_eylem"],
+     "remedy": "Fakir giydirme adağı yerine getirilmemiş. O fakir giydirilmedikçe kişi üşümeye devam eder."},
+
+    {"name": "Glüten Alerjisi / Çölyak", "category": "Sindirim/Alerji",
+     "symptoms": ["glüten alerjisi", "çölyak", "buğday intoleransı"],
+     "causes": ["adak_eylem", "aniz_yakma"],
+     "remedy": "Un/buğday dağıtma adağı veya geçmişte buğday tarlalarını yakma."},
+
+    {"name": "Aşırı Yeme İsteği / Kilo Problemi", "category": "Metabolik",
+     "symptoms": ["aşırı yeme isteği", "kilo alma", "obezite"],
+     "causes": ["adak_eylem"],
+     "remedy": "Fakir doyurma adağı belirtisi. Adaklar çok fazlaysa zayıflamaya da sebep olabilir."},
+
+    {"name": "Çocuklarda Yemek Yememe", "category": "Pediatrik",
+     "symptoms": ["çocuk yemek yemiyor", "iştahsızlık"],
+     "causes": ["adak_eylem"],
+     "remedy": "Fakir doyurma adağı çocuklarda yemek yememeye neden olur."},
+
+    {"name": "Çocuksu Davranış", "category": "Davranışsal",
+     "symptoms": ["çocuksu davranış", "çocuk gibi hareket", "olgunlaşamama"],
+     "causes": ["adak_eylem"],
+     "remedy": "Çocuk sevindirme adağı kişiyi çocuksu hale çevirir."},
+
+    {"name": "Kur'an Okumada Zorluk", "category": "Manevi",
+     "symptoms": ["Kur'an okuyamama", "Kur'an okumada zorluk"],
+     "causes": ["adak_eylem"],
+     "remedy": "Kur'an-ı Kerim okuma adağı yerine getirilmemiş."},
+
+    {"name": "Tavukkarası (Gece Körlüğü)", "category": "Oftalmolojik",
+     "symptoms": ["gece görememe", "tavukkarası", "gece körlüğü"],
+     "causes": ["adak_eylem"],
+     "remedy": "'Her gece Yasin okuyacağım' adağı tavukkarası göz hastalığına sebep olur."},
+
+    {"name": "Ciltte Kuruluk / Susuzluk", "category": "Dermatolojik",
+     "symptoms": ["cilt kuruluğu", "susuzluk", "kuru cilt"],
+     "causes": ["adak_eylem"],
+     "remedy": "Ağaç dikme adağı ciltte kuruluk ve susuzluk yapabilir."},
 ]
 
 # ============================================================
