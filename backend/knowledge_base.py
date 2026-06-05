@@ -1199,6 +1199,139 @@ DISEASE_PATTERNS = [
      "symptoms": ["boğaz şişliği", "boğaz ödemi", "boğazda kitle", "tiroid şişliği"],
      "causes": ["miras_laneti", "zekat", "beddua"],
      "remedy": "Boğazda şişlik, ödem ve kitle neden olur? Miras laneti ('boğazın şişsin' bedduası), zekâtsızlık boğazdaki şişliğe sebep olan ruhsatlardandır."},
+
+    # === MİRAS LANETİ DETAYLI BELİRTİLERİ ===
+
+    {"name": "Miras Laneti Belirtileri (Kapsamlı)", "category": "Çoklu/Manevi",
+     "symptoms": ["kalp çarpıntısı", "panik atak", "guatr", "topuk dikeni", "ayaklarda nasır", "kabızlık", "parasal sıkıntı"],
+     "causes": ["miras_laneti"],
+     "remedy": "Kalp çarpıntısı, panik atak, guatr rahatsızlığı (zehir zıkkım olsun sözü), topuk dikeni, ayaklarda nasır, kabızlık yapan ruhsattır. Parasal sıkıntıya sebep olabilir. Bu özellikleri taşıyan ruhsat miras lanetidir."},
+
+    # === ANKSİYETE ===
+
+    {"name": "Anksiyete Hastalığı", "category": "Psikiyatrik",
+     "symptoms": ["anksiyete", "kaygı bozukluğu", "endişe", "gerginlik"],
+     "causes": ["miras_laneti", "beddua", "hak_haram"],
+     "remedy": "Anksiyete hastalığının ruhsatı: Soydan veya akrabaların kendi aralarında yeme, içme ve mal miras üzerine okudukları ve aldıkları bedduaların ve yaptıkları hak haramlıkların sonucu olarak gelen miras laneti ruhsatı, anksiyete hastalığının sebebidir."},
+
+    # === MENİSKÜS ===
+
+    {"name": "Menisküs", "category": "Ortopedik",
+     "symptoms": ["menisküs", "diz menisküsü", "menisküs yırtığı"],
+     "causes": ["zulum_insan", "hainlik"],
+     "remedy": "Savaştan kaçma ve hainlik var ise menisküse sebep olabilir."},
+
+    # === KAMBURLAŞMA ===
+
+    {"name": "Kamburlaşma", "category": "Ortopedik",
+     "symptoms": ["kamburluk", "kamburlaşma", "sırt kamburu"],
+     "causes": ["zulum_anne_baba", "adak_hayvan"],
+     "remedy": "Kişinin kamburlaşmasına sebebiyet veren ruhsatlar: Anne-baba zulmü ve deve adağı kamburlaşmaya sebebiyet verir."},
+
+    # === KUYRUK SOKUMU RAHATSIZLIĞI ===
+
+    {"name": "Kuyruk Sokumu Rahatsızlığı", "category": "Ortopedik",
+     "symptoms": ["kuyruk sokumu ağrısı", "koksiks ağrısı", "kuyruk sokumu rahatsızlığı"],
+     "causes": ["beddua"],
+     "remedy": "'O evde oturamayasınız' bedduası kuyruk sokumu rahatsızlığına neden olur."},
+
+    # === BİTMEYEN ŞEHVET ===
+
+    {"name": "Bitmeyen Şehvet", "category": "Cinsel/Psikolojik",
+     "symptoms": ["bitmeyen şehvet", "aşırı cinsel istek", "kontrol edilemeyen şehvet"],
+     "causes": ["zina_ensest", "zekat", "adak_hayvan"],
+     "remedy": "Bitmeyen şehvetin sebepleri: En başı ensest, zekât, erkeklerde erkek adaklar ve kadında dişi adaklar bitmeyen şehvete sebep olur."},
+
+    # === KULAK ÇINLAMASI (DETAYLI) ===
+
+    {"name": "Kulak Çınlaması (Detaylı Sebepler)", "category": "KBB",
+     "symptoms": ["kulak çınlaması", "tinnitus", "kulakta ses"],
+     "causes": ["kinama", "iftira", "sirk", "zulum_insan"],
+     "remedy": "Kulağı çınlatan ruhsatlar: Gıybet, kınama, iftira dinleme, laf taşıyan insanları onaylama ve 'Şifalandırıyorum, mucizelendiriyorum' diyerek gizli şirke düşürme, şirk kelimelerini duyduğu zaman onu onaylama yaptığında ve soydan kulağa yapılan zulüm kulak çınlamasına sebep olmaktadır."},
+
+    # === ÇOCUKLARIN EL VE YÜZÜNDE LEKE ===
+
+    {"name": "Çocuklarda El ve Yüzde Leke", "category": "Dermatolojik/Pediatrik",
+     "symptoms": ["çocuklarda el lekesi", "çocuklarda yüz lekesi", "cilt lekesi"],
+     "causes": ["zulum_anne_baba"],
+     "remedy": "Çocukların ellerinde yüzlerinde lekeye sebep olan ruhsat: Anne ve babaya tokat atma, çocukların ellerinde ve yüzünde leke olmasına sebep olabilir."},
+
+    # === KAS ZAYIFLAMASI VE ERİMESİ ===
+
+    {"name": "Kas Zayıflaması ve Erimesi", "category": "Nörolojik/Kas",
+     "symptoms": ["kas zayıflaması", "kas erimesi", "kas güçsüzlüğü", "miyopati"],
+     "causes": ["zulum_anne_baba", "insan_oldurme", "hasta_cocuk_zulum", "beddua"],
+     "remedy": "Kasların zayıflaması, erimesi hangi günahlar sebebiyledir? Kişilerin anne babalarına soydan yapılan zulüm, öldürme, hasta anne babalarına yapılan zulüm ve hasta engelli çocuklara yapılan zulümlerden gelen mezarcının kaslardaki rolü çok yüksektir. Ayrıca tacizle alınan beddua, 'kasların erisin' bedduası da kasları eritmektedir."},
+
+    # === KANIN DURMAMASI ===
+
+    {"name": "Kanın Durmaması", "category": "Hematolojik",
+     "symptoms": ["kanın durmaması", "kanama durmaması", "sürekli kanama"],
+     "causes": ["zulum_insan", "beddua"],
+     "remedy": "Bir kişinin kanı durmuyorsa soyunda nasıl bir zulümle alınan beddua vardır? Soyunda eşkiyalık ve kan akıtma zulmü yapılarak aldıkları 'kanınız durmasın' bedduası buna sebeptir."},
+
+    # === EŞEĞE ZULÜM BELİRTİLERİ (DETAYLI) ===
+
+    {"name": "Eşeğe Zulüm ve Taciz Belirtileri", "category": "Davranışsal/Dermatolojik",
+     "symptoms": ["yüksek sesle konuşma", "çirkin bağırma", "sedef"],
+     "causes": ["esek_zulum"],
+     "remedy": "'Kişi, yüksek sesle konuşur; çirkin bir bağırma tarzı olur. Sedef ruhsatı olabilir' - Bu özellikler eşeğe zulüm ve taciz ruhsatının olduğuna işarettir."},
+
+    # === POLEN ALERJİSİ (DETAYLI) ===
+
+    {"name": "Polen Alerjisi (Anız Yakma)", "category": "Alerji",
+     "symptoms": ["polen alerjisi", "bahar alerjisi", "saman nezlesi"],
+     "causes": ["aniz_yakma", "zulum_hayvan"],
+     "remedy": "Anız, tarla yakarak hayvanları ve arıları yakma polen alerjisine sebep olur."},
+
+    # === SEDEF (DERİ BEDDUASI) ===
+
+    {"name": "Sedef (Deri Bedduası)", "category": "Dermatolojik",
+     "symptoms": ["sedef", "psoriasis", "deri kabuklanması"],
+     "causes": ["deri_bedduasi", "beddua"],
+     "remedy": "'Deriniz kurusun' bedduası sedef hastalığına sebep olabilir."},
+
+    # === TIRNAK MANTARI ===
+
+    {"name": "Tırnak Mantarı", "category": "Dermatolojik",
+     "symptoms": ["tırnak mantarı", "ayak tırnak mantarı", "onikomikoz"],
+     "causes": ["zulum_insan", "zulum_hayvan"],
+     "remedy": "Tırnak mantarına sebep olan zulümler: Tırnakları kopararak yapılan zulüm, ayak tırnaklarını kırarak yapılan zulüm, at ve eşeklerin tırnaklarına yapılan zulümler tırnak mantarına sebep olabilir."},
+
+    # === DİL FELCİ ===
+
+    {"name": "Dil Felci", "category": "Nörolojik/Konuşma",
+     "symptoms": ["dil felci", "konuşamama", "dil tutulması"],
+     "causes": ["beddua", "iftira", "isyan", "sirk"],
+     "remedy": "Dil felcine sebep olan durumlar: Kişi küfür sözleri sürekli söylüyorsa, çok yalan söylüyorsa, lanet ve beddua okuyorsa, masuma iftira atıyorsa, inkâr sözleri söylüyorsa dil felcine sebep olabilir."},
+
+    # === GÖBEK DÜŞMESİ ===
+
+    {"name": "Göbek Düşmesi", "category": "Genel/Jinekolojik",
+     "symptoms": ["göbek düşmesi", "göbek kayması", "karın rahatsızlığı"],
+     "causes": ["cocuk_aldirma", "hamile_zulum"],
+     "remedy": "Göbek düşmesi hangi ruhsattan kaynaklı olur? Genellikle çocuğun düşürülmesiyle alakalıdır. Tekme vurarak hamile kadının çocuğunu düşürmeyle alakalı bir ruhsattır. Hamile kadına taciz ve çocuğunu düşürme olabilir."},
+
+    # === SEBEPSİZ KUSMA ===
+
+    {"name": "Sebepsiz Kusma", "category": "Sindirim",
+     "symptoms": ["sebepsiz kusma", "açıklanamayan kusma", "bulantı kusma"],
+     "causes": ["hamile_zulum", "beddua"],
+     "remedy": "Sebepsiz kusmanın sebebi: Hamile kadına yapılan hakaret ve zulümlerin işaretidir."},
+
+    # === ŞEKER HASTALIĞI (KUYU/ÇEŞME ADAĞI) ===
+
+    {"name": "Şeker Hastalığı (Kuyu/Çeşme Adağı)", "category": "Endokrin",
+     "symptoms": ["şeker hastalığı", "diyabet", "kan şekeri yüksekliği"],
+     "causes": ["adak_eylem"],
+     "remedy": "Şeker hastalığına kuyu açma, çeşme açma adakları da sebep olabilir."},
+
+    # === ELLERİNİ ISIRAN ÇOCUK ===
+
+    {"name": "Ellerini Isıran Çocuk", "category": "Pediatrik/Davranışsal",
+     "symptoms": ["elini ısırma", "kendini ısırma", "çocukta ısırma davranışı"],
+     "causes": ["zulum_anne_baba", "hak_haram", "beddua"],
+     "remedy": "Ellerini ısıran çocuklarda hangi ruhsata bakılır? Anne ve babanın elini ısırma ya da başkasının malını gasp edip mal sahibinin bedduasını alma, 'Kendi başını yiyesin, kendi elini yiyesin, kendi etini yiyesin' gibi ruhsatlara bakılır."},
 ]
 
 # ============================================================
