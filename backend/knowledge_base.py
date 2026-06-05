@@ -786,6 +786,28 @@ DISEASE_PATTERNS = [
      "symptoms": ["bıktım hissi", "dayanamama", "ölmek isteme"],
      "causes": ["isyan", "intihar"],
      "remedy": "İsyanın en ufak kelimesi 'Bıktım artık, dayanamıyorum!'dur. Ölmek istemek ve intihara teşebbüs etmek isyanın zirvesidir."},
+
+    # === ANNE BABA İSYANI, KİBİR, KINAMA ===
+
+    {"name": "Bel Ağrısı (Anne Baba İsyanı)", "category": "Ortopedik",
+     "symptoms": ["bel ağrısı", "bel fıtığı", "sırt ağrısı"],
+     "causes": ["zulum_anne_baba"],
+     "remedy": "Anne babaya isyan etmek bel ağrısı ruhsatlarından biridir. Anne babamıza kendimiz için dua hazırlayıp, sürekli bizim için dua etmesini istemeliyiz."},
+
+    {"name": "Elle ve Dille Yapılan Zulüm", "category": "Manevi/Tehlike",
+     "symptoms": ["zulüm işaretleri", "elle zulüm", "dille zulüm"],
+     "causes": ["zulum_insan", "beddua", "iftira"],
+     "remedy": "Elle ve dille yapılan zulümler çok tehlikelidir. Helalleşme gerekir."},
+
+    {"name": "Kibir Günahı Belirtileri", "category": "Manevi/Tehlike",
+     "symptoms": ["kibir", "büyüklenme", "kendini üstün görme", "ululuk taslama"],
+     "causes": ["kinama", "isyan"],
+     "remedy": "'Kalbinde zerre miktar kibir olan cennete giremez' (Hadis-i Şerif). Azamet ve Kibriya sahibi Cenab-ı Haktır. Ululuk ve yücelik Cenab-ı Hakka aittir. İnsan ulu ve yüce olamaz, olmaya çalışırsa kibirlenirse büyük bir gazaba uğrar. 'Aciziz, fakiriz ya Rabbi!' demeliyiz."},
+
+    {"name": "Kınama Günahı Sonuçları", "category": "Manevi/Sosyal",
+     "symptoms": ["hayatın kilitlenmesi", "işlerin durması", "çocuklarda problemler"],
+     "causes": ["kinama"],
+     "remedy": "Kınama günahı çok tehlikelidir. Namaz kılmayanları, içki içenleri, zina edenleri, boşanan insanları, evlenemeyenleri kınamak, kınayan insanların ve çocuklarının hayatını kilitleyen günahlardır. Kınadığımız şeylere düşeriz."},
 ]
 
 # ============================================================
