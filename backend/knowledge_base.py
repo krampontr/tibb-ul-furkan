@@ -1332,6 +1332,545 @@ DISEASE_PATTERNS = [
      "symptoms": ["elini ısırma", "kendini ısırma", "çocukta ısırma davranışı"],
      "causes": ["zulum_anne_baba", "hak_haram", "beddua"],
      "remedy": "Ellerini ısıran çocuklarda hangi ruhsata bakılır? Anne ve babanın elini ısırma ya da başkasının malını gasp edip mal sahibinin bedduasını alma, 'Kendi başını yiyesin, kendi elini yiyesin, kendi etini yiyesin' gibi ruhsatlara bakılır."},
+
+    # === ACI YETİMİ ===
+
+    {"name": "Acı Yetimi (Ağrı Hissetmeme)", "category": "Nörolojik/Nadir",
+     "symptoms": ["acı hissetmeme", "ağrı duyusuzluğu", "ellerini yeme", "dilini yeme"],
+     "causes": ["adak_eti", "beddua", "hak_haram"],
+     "remedy": "Bu kişiler ellerini yiyorlar veya kendi dilini yiyorlar ve maalesef acı hissetmiyorlar. Bu hastalık, adanmış bir hayvanı çalıp da yiyen kişilerde, hırsızlık yapıp malı çalınan kişi 'Zehir zıkkım olsun, kendi başını yesin, kendi elini dilini yesin' diye ettiği beddualarla olabilmektedir Allah u âlem."},
+
+    # === AKDENİZ ANEMİSİ ===
+
+    {"name": "Akdeniz Anemisi (Talasemi)", "category": "Hematolojik",
+     "symptoms": ["akdeniz anemisi", "talasemi", "kansızlık", "yorgunluk"],
+     "causes": ["beddua", "miras_laneti", "isyan", "zekat", "adak_eylem"],
+     "remedy": "Bu hastalık, beddua, kahır, intizar, isyan, lânet (zehir zıkkım olsun sözü) ile ve verilmeyen zekatla olur Allah u âlem. Özellikle bu hastalıkla canı yanan alacaklının yada mirasta hakkı olan kişinin can yanıklığıyla 'hakkım haram, zehir, zıkkım olsun ben yiyemedim siz de yiyemeyesiniz' gibi sözleri sarfetmesiyle birde yerine getirilmemiş adak ve zekat birleşimiyle olabilmektedir. Zekât tespiti yapılır, kendinin veya soyunun zekâtı verilir."},
+
+    # === ALİS HARİKALAR DİYARI (DETAYLI) ===
+
+    {"name": "Alis Harikalar Diyarı Sendromu (Detaylı)", "category": "Nörolojik/Psikiyatrik",
+     "symptoms": ["algı bozukluğu", "boyut sapması", "dev gibi evleri fare kadar görme", "karıncayı apartman kadar görme"],
+     "causes": ["kufur_kainata", "isyan", "kinama"],
+     "remedy": "Bu hastalar dev gibi evleri bir fare kadar görüyorlar. Bazen bir karıncayı, bir kuşu da koskocaman, bir apartman gibi görüyorlar. Bu hastalarda kâinata küfür etme, tabiata, evlere, yaratılan dünyaya, içindekilere küfür ve alay etmekten kaynaklı bu kişilerde bu hastalık oluyor. O kâinata küfredip alay edersen, o kâinatın sahibine karşı alay etmeye, yaratılmışı beğenmemeye gider ve bu isyanına karşılık kâinat da seninle alay eder gibi olur. Fareyi aslan, karıncayı dev sanıp kaçarsın."},
+
+    # === ALZHEİMER (DETAYLI) ===
+
+    {"name": "Alzheimer (Detaylı)", "category": "Nörolojik",
+     "symptoms": ["alzheimer", "unutkanlık", "hafıza kaybı", "demans"],
+     "causes": ["zekat", "adak_eylem", "sirk", "zulum_anne_baba", "kinama"],
+     "remedy": "Verilmeyen unutkan insanları kınama, zekât ve adak birleşir. Böylece şirk devreye girer ve bu hastalığa neden olur Allah u âlem. Bu hastalıkta kişinin soydan zekat enerjisi yüksek olduğu gibi kendi verilmeyen zekatı da yüksek çıkabilmektedir. Bu öncelikle kafayı şirkçi ile ele geçirmektedir Allahuâlem. Adaklar da zamanı geçip yerine getirilmediğinde zamanla bu hastalık tamamen beyni örtmektedir Allahuâlem. Anne babayı terketme, onları unutma ahını almada sebep olabilmektedir. Önce zekatlar tamamlanır, adaklar tespit edilir ve kişi üzerinden tek tek ruhsatlar kaldırılmaya çalışılır."},
+
+    # === ASTIM VE KOAH (DETAYLI) ===
+
+    {"name": "Astım ve KOAH (Detaylı)", "category": "Solunum",
+     "symptoms": ["astım", "KOAH", "nefes alamama", "boğulma", "solunum krizi"],
+     "causes": ["isyan", "zekat", "beddua"],
+     "remedy": "Bu kişiler nefes alamaz, boğulurlar ve kriz geçirirler. Adeta hayattan tat alamazlar. Bu kişiler için hayatta kalmak bir nefes ile hayattan kopmakta bir nefes iledir. Onlar bu iki arada kalmış gibidirler. Peki neden böyle olur? Çünkü o kişiler veya soyları; hayata, yaşamaya lânet okur ve isyan ederler. Allahu âlem, bu günahlarından dolayı bu hastalığı yapan, göğsüne yerleşen görevli bir şeytandır. O günahı temsilen Allah'tan izin alarak ordadır ve buna sebepte kişinin kendisidir. Ona bu hastalığın gelmesi, kendi hayata yaptığı isyanının hayattan kopma krizi ile aslında tevbeye davet sinyalidir. Bu ruhsatlar zekât enerjisi ile sistemli çalışmaktadır Allahuâlem."},
+
+    # === BAĞIRSAK KANSERİ, BASUR VE BAĞIRSAK ===
+
+    {"name": "Bağırsak Kanseri, Basur ve Bağırsak Hastalıkları (Detaylı)", "category": "Sindirim/Onkolojik",
+     "symptoms": ["bağırsak kanseri", "basur", "hemoroid", "bağırsak rahatsızlığı"],
+     "causes": ["faiz", "beddua", "miras_laneti", "haram_kazanc", "hak_haram"],
+     "remedy": "Bağırsak ile ilgili rahatsızlıklar; faiz günahından, beddua, lânet, miras lânetinden, haksız kazançtan ve hak haramlığından olur. Midenin sol tarafında faizden gelen azılı bir şeytan, midenin sağ tarafında hak haramlığından gelen azılı bir şeytan bulunmaktadır. Bağırsak hastalıkları ve daha bir çok hastalıkta rol oynamaktadırlar. Faiz öyle bir beladır ki tatlı tatlı yemenin hayat boyu nasıl acısının çıkacağını gösterir insana. Tabi bunu hayatını ve vücudunu alt üst ederek yaşatır. Allah-û Alem."},
+
+    # === BEYİN TÜMÖRÜ (HAYRAT MALI) ===
+
+    {"name": "Beyin Tümörü (Hayrat Malı)", "category": "Onkolojik/Nörolojik",
+     "symptoms": ["beyin tümörü", "kafa tümörü", "beyinde kitle"],
+     "causes": ["hayrat_mali", "zulum_insan", "zekat"],
+     "remedy": "Hayrat malı yeme, kafaya zulüm ve zekat beyin tümörüne sebep olur."},
+
+    # === BİPOLAR BOZUKLUK (DETAYLI) ===
+
+    {"name": "Bipolar Bozukluk (Detaylı)", "category": "Psikiyatrik",
+     "symptoms": ["bipolar", "manik depresif", "ruh hali dalgalanması"],
+     "causes": ["zekat", "adak_eylem", "zulum_anne_baba", "zulum_hayvan", "beddua"],
+     "remedy": "Bu hastalık; verilmeyen zekât ve kişinin anne babasının bizzat kendi vermedikleri zekat ile olabilmekte, yerine getirilmeyen adak, anne babaya zulüm, dövme ve işkence etme, beddualarını alma ve hayvan zulümleri ile de olabilmekte Allah u âlem."},
+
+    # === BÖBREK (DETAYLI) ===
+
+    {"name": "Böbrek Hastalıkları (Detaylı)", "category": "Üriner",
+     "symptoms": ["böbrek hastalığı", "böbrek yetmezliği", "böbrek problemi"],
+     "causes": ["zekat", "beddua"],
+     "remedy": "Kendi veya soyunun vermediği zekâttan gelen zekâtçı, mide ve böbreklere yerleşir. Zekât kefâreti verildiği an ölür. Kişi biiznillah düzelir. Kana edilen beddualar, suya edilen beddualarada tevbe edilmeli Allahuâlem."},
+
+    # === BURUN TIKANIKLIĞI ===
+
+    {"name": "Burun Tıkanıklığı", "category": "KBB",
+     "symptoms": ["burun tıkanıklığı", "burun eti büyümesi", "nefes alamama"],
+     "causes": ["beddua", "zulum_hayvan", "adak_hayvan"],
+     "remedy": "Soydan edilen veya kendinin ettiği; 'Nefesin kesilsin, nefesin tıkansın, ağzın burnun tıkansın' gibi beddualar sebep olmaktadır. Bu enerji, burun içi etlerine, ciğere yerleşip kişinin nefes almasını engellemektedir. Hayvanların ve insanların burnuna vurarak yapılan zulümde etki etmektedir. Ve ayrıca büyük baş hayvan adaklarıda bunda rol oynar."},
+
+    # === ÇIBAN YARALARI ===
+
+    {"name": "Çıban Yaraları", "category": "Dermatolojik",
+     "symptoms": ["çıban", "apse", "deri yaraları", "tekrarlayan çıbanlar"],
+     "causes": ["zulum_insan", "zulum_anne_baba"],
+     "remedy": "Bu kişi veya soyunun yaptığı zulümle alâkalı, karşıdaki kişinin vücudunda nerelere vurduysa veya silah sıktıysa, oralarda bu çıkar. Ve 'Sen bu bölgelere vurarak zulüm ettin' sinyalidir Allahuâlem. Veya kişi kendi anne babasına vurduysa, gene bu yaralara maruz kalabilir."},
+
+    # === DALAK ŞİŞMESİ ===
+
+    {"name": "Dalak Şişmesi", "category": "İç Hastalık",
+     "symptoms": ["dalak şişmesi", "dalak büyümesi", "splenomegali"],
+     "causes": ["beddua", "zulum_insan"],
+     "remedy": "Kendi veya soydan okunan 'Dalağın şişsin, dalağın patlasın gibi!' bedduaları ile kendi veya soyunun yaptığı zulüm ile ah almadan gelen şeytan bunu yapabilmekte Allahuâlem."},
+
+    # === DERİ KANSERİ VE DERİ İLE İLGİLİ ===
+
+    {"name": "Deri Kanseri ve Deri Hastalıkları", "category": "Dermatolojik/Onkolojik",
+     "symptoms": ["deri kanseri", "deri hastalığı", "cilt problemi"],
+     "causes": ["adak_eti", "zekat", "kinama", "adak_eylem", "hayrat_mali"],
+     "remedy": "Deri ile ilgili rahatsızlıklar; adak eti yemekle, verilmeyen zekâtla, kınama zulmüyle, çocuk giydirme ve çocuk sevindirme adaklarıyla olur. Tabi kanser varsa unutmuyoruz zekat yüksek olabilmektedir. Ayrıca hayrat derisi gasp edip yemede yapar Allah u âlem."},
+
+    # === DİL FELCİ ===
+
+    {"name": "Dil Felci", "category": "Nörolojik/Konuşma",
+     "symptoms": ["dil felci", "konuşamama", "dil tutulması"],
+     "causes": ["beddua", "iftira", "isyan"],
+     "remedy": "Kişi küfür sözleri söyledi ise, çok yalan söylüyor ise, lânet, beddua okuyorsa, masuma iftira atıyorsa, inkar sözleri söylüyorsa, bu enerjiler dile yerleşir ve dil felcine sebep olur Allahuâlem. Veya soydan 'dilin tutulsun' gibi beddua edildiyse, dil felci olabilmektedir."},
+
+    # === DİYABET - ŞEKER (DETAYLI) ===
+
+    {"name": "Diyabet - Şeker Hastalığı (Detaylı)", "category": "Endokrin",
+     "symptoms": ["şeker hastalığı", "diyabet", "yüksek kan şekeri"],
+     "causes": ["zekat", "kinama", "soy_laneti", "beddua", "adak_eylem", "adak_eti"],
+     "remedy": "Şeker hastalığı; verilmeyen zekâttan, kınamadan, lânet, beddua ve soy lânetinden (yani lânet, beddua okuyup bundan tevbe etmeden ölen yakınlarımızın tutan bedduası), 'Şeker bana haram olsun' sözü, şeker-çikolata-helva-tatlı dağıtma adakları ve bolca yenilmiş hayvan adaklarından olabilmektedir Allahuâlem."},
+
+    # === DOWN SENDROMU (DETAYLI) ===
+
+    {"name": "Down Sendromu (Detaylı)", "category": "Genetik",
+     "symptoms": ["down sendromu", "genetik bozukluk", "gelişim geriliği"],
+     "causes": ["zekat", "isyan", "adak_hayvan", "adak_eti", "haramzade", "iftira"],
+     "remedy": "Bu hastalık, eksik zekâttan, Allah'a isyan ve iftiralardan, çok fazla küçükbaş veya büyük baş adaktan, adak eti yemekten, haramzadeden, 'Çocuğum olsun da nasıl olursa olsun' sözünden olur Allah-u âlem. Bu hastalardaki enerji çok yüksek olduğundan mıdır bilinmez kolay kolay seansa gelememekteler Allahuâlem. Rabbim seans almayı nasip eylesin."},
+
+    # === EGZAMA (DETAYLI) ===
+
+    {"name": "Egzama (Detaylı)", "category": "Dermatolojik",
+     "symptoms": ["egzama", "cilt tahrişi", "kaşıntı"],
+     "causes": ["adak_eti", "zekat", "zulum_insan"],
+     "remedy": "Yenmiş adak ve zekât ve zulüm ile olabilmektedir."},
+
+    # === EMMEYEN ÇOCUK ===
+
+    {"name": "Emmeyen Çocuk", "category": "Pediatrik",
+     "symptoms": ["çocuk emmeme", "emzirme sorunu", "bebek emmeme"],
+     "causes": ["hak_haram", "beddua"],
+     "remedy": "Annenin hak haram etmesi ve kendi veya başkasının çocuğuna beddua yapmakla çocuk emmeyi reddedebilir Allahu âlem. Ayrıca anne yediğine içtiğine dikkat etsin, haram katmasın çocuk helali arar. Anne baba olarak soy zürriyet ağacı tevbesi yapılır."},
+
+    # === ENSAFALİT LATHARGİCA ===
+
+    {"name": "Ensafalit Lathargica", "category": "Nörolojik/Nadir",
+     "symptoms": ["sürekli uyuma", "aylarca uyuma", "uykusuzluk", "kontrolsüz yürüme"],
+     "causes": ["adak_hayvan"],
+     "remedy": "Bu hastalığı olan kişiler; sürekli sağa sola yürüyorlar. Aylarca uyuyorlar, bazen de sürekli uykusunda rahatsız oluyorlar, uyuyamıyorlar. Erkekte çok fazla dişi adaklar varsa (5 veya 6 tane), kadında da çok fazla erkek adaklar varsa (5 veya 6 tane), yerine getirilmeyen adaklarla gelen şeytanlar aldıkları bu ruhsatla kişilerdeki bu hastalığı yapabilmektedir Allah-u âlem. Adak tespitleri yapılıp yerine getirilir. Ancak bu kişilerde misal 6 tane koyun adağı varsa tek tek kesilip bitene kadar tespit etmeye devam edilir."},
+
+    # === EPİLEPSİ (DETAYLI) ===
+
+    {"name": "Epilepsi (Detaylı)", "category": "Nörolojik",
+     "symptoms": ["epilepsi", "sara", "nöbet", "kasılma"],
+     "causes": ["zekat", "insan_oldurme", "kinama", "beddua", "zulum_insan", "adak_eylem"],
+     "remedy": "Kişinin eksik zekâtı varsa, soydan insan öldürme varsa, kınama varsa, lânet ve beddualar okudu veya aldıysa, ah aldıysa, zulüm ettiyse, özellikle Kur'an talebelerine alimlere zulmettiyse (kendi veya soyu olabilmekte), çocuğum düşmesse diye adak adandıysa yerine getirilmediyse olabilmektedir."},
+
+    # === ERGENLİK SİVİLCELERİ ===
+
+    {"name": "Ergenlik Sivilceleri", "category": "Dermatolojik",
+     "symptoms": ["sivilce", "akne", "ergenlik sivilceleri"],
+     "causes": ["adak_hayvan", "zekat", "kinama"],
+     "remedy": "Erkekte koyun adağı, kadında ise koç adağı varsa, üzerinde zekât enerjisi varsa, sivilceli insanlarla alay edip kınama yapıldıysa, bu olabilmektedir Allah-u âlem."},
+
+    # === EŞCİNSELLİĞE SEBEP OLAN GÜNAHLAR ===
+
+    {"name": "Eşcinselliğe Sebep Olan Günahlar", "category": "Cinsel",
+     "symptoms": ["eşcinsellik", "hemcinse ilgi", "cinsel yönelim bozukluğu"],
+     "causes": ["zina_ensest", "adak_hayvan", "zekat", "beddua"],
+     "remedy": "Soydan yapılan tecavüzler, adaklar (erkekte çok fazla dişi adak olursa dişi adaklar kadından hoşlandırmaz erkeğe yönlendirir. Kadında da tam tersi, erkek adaklar çoksa hemcinsine yönlendirir), verilmeyen zekât bizzat anne babasının veya kendinin zekatıysa olabilir önce zekatı halletmeli, lânet ve beddualar bu duruma neden olur Allah u âlem."},
+
+    # === EVLENEMEYEN KİŞİLER (DETAYLI) ===
+
+    {"name": "Evlenemeyen Kişiler (Detaylı)", "category": "Sosyal",
+     "symptoms": ["evlenememe", "eş bulamama", "evlilik kapanması"],
+     "causes": ["zina_ensest", "narsist_zulum", "adak_eylem", "iftira", "kinama", "isyan"],
+     "remedy": "Zina, ensest, narsist lânet, adak. Bu dört şey varsa, bunlar kişiyi evlendirmemek için çabalar ya da karşıdaki erkekte aynı günahlardan şeytanlar varsa o erkeğe yönlendirir. İftira, kınama ve isyanlar da evlenmeye engel olabilecek unsurlardır Allah-u âlem."},
+
+    # === FELÇ İNMESİ (DETAYLI) ===
+
+    {"name": "Felç İnmesi (Detaylı)", "category": "Nörolojik",
+     "symptoms": ["felç", "inme", "vücut tutmaması"],
+     "causes": ["zulum_insan", "beddua", "adak_eylem", "sirk", "isyan", "zekat", "zulum_hayvan"],
+     "remedy": "Başkalarına yapılan zulümden, beddua lânetlerden, adaktan, şirk ve isyandan ve verilmeyen çok fazla zekatdan ve ayrıca hayvana zulüm işkence ve hayvanı yakmaktan da olabilmekte Allah-u âlem."},
+
+    # === GÖZ ALTI MORLUĞU ===
+
+    {"name": "Göz Altı Morluğu", "category": "Oftalmolojik",
+     "symptoms": ["göz altı morluğu", "morluk", "göz çevresi kararmış"],
+     "causes": ["beddua", "zulum_insan", "zekat", "kul_hakki", "insan_oldurme"],
+     "remedy": "Lânet okuyanların soylarının gözleri mor olur. Göze zulüm ve zekat da buna neden olur Allah u âlem. Soydan cinayetler, alınmış ahlar, kul hakları ve zulümler de sebep olmaktadır Allahuâlem. Detaylı tespit ile kişiye kefâretleri verdirilir."},
+
+    # === GÖZ KANLANMASI ===
+
+    {"name": "Göz Kanlanması", "category": "Oftalmolojik",
+     "symptoms": ["göz kanlanması", "kırmızı göz", "gözde kan"],
+     "causes": ["beddua", "adak_eylem"],
+     "remedy": "Göze okunan beddualar, yerine getirilmeyen hatim adakları, yasin adakları ve normal hayvan adağı buna sebep olabilmektedir. Hatim adağı sözünden gelen şeytan, hatim gözle okunduğu için göze yerleşir. Bu enerjiler gözdeki sıkıntılara sebebiyet verebilir. Özellikle kişinin anne babasına beddua tevbesini yaptırmanızı tavsiye ediyorum."},
+
+    # === İÇ ORGANLARIN YANMASI, KENDİLİĞİNDEN YANMA ===
+
+    {"name": "İç Organların Yanması / Kendiliğinden Yanma", "category": "Nadir/Dahili",
+     "symptoms": ["iç organların yanması", "bağırların yanması", "içten yanma hissi"],
+     "causes": ["beddua", "isyan"],
+     "remedy": "'İçin yansın, bağrın yansın' gibi beddualar, isyanla birleşince bu rahatsızlık olur Allah-u âlem."},
+
+    # === KABIZLIK (DETAYLI) ===
+
+    {"name": "Kabızlık (Detaylı)", "category": "Sindirim",
+     "symptoms": ["kabızlık", "bağırsak tıkanıklığı", "dışkılama güçlüğü"],
+     "causes": ["zekat", "faiz", "hak_haram", "beddua"],
+     "remedy": "Zekât, faiz, mal veya miras üzerine hak haram etme, o malı haram etme buna sebep olabilmekte Allah-u âlem. Birde 'Bağırsağın dolansın, tıkansın, bağırsağın şişsin' gibi beddualar kabızlığa sebep olabilmektedir."},
+
+    # === KALBİ DELİK DOĞAN ÇOCUKLAR ===
+
+    {"name": "Kalbi Delik Doğan Çocuklar", "category": "Kardiyak/Pediatrik",
+     "symptoms": ["kalp deliği", "doğuştan kalp hastalığı", "konjenital kalp defekti"],
+     "causes": ["zulum_anne_baba", "beddua", "kinama", "zekat", "adak_eylem", "zulum_insan"],
+     "remedy": "Çocuğun anne babası, onlarında anne babaları ve üst soya doğru bakıldığında kalp kırma varsa, 'Delinesin, kalbinden vurulasın, delik deşik olasın' gibi beddualar, Müslümanlara 'kâfirler, gâvurlar' demek, anne babanın çocuğa bedduaları 'Kalbin dursun, yaşamasın, ölsün' gibi ve çocuğu istememek, kendi soyundan birinin birini silâh ile kalbinden vurması, kalbi hasta başka çocukları kınama, zekat, adak bu hastalığın sebeplerindendir."},
+
+    # === KALP RİTMİ BOZUKLUĞU ===
+
+    {"name": "Kalp Ritmi Bozukluğu (Anne Baba İsyanı)", "category": "Kardiyak",
+     "symptoms": ["kalp ritmi bozukluğu", "aritmi", "kalp atış düzensizliği"],
+     "causes": ["zulum_anne_baba", "isyan", "kinama"],
+     "remedy": "Kalp ritmi bozukluğu, anne-baba hukukunu çiğneyen veya isyan eden kişilerde olabilmekte. İsyan; kadere rızasızlık, şükürsüzlük, başına gelenlere itirazdır. Müslümanların Müslümanlığını eleştirmek de bunu yapar Allahuâlem. Bu o kişiye 'Senin kalbindeki iman neden bu haline mani olmuyor' sinyali olabilmekte."},
+
+    # === KAN KANSERİ (DETAYLI) ===
+
+    {"name": "Kan Kanseri (Detaylı)", "category": "Onkolojik/Hematolojik",
+     "symptoms": ["kan kanseri", "lösemi", "lenfoma"],
+     "causes": ["adak_eylem", "adak_eti", "zekat", "beddua", "zulum_insan"],
+     "remedy": "Bu hastalık; adanıp yerine getirilmeyen adaktan olur. Adadığı hayvanın etinden yiyen insanlarda da olabilmektedir. Kişi kan akıtma sözünü yerine getirmemiştir ve şeytan kanı ele geçirmeye izin almıştır. Şeytan hem kanı hem de tüm hücreleri ele geçirir. Zekatın çok eksik verilmesi sebebiyle zekâtçı vücutta çok kuvvetli vaziyete gelmiştir. Bu şeytanlar beddua ve lânetlerle 'kanın kurusun, kanser olasın' vs. gibi sözlerden, günahlardan ruhsat almaktalar. Hastalık fabrikasının tek enerji merkezidir 'zekâtçı'dır. Yani zekâtı verilmeyen maldan yiyenlerin vücuduna yerleşen şeytan, zulümle kan akıtanın kanına nüfuz etmesine sebep olur, çok tehlikelidir. Zekat enerjisi bu hastalıkta çok yüksektir Allahuâlem."},
+
+    # === KARACİĞER BÜYÜMESİ (DETAYLI) ===
+
+    {"name": "Karaciğer Büyümesi (Detaylı)", "category": "İç Hastalık",
+     "symptoms": ["karaciğer büyümesi", "hepatomegali", "ciğer şişmesi"],
+     "causes": ["zekat", "beddua", "adak_eti"],
+     "remedy": "Karaciğer büyümesini, verilmeyen zekât, beddualar ve lânetlerle gelen görevliler yapabilmektedir Allahuâlem. 'Ciğerin şişsin, ciğerin çıksın, ciğerin patlasın' gibi beddualar... Adak hayvanının ciğerini yemekte ciğerde rahatsızlık olabilmekte Allahuâlem. Adak tesbit edilmeli, kefâreti yerine getirilmeli."},
+
+    # === KARACİĞER KANSERİ (DETAYLI) ===
+
+    {"name": "Karaciğer Kanseri (Detaylı)", "category": "Onkolojik",
+     "symptoms": ["karaciğer kanseri", "ciğer kanseri", "hepatoselüler karsinom"],
+     "causes": ["zekat", "beddua", "adak_eti"],
+     "remedy": "Bu kanser türü; verilmeyen zekâttan ve 'Ciğerin kurusun, ciğerin yansın, ciğerin batsın' gibi beddualardan olur Allahuâlem. Adak hayvanının ciğerini yemekte ciğerde rahatsızlık olabilmekte Allahuâlem. Adak tesbit edilmeli, kefâreti yerine getirilmeli."},
+
+    # === KAZA BELÂ GEÇİREN ÇOCUKLAR ===
+
+    {"name": "Kaza Belâ Geçiren Çocuklar", "category": "Pediatrik/Kaza",
+     "symptoms": ["çocuk kazası", "çocukta bela", "sürekli kaza geçiren çocuk"],
+     "causes": ["beddua", "adak_eti", "adak_eylem", "zekat"],
+     "remedy": "Bu durum; beddualardan (elin ayağın kırılsın gibi), adak eti yemekten, yerine getirilmeyen adaktan ve verilmeyen zekâttan olur Allah u âlem."},
+
+    # === KEKEMELİK (DETAYLI) ===
+
+    {"name": "Kekemelik (Detaylı)", "category": "Konuşma",
+     "symptoms": ["kekemelik", "konuşma takılması", "peltek konuşma"],
+     "causes": ["zulum_insan", "beddua", "adak_hayvan"],
+     "remedy": "Kekemelik; zulüm ile alınan ah ve beddualardan olabilmektedir Allah-u âlem. Misal 'Çenen batsın, çenen sussun, konuşamayasın' beddualarından olur. Nadiren de tavuk adakları yapar."},
+
+    # === KELEBEK (DETAYLI) ===
+
+    {"name": "Kelebek Hastalığı (Detaylı)", "category": "Dermatolojik",
+     "symptoms": ["kelebek hastalığı", "lupus", "deride kırmızı yanıklar"],
+     "causes": ["zulum_anne_baba", "zulum_insan", "beddua", "adak_eylem"],
+     "remedy": "Kelebek hastalığı; deride kıpkırmızı yanıklar olur. Anne babaya zulüm edip dövme, onlardan ah, lânet ve beddua alma ile, soydan zulüm ile, insanları dövme, ah alma gibi günahlar ile bu hastalık kişinin kendisinde veya evlatlarında çıkabilmektedir Allah-u âlem. Ayrıca un, ekmek, bulgur dağıtma adakları bu hastalığa sebep olabilmektedir, yerine getirilmelidir İnşaallah."},
+
+    # === KELLİK VE SAÇ DÖKÜLMESİ (DETAYLI) ===
+
+    {"name": "Kellik ve Saç Dökülmesi (Detaylı)", "category": "Dermatolojik",
+     "symptoms": ["kellik", "saç dökülmesi", "alopesi"],
+     "causes": ["adak_eylem", "kinama", "beddua", "zulum_insan", "yetim_zulum", "zulum_anne_baba"],
+     "remedy": "Kellik ve saç dökülmesi ile ilgili; yerine getirilmeyen adak, kel olan birine zulüm, kel biriyle dalga geçme, kınama, beddua ve lânetler 'kel kalasın, saçın dökülsün' deme ve saç baş yolarak zulmetme gibi günahların buna sebep olduğu söylenebilir Allah-u âlem. Saç yolma, yetimi dövme, anne babanın kafasına vurma da sebep olabilmektedir."},
+
+    # === KEMİK ERİMESİ ===
+
+    {"name": "Kemik Erimesi", "category": "Ortopedik",
+     "symptoms": ["kemik erimesi", "osteoporoz", "kemik zayıflığı"],
+     "causes": ["adak_eti", "zulum_insan", "beddua"],
+     "remedy": "Kemik erimesi, kendi adadığı adağı yeme veya kemiklerini kaynatıp suyunu içme, soydan zulümler yapılarak ah alma, 'İliğin kemiğin kurusun' gibi beddualar buna sebep olabilmektedir Allahuâlem."},
+
+    # === KOLERA (DETAYLI) ===
+
+    {"name": "Kolera (Detaylı)", "category": "Enfeksiyon",
+     "symptoms": ["kolera", "şiddetli ishal", "kusma"],
+     "causes": ["zina_ensest", "soy_laneti", "haramzade", "faiz"],
+     "remedy": "Kolera hastalığına; büyük zina yani evli iken yapılan zina, soy lâneti, haramzade ve faiz günahı sebep olabilmektedir. Allahuâlem."},
+
+    # === KÖRLÜK VE GÖZ (DETAYLI) ===
+
+    {"name": "Körlük ve Göz Hastalıkları (Detaylı)", "category": "Oftalmolojik",
+     "symptoms": ["körlük", "görme kaybı", "göz hastalığı"],
+     "causes": ["adak_eylem", "kinama", "zulum_insan", "beddua", "zekat", "zina_ensest"],
+     "remedy": "Her türlü göz hastalıkları ve körlük; en başta Kur'an okuma ve hatim adaklarından, kör insanı kınama, gözü kör etme zulmü, 'Gözün batsın, gözün kör olsun, gözüne kara gele' gibi beddualardan ve lânetlerden, verilmeyen zekâttan ve göz zinasından olur Allah u âlem."},
+
+    # === KRAMPLAR GİRMESİ ===
+
+    {"name": "Kramplar Girmesi", "category": "Kas/Nörolojik",
+     "symptoms": ["kramp", "kas krampı", "bacak krampı", "el krampı"],
+     "causes": ["zulum_insan", "adak_eylem", "zekat", "beddua"],
+     "remedy": "Kramplar girmesi; insan ve hayvanları el ve ayaklarından asarak zulüm. Adak enerjisi, verilmeyen veya eksik verilen zekât günahından, ayrıca zulüm edildi ise, o zulümle vurulan yerlerde kramplar olur. Enerji kişinin kendi vücudunda vurduğu o yerlere yerleşir. Ete, kemiğe, damara lânet ve beddua okumalar da sebep olur Allahuâlem."},
+
+    # === KUDUZ ===
+
+    {"name": "Kuduz", "category": "Enfeksiyon",
+     "symptoms": ["kuduz", "kuduz hastalığı", "hayvan ısırığı sonrası"],
+     "causes": ["zulum_hayvan"],
+     "remedy": "Kuduz olma; soyda hayvana zulüm aşırı derecede varsa, vücutta bu ruhsat hazırdır. Hayvan ısırdığı anda kişiye kuduz hastalığı hemen bulaşır."},
+
+    # === KULAK ÇINLAMASI - TİNNİTUS ===
+
+    {"name": "Kulak Çınlaması - Tinnitus (Detaylı)", "category": "KBB",
+     "symptoms": ["kulak çınlaması", "tinnitus", "kulakta uğultu"],
+     "causes": ["beddua", "iftira", "zulum_insan"],
+     "remedy": "Kulak çınlaması: 'kulağın çınlasın' bedduası. Gıybet, dedikodu dinleyip gidip iftira attıysa, başkalarının kulaklarına vurma veya kulakla ilgili başka türlü zulümlerde olur Allah-u âlem."},
+
+    # === MOEBIUS SENDROMU ===
+
+    {"name": "Moebius Sendromu", "category": "Nörolojik/Nadir",
+     "symptoms": ["yüz felci", "gözleri kapatamama", "yüzü oynatamama"],
+     "causes": ["beddua", "zulum_anne_baba", "yetim_zulum", "miras_laneti"],
+     "remedy": "Mebius sendromunda; kişi yüzünü oynatamaz, sağa sola bakamaz, gözlerini kapatamaz. Bu, yüze okunan beddualarla, anne-babanın yüzüne vurma, yetimin yüzüne vurma, mirası üzerine kavga edip adam dövenlerde veya vuranlarda olabilmekte Allahuâlem."},
+
+    # === MEME KANSERİ (DETAYLI) ===
+
+    {"name": "Meme Kanseri (Detaylı)", "category": "Onkolojik",
+     "symptoms": ["meme kanseri", "göğüs kanseri", "memede kitle"],
+     "causes": ["hayrat_mali", "isyan", "soy_laneti", "zekat", "zulum_insan"],
+     "remedy": "Bu hastalığa hayrat malı yeme, hayata isyan, soy lâneti, zekat enerjisi, göğüs bıçaklama neden olur Allahuâlem. 1. Allah (CC)'ın El-Hayy, El-Kayyum isimlerinden tevbe edilir. 2. Zekat kefâreti yapılır ve beddua kefâreti yapılır."},
+
+    # === MİDE KANSERİ (DETAYLI) ===
+
+    {"name": "Mide Kanseri (Detaylı)", "category": "Onkolojik",
+     "symptoms": ["mide kanseri", "gastrik kanser", "midede kitle"],
+     "causes": ["zekat", "zulum_insan", "beddua"],
+     "remedy": "Soy zekatı, mide bıçaklama zulmü ve beddua mide kanserine sebep olur."},
+
+    # === MİGREN (DETAYLI) ===
+
+    {"name": "Migren (Detaylı)", "category": "Nörolojik",
+     "symptoms": ["migren", "şiddetli baş ağrısı", "zonklayıcı ağrı"],
+     "causes": ["sirk", "zulum_anne_baba", "zulum_hayvan"],
+     "remedy": "Şirk, anne babaya sesle zulüm ve hayvan zulümleri sebep olabilmektedir."},
+
+    # === NARSİST HASTALIĞI (DETAYLI) ===
+
+    {"name": "Narsist Hastalığı (Detaylı)", "category": "Psikiyatrik",
+     "symptoms": ["narsisizm", "manipülasyon", "empati yokluğu", "aşık edip terk etme"],
+     "causes": ["kinama", "narsist_zulum", "kul_hakki", "insan_oldurme"],
+     "remedy": "Bu hastalık olan kişiler, sevgili olduğu karşıdaki kişiyi kopyalar, ona müthiş bir kadın veya erkek rolü oynar, sonra o kişiyi kendine bağlar ve bir müddet sonra ondan uzaklaşır. Kişi çok kısa sürede alıştığı bu kimseden ayrılınca üzüntü yaşamaya başlar. Tabi o, narsist hastasındaki şeytan için seçilmiş bir kurbandır. Kendine bağlayıp ortadan kaybolur ve kısa bir süre geçtikten sonra tekrar hiçbir şey olmamış gibi sevdiği kimsenin yanına gelir. Onunla çok profesyonel bir oyuncu gibi oynar. İlk tanışmalarındaki müthiş insan modeli zamanla yok olmaya başlar ve şeytan gerçek yüzünü ortaya çıkartır. Karşıdakini bir tümör gibi yıpratarak öldürmeye başlar. Tutarsız hareketleri, tavırları ve gerçek kişiliği ortaya çıkar. Nefis ve hevasına çok düşkün biri ortaya çıkar. İlk zamanlardaki tevazulu, güler yüzlü ve sevgi dolu insan adeta kaybolur. Bu kişilerin üzerinde bulunan musallat, karşıdakini intihar seviyesine getirip hedefine ulaşmak derdindedir. Soydan gelen insanları kafirlikle çokça itham etme ve bir birine aşık iki kişiyi gaddarca ayırarak yada onlardan birini öldürüp diğerinin aşk acısıyla yanmasına ve beddua etmesine sebep olarak yapılan bir zulümden gelen bir enerji olabilmektedir Allahuâlem. İnsanları mahkum ederek yuvasından ayırma, yol kesip kadınları kaçırarak eşlerinden ayırma, çocukları kaçırarak yada öldürerek anne babadan ayırma zulümleri o habis ruhu getirmektedir Allahuâlem ve soylarından bu zulümler olan kişilerde narsist olabilmektedir."},
+
+    # === OBEZİTE (DETAYLI) ===
+
+    {"name": "Obezite (Detaylı)", "category": "Metabolik",
+     "symptoms": ["obezite", "aşırı kilo", "şişmanlık"],
+     "causes": ["harami_esme", "zekat", "hak_haram", "kinama", "beddua"],
+     "remedy": "Obezite, harami eşmeden, verilmeyen zekatlardan, hak haramlığından, kınama ve beddualardan olabilmekte Allahuâlem."},
+
+    # === OTİZM VE OTİSTİK ÇOCUKLAR (DETAYLI) ===
+
+    {"name": "Otizm ve Otistik Çocuklar (Detaylı)", "category": "Nörogelişimsel",
+     "symptoms": ["otizm", "otistik spektrum", "iletişim güçlüğü"],
+     "causes": ["beddua", "zulum_insan", "faiz", "cocuk_aldirma", "zulum_hayvan", "kinama"],
+     "remedy": "Beddua, lânet ve zulümler varsa, faiz yediler veya yedirdilerse, çocuk aldırma yapıldıysa bu rahatsızlık olabilir Allahuâlem. Hayvan zulümleri, hasta engelli ve zulüm de bu hastalıkta aktif rol oynar."},
+
+    # === ÖDEM VE ŞİŞLİKLER (DETAYLI) ===
+
+    {"name": "Ödem ve Şişlikler (Detaylı)", "category": "Genel",
+     "symptoms": ["ödem", "şişlik", "su tutma"],
+     "causes": ["beddua"],
+     "remedy": "Ödem ve şişlik; suya lanet, 'şişesin' bedduası ile olmaktadır Allah-u âlem."},
+
+    # === ÖFKE KRİZİ (DETAYLI) ===
+
+    {"name": "Öfke Krizi (Detaylı)", "category": "Psikiyatrik",
+     "symptoms": ["öfke krizi", "kontrolsüz öfke", "hiddet patlaması"],
+     "causes": ["adak_hayvan", "zulum_anne_baba", "zekat", "haramzade"],
+     "remedy": "Öfke krizi; büyükbaş adaktan, anne babaya kin ve öfkeden, bir çok küçükbaş adaktan, verilmeyen zekâttan ve haramzadeden gelir Allahuâlem."},
+
+    # === ÖZÜRLÜ DOĞAN ÇOCUKLAR ===
+
+    {"name": "Özürlü Doğan Çocuklar", "category": "Genetik/Pediatrik",
+     "symptoms": ["doğuştan özür", "engelli doğum", "konjenital anomali"],
+     "causes": ["beddua", "kinama", "zulum_insan", "soy_laneti", "adak_eylem", "zekat"],
+     "remedy": "Anne-baba çocuğu istemezse, lânet ederse, kendinin ve soyunun özürlü insanları kınaması ile, özürlüye zulüm edilirse, soy lâneti ile, adaklar ve verilmeyen zekatlar dolayısıyla bu durum oluşur Allahuâlem."},
+
+    # === PANİK ATAK (DETAYLI) ===
+
+    {"name": "Panik Atak (Detaylı)", "category": "Psikiyatrik",
+     "symptoms": ["panik atak", "anksiyete", "ölüm korkusu", "korku krizi"],
+     "causes": ["adak_eylem", "yemin_bozma", "miras_laneti"],
+     "remedy": "Buna sebep; korku üzerine verilen söz ve adaklardır. Misal; üniversite sınavı korkusuyla 'Allah'ım, eğer kazanırsam şunu yapacağım' der. Örneğin; fakir doyuracağım. Sınavı geçer ve doyurmazsa, şeytan sözünü yerine getirmemekten göğsüne yerleşir ve panik atak başlar. Veya 'Evladım sağlıklı doğsun, ölmesin, kurban keseceğim' der. O çocuk doğarsa ve ölmezse üç günü vardır. Bu üç gün içinde anne adağını yerine getirmezse çocuğa ve anneye görevli gelir. Ölüm korkusu yaşaması, anneye 'Sen ölüm üzerine bir şey adamıştın, yerine getir' sinyalidir. Bir örnek daha verecek olursak; kişi esrar içer. Birden korku basınca 'Allah'ım beni kurtar, ölmeyeyim, bir daha içmeyeceğim, namazlarımı kılacağım' der. Ama tekrar içer ya da namazını kılmaz. Şeytan ölüm korkusu vermek üzere ruhsat alır ve bedene yerleşir. Adak, yemin ve sözden uzak durmak gerekir. Adandıysa mutlaka yerine getirilmelidir. Yani; 'Ölmez de yaşarsa' diye adanan adaktan, korku üzerine söz verilir ve tutulmazsa (korkum geçsin şunu yapacağım gibi) ve miras lânetinden de bu hastalık olabilmektedir Allahuâlem."},
+
+    # === PARKİNSON ===
+
+    {"name": "Parkinson", "category": "Nörolojik",
+     "symptoms": ["parkinson", "titreme", "hareket güçlüğü"],
+     "causes": ["beddua", "zulum_anne_baba", "sirk"],
+     "remedy": "Bu rahatsızlığa; 'Elin ayağın batsın' gibi beddualar ve anne baba bedduası ve şirk neden olmaktadır Allahuâlem. Anne babaya el kaldırma da hastalığın sebebi olabilmektedir."},
+
+    # === PATLAYAN KAFA SENDROMU ===
+
+    {"name": "Patlayan Kafa Sendromu", "category": "Nörolojik/Nadir",
+     "symptoms": ["patlayan kafa sendromu", "kafada patlama hissi", "gürültü hissi"],
+     "causes": ["adak_hayvan"],
+     "remedy": "Patlayan kafa sendromu olan hastalarda; büyükbaş adak iki veya üç tane ise, bu hastalık olabilmektedir."},
+
+    # === PROGERIA - ERKEN YAŞLANMA (DETAYLI) ===
+
+    {"name": "Progeria - Erken Yaşlanma (Detaylı)", "category": "Genetik/Nadir",
+     "symptoms": ["progeria", "erken yaşlanma", "çocukta yaşlılık belirtileri"],
+     "causes": ["zulum_anne_baba", "kinama", "iftira", "insan_oldurme"],
+     "remedy": "Erken yaşlanma hastalığı olan kişiler; çocuk yaşta yaşlanıyorlar, gücünü kaybediyor, derileri büzüşüyor ve on yaş civarlarında ölüyorlar. Allah-u âlem bu kişilerin soyu veya kendisi, yaşlı bir kimseyi çok fazla döverek zulmettilerse, o kişiyi aşağılayıp hor görüp kınadılarsa, kibirle zulüm ettiler ise, ölmüş birine çok ağır iftira atıldıysa, anne veya babasını canlı canlı toprağa mezara attılarsa, bu hastalık bu kişilerin evlâtlarında ortaya çıkabilmektedir. Ceza amelin cinsinden gelir. O kişilere yaptıklarının karşılığı olarak bu hastalık gelir ve bu bir ikazdır. Allah u alem."},
+
+    # === PROSTAT (DETAYLI) ===
+
+    {"name": "Prostat Kanseri (Detaylı)", "category": "Onkolojik/Ürolojik",
+     "symptoms": ["prostat kanseri", "prostat büyümesi", "idrar güçlüğü"],
+     "causes": ["zekat", "kinama", "adak_eylem"],
+     "remedy": "Prostat kanseri; soy zekatı, kınama, su dağıtma ve çeşme yaptırma adaklarından olabilmektedir."},
+
+    # === RAHİM EGZAMASI VE İLTİHABI ===
+
+    {"name": "Rahim Egzaması ve İltihabı", "category": "Jinekolojik",
+     "symptoms": ["rahim egzaması", "rahim iltihabı", "endometrit"],
+     "causes": ["cocuk_aldirma", "isyan", "adak_eylem", "kinama"],
+     "remedy": "Rahim egzaması ve rahim iltihabı. Gurre yani çocuğu bilerek düşürme, çocuğun doğumuna isyan, çocuğun olmasına ya da olmamasına isyan, çocuğun olması üzerine adak ve kınama."},
+
+    # === RAHİM KANSERİ (DETAYLI) ===
+
+    {"name": "Rahim Kanseri (Detaylı)", "category": "Onkolojik/Jinekolojik",
+     "symptoms": ["rahim kanseri", "uterus kanseri", "endometrium kanseri"],
+     "causes": ["zekat", "cocuk_aldirma"],
+     "remedy": "Soy zekatı, çocuk kürtajı zulmü rahim kanserine sebep olur."},
+
+    # === ROMATİZMA, BACAK BALDIR AĞRISI ===
+
+    {"name": "Romatizma, Bacak Baldır Ağrısı", "category": "Romatolojik/Ortopedik",
+     "symptoms": ["romatizma", "bacak ağrısı", "baldır ağrısı", "diz ağrısı"],
+     "causes": ["isyan", "beddua", "zulum_insan", "adak_eylem", "zekat"],
+     "remedy": "Yağmura intizar, 'Bir bitmedin' gibi beddualar, 'Dizin batsın' gibi, hayata, var olmaya isyan, dizle birine vurma veya birinin bacağına vurarak zulüm, su adağı, bacakla yapılan zulüm, 'dizlerin sızlasın' bedduası, deve adakları ve zekat enerjisi buna sebep olabilmekte."},
+
+    # === SAÇKIRAN ===
+
+    {"name": "Saçkıran", "category": "Dermatolojik",
+     "symptoms": ["saçkıran", "alopecia areata", "bölgesel kellik"],
+     "causes": ["beddua", "kinama", "zulum_anne_baba", "zulum_insan"],
+     "remedy": "Saçkıran hastalığı; beddua, lânet okumaktan, kahırlanmaktan, kınamaktan, anne babaya ya da herhangi bir kimseye soyu veya kendisinin saç yolarak zulmetmesinden olabilmektedir. O kişiye 'Sen veya soyun bu şekilde saç yolarak birilerini dövdünüz veya ah, beddua aldınız' işaretidir Allahuâlem."},
+
+    # === SARA (DETAYLI) ===
+
+    {"name": "Sara Hastalığı (Detaylı)", "category": "Nörolojik",
+     "symptoms": ["sara", "epilepsi", "nöbet", "kasılma"],
+     "causes": ["zekat", "insan_oldurme", "zulum_hayvan"],
+     "remedy": "Sara hastalığı, başta eksik zekât, hayvan ve insan zehirleyerek öldürme buna sebep olabilmekte."},
+
+    # === SANDOF ===
+
+    {"name": "Sandof Hastalığı", "category": "Genetik/Nadir",
+     "symptoms": ["kemik eğrilmesi", "kas erimesi", "erken ölüm"],
+     "causes": ["adak_eylem", "zekat", "zulum_anne_baba", "beddua"],
+     "remedy": "Bu hastalıkta, çocukların kemikleri eğrilir, kasları eriyerek 4-5 yaşlarında vefat ederler. Çocuk üzerine 'Çocuğum olsun, kurban keseceğim' adakları çok fazla olur. Soyunda veya kendinde çok yüklü zekât borcu vardır. Anne baba zulmü ile alınan 'çocuklarınız ölsün' bedduası da olabilmekte bu hastalıkta."},
+
+    # === SEDEF (DETAYLI) ===
+
+    {"name": "Sedef Hastalığı (Adak Eti ve Eşek Zulmü)", "category": "Dermatolojik",
+     "symptoms": ["sedef", "psoriasis", "deri kabuklanması"],
+     "causes": ["adak_eti", "beddua", "esek_zulum"],
+     "remedy": "Adak eti yeme, beddua ve eşek zulmünden olabilmekte."},
+
+    # === SES KAYBI ===
+
+    {"name": "Ses Kaybı", "category": "KBB/Nörolojik",
+     "symptoms": ["ses kaybı", "afoni", "konuşamama"],
+     "causes": ["isyan", "beddua"],
+     "remedy": "Ses kaybı; aşırı isyan, sese beddua lanet okuma ve 'sesin kısılsın' bedduasından olabilmekte."},
+
+    # === SİNÜZİT (DETAYLI) ===
+
+    {"name": "Sinüzit (Detaylı)", "category": "KBB",
+     "symptoms": ["sinüzit", "burun tıkanıklığı", "yüz ağrısı"],
+     "causes": ["zulum_hayvan", "kedi_zulum"],
+     "remedy": "Hayvanları suda boğma ve kedi zulmü sinüzite sebep olur."},
+
+    # === TANSİYON ===
+
+    {"name": "Tansiyon", "category": "Kardiyovasküler",
+     "symptoms": ["yüksek tansiyon", "hipertansiyon", "düşük tansiyon"],
+     "causes": ["zekat", "adak_eylem", "zulum_anne_baba", "sirk"],
+     "remedy": "Verilmeyen zekât, adak, anne babaya isyan ve şirk bu hastalığa neden olur Allahuâlem."},
+
+    # === UYUZ HASTALIĞI ===
+
+    {"name": "Uyuz Hastalığı", "category": "Dermatolojik/Enfeksiyon",
+     "symptoms": ["uyuz", "şiddetli kaşıntı", "deri döküntüsü"],
+     "causes": ["adak_eylem", "kinama"],
+     "remedy": "Uyuz hastalığı; fakir giydirme adağı, gariban yıkama adağı, adak eti yemek ile uyuz insanları kınama ile olabilmektedir Allahuâlem."},
+
+    # === VAMPİR SENDROMU (DETAYLI) ===
+
+    {"name": "Vampir Sendromu (Detaylı)", "category": "Dermatolojik/Nadir",
+     "symptoms": ["vampir sendromu", "güneş alerjisi", "güneşten yanma", "fotosensitivite"],
+     "causes": ["beddua", "isyan"],
+     "remedy": "Vampir sendromu; güneşe çıkınca yanan, derileri kızaran ve yaralar oluşan anlamına gelir. Yani bu kişiler güneşe çıktığında derisinde, etinde, kemik içinde yaralar oluşuyor. Bu hastalık vampir filmlerindeki ismi almıştır. Bu hastalık; güneşe küfür edenlerde, güneşe lânet, beddua okuyanlarda olabilmektedir. Bu kişiler güneşten hayır görmez, vücudu yanar. Unutmayın, neye lânet okursanız ondan mahrum olur, sıkıntı yaşarsınız Allahuâlem."},
+
+    # === UYUR GEZERLİK ===
+
+    {"name": "Uyur Gezerlik", "category": "Uyku/Nörolojik",
+     "symptoms": ["uyur gezerlik", "somnambülizm", "gece yürüme"],
+     "causes": ["adak_eylem", "mezarci_ruhsat"],
+     "remedy": "Ölmüş birine ziyaret adağı, mezarcı ruhsatı uyur gezerliğe sebep olur."},
+
+    # === VARİS ===
+
+    {"name": "Varis", "category": "Kardiyovasküler",
+     "symptoms": ["varis", "bacak varisi", "toplardamar genişlemesi"],
+     "causes": ["beddua", "zekat"],
+     "remedy": "Damara okunan beddualar ve altın zekatı varise sebep olur."},
+
+    # === VEBA ===
+
+    {"name": "Veba", "category": "Enfeksiyon",
+     "symptoms": ["veba", "bubonik veba", "ateşli hastalık"],
+     "causes": ["beddua", "zulum_insan"],
+     "remedy": "Veba hastalığı; okunan beddualar ile soydan insanlara hastalık bulaştırma zulmü ile gelebilmekte."},
+
+    # === YÜRÜYEN CESET HASTALIĞI ===
+
+    {"name": "Yürüyen Ceset Hastalığı (Cotard Sendromu)", "category": "Psikiyatrik/Nadir",
+     "symptoms": ["yürüyen ceset sendromu", "cotard sendromu", "kendini ölü sanma"],
+     "causes": ["iftira", "beddua", "hak_haram"],
+     "remedy": "Yürüyen ceset hastalığında; bu kişiler kendilerinin öldüğünü zannedip yiyip içmez, gün geçtikçe erir. Hastalık, bir kişiye ağır iftira atıldığında, o kişi de ah edip, beddua edip, hak haram edip öldüyse olabilmektedir Allahuâlem."},
+
+    # === YÜZ FELCİ (DETAYLI) ===
+
+    {"name": "Yüz Felci (Detaylı)", "category": "Nörolojik",
+     "symptoms": ["yüz felci", "bell palsi", "yüz kaslarının tutmaması"],
+     "causes": ["zulum_anne_baba", "kinama", "beddua"],
+     "remedy": "Bu hastalık; anne babanın yüzünü yamsılama, onlarla alay etme, beddualarını alma ile olabilir Allahuâlem. Yüzü felçli bir kişiyi kınamak da bu rahatsızlığın sebebi olabilmektedir."},
+
+    # === ZATÜRRE ===
+
+    {"name": "Zatürre", "category": "Solunum",
+     "symptoms": ["zatürre", "pnömoni", "akciğer iltihabı"],
+     "causes": ["beddua", "zulum_insan"],
+     "remedy": "Zatürre hastalığı; ciğere okunan beddualar ve zulümler zatürre yapabilir."},
+
+    # === ZONA (DETAYLI) ===
+
+    {"name": "Zona (Detaylı)", "category": "Dermatolojik/Enfeksiyon",
+     "symptoms": ["zona", "herpes zoster", "ağrılı döküntü"],
+     "causes": ["zulum_insan", "zulum_hayvan"],
+     "remedy": "İnsan ve hayvanlara zehirli okla zulüm zona yapabilir."},
 ]
 
 # ============================================================
