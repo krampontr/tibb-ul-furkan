@@ -140,20 +140,49 @@ def _match_diseases(text: str) -> List[Dict]:
         return []
     t = text.lower()
     matched = []
+    seen_names = set()  # Aynı hastalığı tekrar eklemeyi önle
+    
     for d in DISEASE_PATTERNS:
-        # İsim eşleşmesi
         name_l = d["name"].lower()
-        # Birinci kelime çoğunlukla anahtardır (örn. "Migren", "Diyabet", "Otizm")
-        first_word = name_l.split()[0].split("/")[0].strip()
-        hit = first_word in t
-        # Semptom eşleşmesi
+        hit = False
+        
+        # 1. Tam isim eşleşmesi (en güçlü)
+        if name_l in t:
+            hit = True
+        
+        # 2. İsmin önemli kelimelerini ara (parantez ve özel karakterler hariç)
         if not hit:
-            for sym in d["symptoms"]:
-                if sym.lower() in t:
+            # Parantez içini temizle ve kelimelere ayır
+            clean_name = name_l.split("(")[0].strip()
+            name_words = [w.strip() for w in clean_name.replace("/", " ").split() if len(w) > 2]
+            # Her önemli kelimeyi ara
+            for word in name_words:
+                if word in t:
                     hit = True
                     break
-        if hit:
+        
+        # 3. Semptom eşleşmesi (en kapsamlı)
+        if not hit:
+            for sym in d.get("symptoms", []):
+                sym_lower = sym.lower()
+                # Semptom metinde var mı?
+                if sym_lower in t:
+                    hit = True
+                    break
+                # Semptomun kelimelerini de ara (2+ karakter)
+                sym_words = [w for w in sym_lower.split() if len(w) > 2]
+                for sw in sym_words:
+                    if sw in t:
+                        hit = True
+                        break
+                if hit:
+                    break
+        
+        # Eşleşme varsa ve daha önce eklenmemişse ekle
+        if hit and name_l not in seen_names:
             matched.append(d)
+            seen_names.add(name_l)
+    
     return matched
 
 
@@ -205,10 +234,20 @@ def build_rahatsizlik(doc: Dict) -> List[str]:
         )
         return bullets
 
-    for d in diseases[:5]:  # En fazla 5 hastalık göster
+    # En spesifik hastalıkları öncelikli göster (remedy uzunluğu > 50 = daha detaylı)
+    detailed_diseases = [d for d in diseases if len(d.get('remedy', '')) > 80]
+    simple_diseases = [d for d in diseases if len(d.get('remedy', '')) <= 80]
+    
+    # Önce detaylı, sonra basit - toplam 15 hastalık göster
+    ordered_diseases = detailed_diseases[:10] + simple_diseases[:5]
+    
+    for d in ordered_diseases[:15]:
+        remedy_short = d.get('remedy', '')[:150]
+        if len(d.get('remedy', '')) > 150:
+            remedy_short += '...'
         bullets.append(
             f"**{d['name']}** ile uyumlu işaretler; bilgi tabanında _{_causes_to_labels(d['causes'])}_ "
-            f"kategorileriyle ilişkilendirilebilir."
+            f"kategorileriyle ilişkilendirilebilir. Öneri: {remedy_short}"
         )
     return bullets
 
