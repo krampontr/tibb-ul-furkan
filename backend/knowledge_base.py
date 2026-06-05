@@ -56,6 +56,28 @@ CAUSE_CATEGORIES = {
     "haramzade": "Haramzade",
     "muska": "Muska Takma / Okunmuş Su İçme (büyücüye gitme)",
     "intihar": "İntihar Girişimi / Kendine Zulüm",
+    # === YENİ EKLENMİŞ KATEGORİLER ===
+    "kopek_zulum": "Köpeğe Zulüm ve Taciz",
+    "esek_zulum": "Eşeğe Zulüm ve Taciz",
+    "kedi_zulum": "Kediye Zulüm (suda boğma vb.)",
+    "aniz_yakma": "Anız/Tarla Yakarak Hayvanları Yakma",
+    "gelin_zulum": "Gelin ve Eş Zulmü",
+    "yetim_zulum": "Yetime Zulüm ve Taciz",
+    "cocuk_oldurme": "Çocuk Öldürme ve Çocuk Zulmü",
+    "hasta_cocuk_zulum": "Hasta Çocuğa Zulüm",
+    "hasta_mahkum_zulum": "Hasta Mahkûma Zulüm",
+    "hamile_zulum": "Hamile Kadına Zulüm",
+    "alim_evliya_zulum": "Âlim ve Evliya Zulmü/Öldürme",
+    "insan_oldurme": "İnsan Öldürme veya İşkence Ederek Öldürme",
+    "kan_bedduasi": "Kana Okunan Beddua",
+    "damar_bedduasi": "Damara Okunan Beddua",
+    "el_ayak_bedduasi": "Elin Ayağın Tutmaz Olsun Bedduası",
+    "goz_bedduasi": "Gözünüz Kör Olsun Bedduası",
+    "deri_bedduasi": "Deriniz Kurusun Bedduası",
+    "dil_bedduasi": "Ağzın Dilin Tutulsun Bedduası",
+    "toplum_bedduasi": "Toplum İçine Çıkamayasın Bedduası",
+    "komik_beddua": "Çoluk Çocuğunuza Gülsünler Bedduası",
+    "evlat_bedduasi": "Allah Evlat Vermesin Bedduası",
 }
 
 # ============================================================
@@ -222,6 +244,223 @@ DISEASE_PATTERNS = [
      "symptoms": ["evlilik kapısının kapanması"],
      "causes": ["zina_ensest", "narsist_zulum", "adak_eylem", "iftira", "kinama", "isyan"],
      "remedy": "Bu günahlardan tövbe; helalleşme."},
+
+    # === YENİ EKLENEN HASTALIK-SEBEP İLİŞKİLERİ ===
+    
+    {"name": "Migren (Köpek Zulmü Kaynaklı)", "category": "Nörolojik",
+     "symptoms": ["şiddetli baş ağrısı", "migren ağrısı"],
+     "causes": ["kopek_zulum", "zulum_hayvan"],
+     "remedy": "Köpeğe zulümden tövbe, hayvan haklarına saygı, sadaka."},
+
+    {"name": "Köpek Gibi Davranış Bozukluğu", "category": "Psikiyatrik",
+     "symptoms": ["birden bağırarak konuşma", "hırlama hali", "saldırganlık isteği", "karşısındakine saldırma isteği"],
+     "causes": ["kopek_zulum"],
+     "remedy": "Köpeğe zulümden tövbe, istiğfar."},
+
+    {"name": "Bel Soğukluğu (Frengi)", "category": "Cinsel/Enfeksiyon",
+     "symptoms": ["frengi", "bel soğukluğu", "cinsel hastalık"],
+     "causes": ["kopek_zulum", "zina_ensest"],
+     "remedy": "Köpeğe zulüm ve tacizden tövbe."},
+
+    {"name": "Sedef Hastalığı", "category": "Dermatolojik",
+     "symptoms": ["sedef", "deri kabuklanması", "eklem yerlerinde sert deri", "diz ve eklemlerde kabuk"],
+     "causes": ["esek_zulum", "deri_bedduasi"],
+     "remedy": "Eşeğe zulümden tövbe, deri bedduasından helalleşme."},
+
+    {"name": "Yüksek Sesle Konuşma / Çirkin Bağırma", "category": "Davranışsal",
+     "symptoms": ["yüksek sesle konuşma", "çirkin bağırma tarzı"],
+     "causes": ["esek_zulum"],
+     "remedy": "Eşeğe zulümden tövbe."},
+
+    {"name": "Sinüzit", "category": "Solunum/KBB",
+     "symptoms": ["sinüzit", "burun tıkanıklığı", "burun akıntısı"],
+     "causes": ["kedi_zulum"],
+     "remedy": "Kediyi suda boğmaktan tövbe, hayvan sadakası."},
+
+    {"name": "Polen Alerjisi", "category": "Alerji",
+     "symptoms": ["polen alerjisi", "mevsimsel alerji", "hapşırma", "burun akıntısı"],
+     "causes": ["aniz_yakma", "zulum_hayvan"],
+     "remedy": "Anız yakarak hayvanları/arıları yakmaktan tövbe."},
+
+    {"name": "Skolyoz", "category": "Ortopedik",
+     "symptoms": ["omurga eğriliği", "skolyoz", "sırt problemleri"],
+     "causes": ["zulum_anne_baba"],
+     "remedy": "Anne-babanın sırtına vurma günahından tövbe ve helalleşme."},
+
+    {"name": "Diz Ağrısı", "category": "Ortopedik",
+     "symptoms": ["diz ağrısı", "diz problemleri"],
+     "causes": ["zulum_anne_baba"],
+     "remedy": "Anne-babanın dizlerine vurma günahından tövbe."},
+
+    {"name": "Romatizma", "category": "Romatolojik",
+     "symptoms": ["romatizma", "eklem ağrıları", "soğuk hassasiyeti"],
+     "causes": ["zulum_anne_baba"],
+     "remedy": "Anne-babayı soğukta dondurma günahından tövbe."},
+
+    {"name": "Uzağı Görememe", "category": "Oftalmolojik",
+     "symptoms": ["uzağı görememe", "miyop", "görme bozukluğu"],
+     "causes": ["zulum_anne_baba"],
+     "remedy": "Anne-babayı terk etme günahından tövbe. Anne-baba evladının yolunu gözler."},
+
+    {"name": "Saç Dökülmesi / Kellik (Anne-Baba Zulmü)", "category": "Dermatolojik",
+     "symptoms": ["saç dökülmesi", "kellik"],
+     "causes": ["zulum_anne_baba", "yetim_zulum"],
+     "remedy": "Anne-babanın kafasına vurma günahından tövbe."},
+
+    {"name": "Kol Tutmaması / Felci", "category": "Nörolojik",
+     "symptoms": ["kolların tutmaması", "kol felci", "kol güçsüzlüğü"],
+     "causes": ["zulum_anne_baba"],
+     "remedy": "Hasta anne-babayı yatağa yatırırken kollarını incitmekten tövbe."},
+
+    {"name": "Yatak Islatma", "category": "Ürolojik/Pediatrik",
+     "symptoms": ["yatak ıslatma", "gece işemesi", "enürezis"],
+     "causes": ["zulum_anne_baba"],
+     "remedy": "Hasta anne-baba yatağı ıslattığı için kızmaktan tövbe."},
+
+    {"name": "Temizlik Takıntısı / OKB", "category": "Psikiyatrik",
+     "symptoms": ["temizlik takıntısı", "obsesif temizlik", "banyo sıkıntısı"],
+     "causes": ["zulum_anne_baba"],
+     "remedy": "Anne-babayı banyo yaptırırken hakaret etmekten tövbe."},
+
+    {"name": "Serebral Palsi", "category": "Nörolojik",
+     "symptoms": ["serebral palsi", "beyin felci", "hareket bozukluğu"],
+     "causes": ["hasta_cocuk_zulum", "hasta_mahkum_zulum", "zulum_anne_baba"],
+     "remedy": "Hasta çocuğa/mahkûma zulümden, yaşlı anne-babayı terk etmekten tövbe."},
+
+    {"name": "SMA (Spinal Musküler Atrofi)", "category": "Nörolojik/Genetik",
+     "symptoms": ["SMA", "kas erimesi", "hareket güçlüğü"],
+     "causes": ["hasta_cocuk_zulum", "zulum_anne_baba"],
+     "remedy": "Hasta çocuğa zulümden tövbe."},
+
+    {"name": "MS (Multipl Skleroz)", "category": "Nörolojik",
+     "symptoms": ["MS", "multipl skleroz", "sinir sistemi hastalığı"],
+     "causes": ["hasta_mahkum_zulum", "zulum_anne_baba"],
+     "remedy": "Hasta mahkûma zulümden tövbe."},
+
+    {"name": "Progerya", "category": "Genetik",
+     "symptoms": ["erken yaşlanma", "progerya", "çocukta yaşlılık belirtileri"],
+     "causes": ["zulum_anne_baba", "insan_oldurme"],
+     "remedy": "Soydan anne-babayı diri diri toprağa gömme zulmünden tövbe."},
+
+    {"name": "Kontrolsüz El Rahatsızlığı", "category": "Nörolojik",
+     "symptoms": ["kontrolsüz el", "el titremesi", "istemsiz el hareketi"],
+     "causes": ["zulum_anne_baba"],
+     "remedy": "Anne-babaya tokat atma günahından tövbe."},
+
+    {"name": "Yüz ve Ellerde Leke", "category": "Dermatolojik",
+     "symptoms": ["yüzde leke", "ellerde leke", "cilt lekeleri"],
+     "causes": ["zulum_anne_baba", "yetim_zulum"],
+     "remedy": "Anne-babaya tokat atma, yetime zulümden tövbe."},
+
+    {"name": "Eşler Arası Kavga / Geçimsizlik", "category": "Aile/Sosyal",
+     "symptoms": ["eşler arası kavga", "geçimsizlik", "aile içi huzursuzluk"],
+     "causes": ["gelin_zulum", "faiz"],
+     "remedy": "Gelin/eş zulmünden, faizden tövbe."},
+
+    {"name": "Sevgi Yoksunluğu", "category": "Psikolojik",
+     "symptoms": ["sevgi yoksunluğu", "sevilmeme hissi", "yalnızlık"],
+     "causes": ["yetim_zulum"],
+     "remedy": "Yetime zulümden tövbe, yetim sadakası."},
+
+    {"name": "Boyun Fıtığı / Boyun Düzleşmesi", "category": "Ortopedik",
+     "symptoms": ["boyun fıtığı", "boyun düzleşmesi", "servikal düzleşme"],
+     "causes": ["yetim_zulum"],
+     "remedy": "Yetime zulümden tövbe."},
+
+    {"name": "Ciltte Siyah Lekeler (Yetim Yakma)", "category": "Dermatolojik",
+     "symptoms": ["ciltte siyah leke", "yüzde siyah leke", "koyu lekeler"],
+     "causes": ["yetim_zulum"],
+     "remedy": "Yetim yakma günahından tövbe. Yetim zulmü çok yüksek."},
+
+    {"name": "Miyom", "category": "Jinekolojik",
+     "symptoms": ["miyom", "rahim miyomu", "rahim kitlesi"],
+     "causes": ["cocuk_aldirma"],
+     "remedy": "Kürtajdan tövbe."},
+
+    {"name": "Kist", "category": "Jinekolojik",
+     "symptoms": ["kist", "yumurtalık kisti", "over kisti"],
+     "causes": ["cocuk_aldirma"],
+     "remedy": "Kürtajdan tövbe."},
+
+    {"name": "Rahim Kanseri", "category": "Onkolojik/Jinekolojik",
+     "symptoms": ["rahim kanseri", "uterus kanseri"],
+     "causes": ["cocuk_aldirma"],
+     "remedy": "Kürtajdan tövbe."},
+
+    {"name": "Erken Menopoz", "category": "Jinekolojik/Endokrin",
+     "symptoms": ["erken menopoz", "erken klimakterium"],
+     "causes": ["cocuk_aldirma"],
+     "remedy": "Kürtajdan tövbe."},
+
+    {"name": "Çocuk Düşürme / Düşük", "category": "Jinekolojik",
+     "symptoms": ["çocuk düşürme", "düşük", "gebelik kaybı"],
+     "causes": ["cocuk_aldirma", "hamile_zulum"],
+     "remedy": "Kürtaj ve hamile kadına zulümden tövbe."},
+
+    {"name": "Çocuk Olmaması / Kısırlık", "category": "Üreme",
+     "symptoms": ["çocuk olmaması", "kısırlık", "infertilite"],
+     "causes": ["cocuk_aldirma", "hamile_zulum", "evlat_bedduasi"],
+     "remedy": "Kürtaj, hamile kadına zulüm ve 'evlat vermesin' bedduasından tövbe/helalleşme."},
+
+    {"name": "Kansızlık (Anemi)", "category": "Hematolojik",
+     "symptoms": ["kansızlık", "anemi", "halsizlik"],
+     "causes": ["insan_oldurme"],
+     "remedy": "Soydan insan öldürme/işkence zulmünden tövbe."},
+
+    {"name": "Epilepsi / Sara", "category": "Nörolojik",
+     "symptoms": ["epilepsi", "sara", "nöbet", "kasılma"],
+     "causes": ["insan_oldurme"],
+     "remedy": "Soydan güneşte bekleterek öldürme zulmünden tövbe."},
+
+    {"name": "Şizofreni (Âlim/Evliya Zulmü)", "category": "Psikiyatrik",
+     "symptoms": ["şizofreni", "hayal görme", "sanrı", "atlara binmiş zatlar görme", "peygamber hayalleri", "savaş sahneleri görme"],
+     "causes": ["alim_evliya_zulum", "zekat"],
+     "remedy": "Soydan âlim ve evliya zulmü/öldürmeden tövbe."},
+
+    {"name": "Hemofili", "category": "Hematolojik",
+     "symptoms": ["hemofili", "kanın pıhtılaşmaması", "kanın geç durması"],
+     "causes": ["kan_bedduasi", "beddua"],
+     "remedy": "'Kanınız aksın, durmasın' bedduasından helalleşme."},
+
+    {"name": "Damar Tıkanıklığı", "category": "Kardiyovasküler",
+     "symptoms": ["damar tıkanıklığı", "ateroskleroz", "tromboz"],
+     "causes": ["damar_bedduasi", "beddua"],
+     "remedy": "Damara okunan bedduadan helalleşme."},
+
+    {"name": "El ve Ayaklarda Güçsüzlük", "category": "Nörolojik/Kas-İskelet",
+     "symptoms": ["el güçsüzlüğü", "ayak güçsüzlüğü", "uzuvlarda zayıflık"],
+     "causes": ["el_ayak_bedduasi", "beddua"],
+     "remedy": "'Elin ayağın tutmaz olsun' bedduasından helalleşme."},
+
+    {"name": "Görme Kaybı (Beddua Kaynaklı)", "category": "Oftalmolojik",
+     "symptoms": ["görme kaybı", "körlük", "görme azalması"],
+     "causes": ["goz_bedduasi", "beddua"],
+     "remedy": "'Gözün kör olsun' bedduasından helalleşme."},
+
+    {"name": "Kekemelik / Konuşamama", "category": "Konuşma",
+     "symptoms": ["kekemelik", "konuşamama", "kendini ifade edememe", "bir anda donma", "dil tutulması"],
+     "causes": ["dil_bedduasi", "beddua"],
+     "remedy": "'Ağzın dilin tutulsun' bedduasından helalleşme."},
+
+    {"name": "Agorafobi / Evde Hapis Hissi", "category": "Psikiyatrik",
+     "symptoms": ["dışarı çıkamama", "evde hapis hissi", "dışarıda bunalma", "agorafobi"],
+     "causes": ["toplum_bedduasi", "beddua"],
+     "remedy": "'Toplum içine çıkamayasın' bedduasından helalleşme."},
+
+    {"name": "Komedyen Ruhsatı / Komik Duruma Düşme", "category": "Sosyal/Psikolojik",
+     "symptoms": ["her hareketi komik gelme", "insanların gülmesi", "ciddiye alınmama"],
+     "causes": ["komik_beddua", "beddua"],
+     "remedy": "'Çoluk çocuğunuza gülsünler' bedduasından helalleşme."},
+
+    {"name": "Faiz Belirtileri", "category": "Mali/Manevi",
+     "symptoms": ["geçimsizlik", "eşyada bozulma", "kabızlık", "bağırsak sıkıntısı", "dine soğuma", "savurganlık", "mal telef olması"],
+     "causes": ["faiz"],
+     "remedy": "Faizden tövbe, faizle alınan maldan kurtulma. Faizle kurulan yuva yıkılmaya mahkumdur."},
+
+    {"name": "Zekât Eksikliği Belirtileri", "category": "Mali/Manevi",
+     "symptoms": ["tüm hastalıkların temeli", "akrabalar arası küslük", "aşırı cimrilik", "aşırı savurganlık"],
+     "causes": ["zekat"],
+     "remedy": "Zekât vücudun patronudur. Tüm hastalıkların temelidir. Zekât tamamlanmalı."},
 ]
 
 # ============================================================
