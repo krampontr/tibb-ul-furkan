@@ -808,6 +808,48 @@ DISEASE_PATTERNS = [
      "symptoms": ["hayatın kilitlenmesi", "işlerin durması", "çocuklarda problemler"],
      "causes": ["kinama"],
      "remedy": "Kınama günahı çok tehlikelidir. Namaz kılmayanları, içki içenleri, zina edenleri, boşanan insanları, evlenemeyenleri kınamak, kınayan insanların ve çocuklarının hayatını kilitleyen günahlardır. Kınadığımız şeylere düşeriz."},
+
+    # === ŞİZOFRENİ, EPİLEPSİ, GAZ, MİRAS LÂNETİ, ZONA ===
+
+    {"name": "Şizofreni (Detaylı Sebepler)", "category": "Psikiyatrik",
+     "symptoms": ["şizofreni", "sanrı", "hayal görme", "hezeyan"],
+     "causes": ["alim_evliya_zulum", "zekat", "adak_hayvan"],
+     "remedy": "Şizofrenin sebepleri: Soydan büyük bir zulümcünün olması (âlim, evliya zulmü), anne ve babasının vermediği kendi zekât miktarının 100 binin üstünde olması, soydan büyükbaş hayvan adakları şizofreni hastalığına sebep olabilmektedir. Kişinin şizofren olması Şeytanın lisandan hiç inmemesi demektir. Şizofren hastası tamamen düzelebilir inşaAllah."},
+
+    {"name": "Epilepsi / Sara (Çocuklarda Detaylı)", "category": "Nörolojik/Pediatrik",
+     "symptoms": ["epilepsi krizi", "sara nöbeti", "çocukta nöbet"],
+     "causes": ["isyan", "cocuk_aldirma", "intihar", "adak_eylem"],
+     "remedy": "Çocuğun epilepsi krizi geçirme sebebi olarak anne ve baba soyundan ruhsatların olması ve annesinin benzer hataları yapmasıyla ruhsatlar aktifleşir. Bu ruhsatlar: doğuma isyan, çocuk düşsün diye kendi karnına vurma, birisine kızdığı için kendini bir yerden atma, doğum rahat geçerse diye adadığı adaktır. Bunların hepsi birleşiyor ve epilepsiye neden oluyor."},
+
+    {"name": "Şişkinlik ve Gaz (Adak Sütü)", "category": "Sindirim",
+     "symptoms": ["şişkinlik", "gaz", "bebeklerde gaz", "karın şişliği"],
+     "causes": ["adak_hayvan"],
+     "remedy": "Adak hayvanının sütünü içmek kişide şişkinlik ve gaz yapar. Bebeklerdeki gazın sebebi budur."},
+
+    {"name": "Panik Atak ve Kalp Çarpıntısı (Miras Lâneti Detaylı)", "category": "Kardiyak/Psikiyatrik",
+     "symptoms": ["panik atak", "kalp çarpıntısı", "ritim bozukluğu", "kalp kası çırpınması"],
+     "causes": ["miras_laneti"],
+     "remedy": "Miras lâneti panikatak yapar. Bundan dolayı kalpte ritim bozukluğu, çarpıntı yapar. Aslında kalpte herhangi bir rahatsızlık yoktur, kalp kası üzerinde Şeytan çırpınma yapar."},
+
+    {"name": "Kamburluk / Skolyoz / Omurga Sorunları", "category": "Ortopedik",
+     "symptoms": ["kamburluk", "skolyoz", "omurga eğriliği", "omurilik sıkıntısı"],
+     "causes": ["yetim_zulum", "zulum_anne_baba"],
+     "remedy": "Kamburluk, skolyoz, omurilikteki sıkıntıların sebepleri genellikle yetime ve anne babaya zulümdür."},
+
+    {"name": "Anne Baba Zulmü Detaylı Sonuçları", "category": "Çoklu/Fiziksel",
+     "symptoms": ["romatizma", "skolyoz", "titreme", "kas erimesi"],
+     "causes": ["zulum_anne_baba"],
+     "remedy": "Anne baba soğukta dondurulursa romatizmaya, kafasına sırtına vurulursa skolyoz, tokat atılırsa titremeye, yılanlı kuyuya atılırsa kas erimesine (yürüyen cenaze gibi olur) sebep olur."},
+
+    {"name": "Zona Hastalığı", "category": "Dermatolojik/Enfeksiyon",
+     "symptoms": ["zona", "herpes zoster", "deri döküntüsü", "yanıklı döküntü"],
+     "causes": ["zulum_insan"],
+     "remedy": "Zona hastalığının sebebi: kaynar suyla yakma, güneşte bekleterek yakma, sıcak çorba/yemekle yakmak, yemeği beğenmeyen kocanın karısının üstüne sıcak yemeği dökmesidir."},
+
+    {"name": "Düşman Durdurma Operasyonu", "category": "Manevi/Koruma",
+     "symptoms": ["düşmandan korunma", "şerli insanlardan korunma"],
+     "causes": [],
+     "remedy": "Bir kişi kırk gün düşmanına dua etse o, onun dostu olur. Şerli bir insanın saldırmaması, zarar vermemesi için o kişinin ve soyu adına tövbe edildiğinde, sadaka verildiğinde, tövbe namazı kılındığında ve Ayet-el Kürsî okunduğunda o insan saldıramaz. Bu düşmanı durdurma operasyonudur."},
 ]
 
 # ============================================================
