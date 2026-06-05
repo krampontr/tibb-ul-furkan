@@ -1042,6 +1042,163 @@ DISEASE_PATTERNS = [
      "symptoms": ["bir yerde duramama", "sürekli taşınma", "barınamama", "yersiz yurtsuzluk"],
      "causes": ["zulum_insan", "beddua"],
      "remedy": "Bir aile bir yerde barınamıyorsa, sürekli taşınıyorsa bunun sebebi: Soydan insanları yerinden yurdundan etme olabilir. 'Yersiz yurtsuz kalasınız' bedduaları bu zulümle alınmış olabilir."},
+
+    # === GÖĞÜS SARKMASI VE GÖĞÜS KANSERİ ===
+
+    {"name": "Göğüs Sarkması", "category": "Jinekolojik/Fiziksel",
+     "symptoms": ["göğüs sarkması", "meme sarkması", "göğüslerde sarkma"],
+     "causes": ["zulum_insan", "insan_oldurme"],
+     "remedy": "Bir kadında göğüs sarkması varsa bu göğüsleri keserek yapılan zulüm ve göğüs uçlarını kopararak, göğsü tamamen kökünden keserek yapılan zulüm ve öldürmeyle gelen bir ruhsattır."},
+
+    {"name": "Göğüs Kanserinde Kitle Büyüklüğü", "category": "Onkolojik",
+     "symptoms": ["göğüs kitlesi", "meme kitlesi", "göğüste kitle"],
+     "causes": ["zekat", "zulum_insan"],
+     "remedy": "Göğüs kanserindeki kitle büyüklüğü, kişideki zekât eksikliğinin miktarını gösterebilir (23 mm: 23 bin TL gibi). Bu kitleler ayrıca göğse şiş batırma ve hançerleme zulmüne de işaret olabilir."},
+
+    # === EREKSİYON SORUNU ===
+
+    {"name": "Ereksiyon Sorunu", "category": "Cinsel/Ürolojik",
+     "symptoms": ["ereksiyon sorunu", "sertleşme problemi", "cinsel işlev bozukluğu"],
+     "causes": ["beddua", "zina_ensest"],
+     "remedy": "Ereksiyon sorununa sebep olan ana ruhsat taciz ile alınan beddualardır."},
+
+    # === BEYİN DAMARI SIKIŞMASI ===
+
+    {"name": "Beyin Damarı Sıkışması", "category": "Nörolojik/Kardiyovasküler",
+     "symptoms": ["beyin damarı sıkışması", "serebral vazokonstriksiyon", "beyin kan akışı problemi"],
+     "causes": ["zekat", "sirk", "zulum_anne_baba", "beddua"],
+     "remedy": "Beyin damarı sıkışması zekât, şirk ve anne-baba bedduasıyla olmaktadır."},
+
+    # === HAYAT KADINI OLMA İSTEĞİ ===
+
+    {"name": "Hayat Kadını Olma İsteği", "category": "Psikolojik/Cinsel",
+     "symptoms": ["fuhşa eğilim", "hayat kadını olma isteği", "fuhuş düşüncesi"],
+     "causes": ["zina_ensest", "beddua", "kinama"],
+     "remedy": "Hayat kadını olma isteğinin nedenleri: Soydan insanları fuhşa zorlama, hayat kadınlığı yaptırmaya zorlama, fuhşa zorlanan kadınlardan alınan beddua, kınama, soydan ensest."},
+
+    # === YÜKSEK ŞEKER HASTALIĞI ===
+
+    {"name": "Yüksek Şeker Hastalığı (Detaylı)", "category": "Endokrin",
+     "symptoms": ["yüksek şeker", "diyabet", "kan şekeri yüksekliği"],
+     "causes": ["adak_eylem", "adak_eti", "zekat"],
+     "remedy": "En yüksek şeker hastalığında: Şeker, helva, tatlı dağıtma adakları, su açma, çeşme açma adakları var mı adak tespiti ve yenilen adak tespiti yapılır. Anne ve babasının vermediği zekâtlar, soy zekâtı, kendi zekâtı sebep olabilir."},
+
+    # === TACİZE UĞRAMA SEBEPLERİ ===
+
+    {"name": "Tacize Uğrama Ruhsatı", "category": "Sosyal/Manevi",
+     "symptoms": ["tacize uğrama", "istismara maruz kalma"],
+     "causes": ["yetim_zulum", "hamile_zulum", "zina_ensest", "beddua"],
+     "remedy": "Bir kişinin tacize uğramasına sebep olabilecek etkenler: Soydan yetimlere, çocuklara ve hamile kadınlara taciz vardır. Bu tacizle alınan bir beddua vardır. Bu kişinin yapması gereken soy zinası, cinsel sapkınlık ve ensest günahlarına tövbe."},
+
+    # === TARLA ZEKÂTI ETKİLERİ ===
+
+    {"name": "Böbrek Taşı (Tarla Zekâtı)", "category": "Üriner",
+     "symptoms": ["böbrek taşı", "idrar yolu taşı", "böbrekte kum"],
+     "causes": ["zekat"],
+     "remedy": "Tarla zekâtının vücuttaki etkileri: Tarla, taş ve toprak olduğu için genelde böbreklerde taş ve toprak sıkıntısına sebep olabilmektedir."},
+
+    {"name": "Nasır ve Topuk Dikeni (Tarla Zekâtı)", "category": "Ortopedik",
+     "symptoms": ["nasır", "topuk dikeni", "ayak nasırı"],
+     "causes": ["zekat"],
+     "remedy": "Tarla zekâtı ayaklarda nasır ve topuk dikenine sebep olabilmektedir."},
+
+    # === PARA VE ALTIN ZEKÂTI ETKİLERİ ===
+
+    {"name": "Kalp ve Damar Hastalıkları (Para/Altın Zekâtı)", "category": "Kardiyovasküler",
+     "symptoms": ["damar hastalığı", "kalp hastalığı", "kalp krizi", "beyin kanaması"],
+     "causes": ["zekat"],
+     "remedy": "Para ve altın zekâtının vücuttaki etkileri: Damar ve kalp hastalıkları yapabilir, kalp krizi yapabilir, beyin kanaması yapabilmektedir."},
+
+    # === EVLENEMEME (ENSEST VE AYRILIK) ===
+
+    {"name": "Evlenememe (Ensest ve Ayrılık Ruhsatı)", "category": "Sosyal",
+     "symptoms": ["evlenememe", "evlilik kapanması", "eş bulamama"],
+     "causes": ["zina_ensest", "narsist_zulum"],
+     "remedy": "Evlenemeyen insanlarda ensest ve ayrılık ruhsatı olup olmadığına bakılmalı, seans alıp tespit yaptırılmalı."},
+
+    # === PROGERYA (DETAYLİ) ===
+
+    {"name": "Progerya (Anne-Baba Gömme Zulmü)", "category": "Genetik",
+     "symptoms": ["progerya", "erken yaşlanma", "çocukta yaşlılık"],
+     "causes": ["zulum_anne_baba", "insan_oldurme"],
+     "remedy": "Anne-babayı diri diri toprağa gömme zulmü progerya ruhsatıdır. Genç yaşta yaşlanıp ölen çocukların ruhsatıdır."},
+
+    # === DİZ RUHSATLARI ===
+
+    {"name": "Diz Ağrısı ve Sızlaması (Detaylı)", "category": "Ortopedik",
+     "symptoms": ["diz ağrısı", "diz sızlaması", "diz problemi"],
+     "causes": ["zulum_anne_baba", "beddua", "adak_eylem", "zulum_insan"],
+     "remedy": "Dizlere yerleşen ruhsatlar: Yaşlı anne-babanın ayaklarına vurma, 'Elin ayağın tutmaz olsun dizin sızlasın' bedduası, kız kaçırma, savaştan kaçma, türbe ziyareti adakları. Bu üç ruhsat dizlere yerleşen ruhsatlardandır."},
+
+    # === KENDİ YÜZÜNÜ TOKATLAMA ===
+
+    {"name": "Kendi Yüzünü Tokatlama", "category": "Psikiyatrik/Davranışsal",
+     "symptoms": ["kendi yüzünü tokatlama", "kendine vurma", "öz şiddet"],
+     "causes": ["zulum_anne_baba", "beddua"],
+     "remedy": "Bir kişi neden kendi yüzünü tokatlar? Soydan anne-babaya tokat atma ve 'Aynısı evlatlarınızdan çıksın, evlatlarınızdan çekin' bedduasını aldıysa o çocuklar kendini tokatlar."},
+
+    # === SÜREKLİ AĞLAYAN ÇOCUK ===
+
+    {"name": "Sürekli Ağlayan Çocuk", "category": "Pediatrik",
+     "symptoms": ["sürekli ağlama", "çocuk ağlaması", "durdurulamayan ağlama"],
+     "causes": ["hak_haram", "adak_eylem"],
+     "remedy": "Sürekli ağlayan çocukta anne ve babanın yaptığı hak haramlığına ve adağı olup olmadığına bakılır."},
+
+    # === ÇOCUK OLMAMASI (EN AĞIR RUHSAT) ===
+
+    {"name": "Çocuk Olmaması (En Ağır Ruhsat)", "category": "Üreme",
+     "symptoms": ["çocuk olmaması", "kısırlık", "çocuk yapamama"],
+     "causes": ["zina_ensest", "cocuk_oldurme", "cocuk_aldirma", "adak_eylem", "beddua"],
+     "remedy": "Çocuk olmamasına sebep olan en ağır ruhsatlar: Kendi geliniyle ya da kendi çocuklarıyla yaptıkları ensest ilişkinin sonucu aldığı beddua ve o çocuğu öldürmesi. Çocuk üzerine adanıp yerine getirilmeyen adakların üst üste yığılması. Soydan çok fazla çocuk öldürülmesi, kürtaj yapılması."},
+
+    # === YUVAM HUZURSUZ EDEN EVLAT ===
+
+    {"name": "Yuvayı Huzursuz Eden / Rezil Eden Evlat", "category": "Aile/Sosyal",
+     "symptoms": ["huzursuz evlat", "rezil eden evlat", "problemli çocuk"],
+     "causes": ["adak_eylem", "zulum_insan", "beddua"],
+     "remedy": "Bir yuvayı huzursuz eden, rezil eden evlatta hangi ruhsat daha çok aktiftir? 'Yuvam ve çocuklarım olursa' diye adanan bir adak vardır. Soylarından insanlar toplum içinde rezil ederek çarmıha germe ve soyarak, döverek aldıkları beddualardan olabilmektedir."},
+
+    # === HAFIZA DONMASI ===
+
+    {"name": "Hafıza Donması / Nerede Olduğunu Unutma", "category": "Nörolojik/Psikiyatrik",
+     "symptoms": ["hafıza donması", "nerede olduğunu unutma", "hafıza silinmesi", "ani unutkanlık"],
+     "causes": ["zulum_insan", "cocuk_oldurme"],
+     "remedy": "Hafızayı donduran, kişiyi nerede olduğunu bilmeyecek hale getiren ruhsat: Kişi nerede olduğunu bir anda unutuyorsa ve hafızası siliniyorsa o kişide soydan çocukları kaçırıp geçmişini unutturma ve soyuna karşı o çocukları asker, savaşçı yapıp savaştırma yani soyunun geçmişini unutturma (hafızasını silme) zulmü vardır."},
+
+    # === BOYUN FITIĞI VE SAÇ DÖKÜLMESİ (YETİM ZULMÜ) ===
+
+    {"name": "Boyun Fıtığı, Boyun Düzleşmesi, Saç Dökülmesi (Yetim Zulmü)", "category": "Ortopedik/Dermatolojik",
+     "symptoms": ["boyun fıtığı", "boyun düzleşmesi", "saç dökülmesi"],
+     "causes": ["yetim_zulum"],
+     "remedy": "Boyun fıtığına, boyun düzleşmesine ve saç dökülmesine sebep olan zulüm çeşidi yetime zulümdür."},
+
+    # === FAKİRLİK SEBEPLERİ ===
+
+    {"name": "Fakirlik", "category": "Mali/Manevi",
+     "symptoms": ["fakirlik", "maddi sıkıntı", "para darlığı", "yoksulluk"],
+     "causes": ["zekat", "faiz", "adak_eylem", "miras_laneti", "kul_hakki"],
+     "remedy": "Fakirliğin sebepleri: Zekâtçı (soy zekâtı, kendi zekâtı), faizci (kredi kartı, ev ve araba faizi), başarı üzerine adak (sadaka, para dağıtma), para üzerine lanet (miras laneti), borç aldığı kişinin borcunu ödemeyip onlardan alınan ah, soyun aldığı ahlar. Bu maddeler fakirliğe sebep olur."},
+
+    # === SINAVDA BAŞARISIZLIK ===
+
+    {"name": "Sınavda Başarısızlık (Dışarıda Başarılı)", "category": "Eğitim/Manevi",
+     "symptoms": ["sınav başarısızlığı", "dışarıda başarılı sınavda başarısız", "sınav korkusu"],
+     "causes": ["beddua", "adak_eylem"],
+     "remedy": "Bir kişinin dışarıda başarılı olup sınavda başarısız olmasının sebebi: Sınava, sınav yapana okuduğu lanet ve beddualar; üniversiteye, okula ve sınav üzerine yaptığı adaklar olabilmektedir."},
+
+    # === BEYİN TÜMÖRÜ (İKİ ANA RUHSAT) ===
+
+    {"name": "Beyin Tümörü (İki Ana Ruhsat)", "category": "Onkolojik/Nörolojik",
+     "symptoms": ["beyin tümörü", "kafa tümörü", "beyinde kitle"],
+     "causes": ["zulum_insan", "zekat"],
+     "remedy": "Beyin tümörünün iki ana ruhsatı: Beyne, kafanın olduğu yere demirle sopayla vurmak ve zekâtçıdır."},
+
+    # === BOĞAZDA ŞİŞLİK, ÖDEM, KİTLE ===
+
+    {"name": "Boğazda Şişlik, Ödem ve Kitle", "category": "KBB/Endokrin",
+     "symptoms": ["boğaz şişliği", "boğaz ödemi", "boğazda kitle", "tiroid şişliği"],
+     "causes": ["miras_laneti", "zekat", "beddua"],
+     "remedy": "Boğazda şişlik, ödem ve kitle neden olur? Miras laneti ('boğazın şişsin' bedduası), zekâtsızlık boğazdaki şişliğe sebep olan ruhsatlardandır."},
 ]
 
 # ============================================================
