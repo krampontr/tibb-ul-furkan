@@ -166,6 +166,10 @@ CAUSE_CATEGORIES = {
     "muska": "Muska Takma / Okunmuş Su İçme (büyücüye gitme)",
     "intihar": "İntihar Girişimi / Kendine Zulüm",
     # === YENİ EKLENMİŞ KATEGORİLER ===
+    "lanet": "Yaratılmışlara (renk, gökkuşağı, güneş vb.) Lanet Okuma",
+    "yalanci_sahitlik": "Yalancı Şahitlik",
+    "ciger_bedduasi": "Ciğere Okunan Beddua",
+    "mezarci_ruhsat": "Mezarcı Kişi Ruhsatı",
     "kopek_zulum": "Köpeğe Zulüm ve Taciz",
     "esek_zulum": "Eşeğe Zulüm ve Taciz",
     "kedi_zulum": "Kediye Zulüm (suda boğma vb.)",
@@ -850,6 +854,194 @@ DISEASE_PATTERNS = [
      "symptoms": ["düşmandan korunma", "şerli insanlardan korunma"],
      "causes": [],
      "remedy": "Bir kişi kırk gün düşmanına dua etse o, onun dostu olur. Şerli bir insanın saldırmaması, zarar vermemesi için o kişinin ve soyu adına tövbe edildiğinde, sadaka verildiğinde, tövbe namazı kılındığında ve Ayet-el Kürsî okunduğunda o insan saldıramaz. Bu düşmanı durdurma operasyonudur."},
+
+    # === FAKİR DOYURMA VE GİYDİRME ADAKLARI ===
+
+    {"name": "Zayıflama (Fakir Doyurma Adağı)", "category": "Metabolik",
+     "symptoms": ["zayıflama", "kilo kaybı", "aşırı zayıflamak"],
+     "causes": ["adak_eylem", "mezarci_ruhsat"],
+     "remedy": "Fakir doyurma adağı ve mezarcı kişide zayıflama yapar."},
+
+    {"name": "Ciltte Kaşıntı ve Egzama (Fakir Giydirme)", "category": "Dermatolojik",
+     "symptoms": ["kaşıntı", "egzama", "cilt tahrişi"],
+     "causes": ["adak_eylem"],
+     "remedy": "Fakir giydirme adağı vücutta kaşıntıyı ve egzamayı tetikleyen ruhsattır."},
+
+    {"name": "Üşüme (Fakir Giydirme + Soğukta Zulüm)", "category": "Genel",
+     "symptoms": ["üşüme", "ısınamama", "soğuk hissetme"],
+     "causes": ["adak_eylem", "zulum_insan"],
+     "remedy": "Fakir giydirme adağı ve soğukta dondurarak yapılan zulüm ve işkence üşümeye neden olur."},
+
+    # === LANET VE BEDDUA KAYNAKLARI ===
+
+    {"name": "Renk Körlüğü", "category": "Oftalmolojik",
+     "symptoms": ["renk körlüğü", "renkleri ayırt edememe", "renk görme bozukluğu"],
+     "causes": ["beddua", "lanet"],
+     "remedy": "Renk körlüğünün sebebi renklere, gökkuşağına lânet okumaktır."},
+
+    {"name": "Boğaz İltihaplanması", "category": "KBB",
+     "symptoms": ["boğaz iltihaplanması", "boğaz ağrısı", "yutkunma güçlüğü"],
+     "causes": ["beddua", "soy_laneti"],
+     "remedy": "Boğaz iltihaplanmasının sebebi akrabaların birbiri hakkında çok fazla beddualaşması, lânetleşmesi, zehir, zıkkım sözleri olabilmektedir."},
+
+    # === HAYVAN ZULMÜ SEBEBLİ HASTALIKLAR ===
+
+    {"name": "Sedef Hastalığı (Eşek Zulmü Detaylı)", "category": "Dermatolojik",
+     "symptoms": ["sedef", "deri kabuklanması", "psoriasis"],
+     "causes": ["esek_zulum", "zulum_hayvan"],
+     "remedy": "Eşek, ne güzel bir hayvandır. Senin yükünü taşır buna hamd etmek yerine ona zulmedersen sen ve soyun sedef hastası olursunuz."},
+
+    # === YALANCI ŞAHİTLİK VE HAK HARAMLIĞI ===
+
+    {"name": "Körlük (Yalancı Şahitlik)", "category": "Oftalmolojik",
+     "symptoms": ["körlük", "görme kaybı", "gözlerin görmemesi"],
+     "causes": ["yalanci_sahitlik", "zulum_insan"],
+     "remedy": "Gözleri kör eden yalancı şahitlik, sen ne büyük bir günahsın."},
+
+    {"name": "Fıtık ve Apandisit", "category": "Cerrahi",
+     "symptoms": ["fıtık", "apandisit", "apandis patlaması", "kasık fıtığı"],
+     "causes": ["hak_haram"],
+     "remedy": "Fıtıkları yırtan, apandisi patlatan hak haramlığı sen ne büyük bir zulümsün."},
+
+    # === CİĞER VE SOLUNUM BEDDUASI ===
+
+    {"name": "Astım ve KOAH (Ciğer Bedduası)", "category": "Solunum",
+     "symptoms": ["astım", "KOAH", "nefes darlığı", "solunum güçlüğü"],
+     "causes": ["beddua", "ciger_bedduasi"],
+     "remedy": "Bizim ve soyumuzdan ciğere okuduğumuz bedduanın kendimizde veya çocuklarımızda astım ve KOAH hastalığı yapabilir."},
+
+    # === DEPREMDEN KURTULMA ADAĞI ===
+
+    {"name": "Ani Sıçrama Hastalığı", "category": "Nörolojik",
+     "symptoms": ["ani sıçrama", "irkiltme", "aniden sıçrama"],
+     "causes": ["adak_eylem"],
+     "remedy": "Adanıp yerine getirilmeyen depremden kurtulma üzerine adak ve sözler, ani sıçrama hastalığı yapabilir."},
+
+    # === KINAMA SONUÇLARI ===
+
+    {"name": "Evde Kalan Kız / Evlenememe (Kınama)", "category": "Sosyal",
+     "symptoms": ["evlenememe", "evde kalma", "evlilik olmama"],
+     "causes": ["kinama"],
+     "remedy": "Evde kalan kızları kınamanın çocuklarının evlenememesine sebep olduğunu bil."},
+
+    # === SAĞLIK ADAĞI ===
+
+    {"name": "Sürekli Hastalık ve Güçsüzlük", "category": "Genel",
+     "symptoms": ["sürekli hasta olma", "güç düşmesi", "kuvvetten düşme", "halsizlik"],
+     "causes": ["adak_eylem"],
+     "remedy": "Sürekli hasta olmanın, güç ve kuvvetten düşmenin sebebi senin sağlık üzerine adayıp yerine getirmediğin adak olduğunu bil."},
+
+    # === SEDEF VE HAYVAN YAKMA ZULMÜ ===
+
+    {"name": "Sedef (Köpek/Eşek Yakma Zulmü)", "category": "Dermatolojik",
+     "symptoms": ["sedef hastalığı", "psoriasis", "deri kabuklanması"],
+     "causes": ["kopek_zulum", "esek_zulum", "zulum_hayvan"],
+     "remedy": "Sedef, köpek ve eşek yakma kesme öldürme diri diri gömme zulmü ile gelir."},
+
+    # === AĞAÇ DİKME ADAĞI ===
+
+    {"name": "Ciltte Kuruluk ve Susuzluk (Ağaç Adağı)", "category": "Dermatolojik",
+     "symptoms": ["cilt kuruluğu", "susuzluk", "kuru cilt"],
+     "causes": ["adak_eylem"],
+     "remedy": "Ciltte kuruluk, susuzluk yapan adak ağaç dikme adağıdır."},
+
+    # === ALTIN TAKMA ADAĞI ===
+
+    {"name": "Sarılık / Göz Sarılığı (Altın Takma Sözü)", "category": "Pediatrik/Hepatik",
+     "symptoms": ["sarılık", "göz sarılığı", "yenidoğan sarılığı"],
+     "causes": ["adak_eylem"],
+     "remedy": "'Bir çocuğun doğduğunu veya bir şey olduğunu görürsem altın takacağım' diyerek altın takma sözü vermekten sarılık olur."},
+
+    # === ŞİRK - EL ALİM ESMASI ===
+
+    {"name": "Şirk (El-Âlim Esması)", "category": "Manevi",
+     "symptoms": ["şirk", "manevi ağırlık"],
+     "causes": ["sirk"],
+     "remedy": "Kişi 'Benim hocam her şeyi bilir.' der ise El-Âlim esmasından şirke düşer."},
+
+    # === DİŞ ÇÜRÜMESI RUHSATLARI ===
+
+    {"name": "Diş Çürümesi", "category": "Dental",
+     "symptoms": ["diş çürümesi", "diş problemleri", "diş bozulması"],
+     "causes": ["zulum_insan", "haram_kazanc", "kinama", "adak_eti", "zulum_anne_baba", "beddua"],
+     "remedy": "Dişleri çürütme ruhsatları: İnsanların dişlerine vurarak ve dişlerini kırarak zulüm etme, haram olan şeyleri yemek, dişi çürüyenleri kınama, adak etini yemek, anne babayı ısırmak, diş ve kemiğe okunan lanet ve beddualar."},
+
+    # === VAMPİR SENDROMU ===
+
+    {"name": "Vampir Sendromu", "category": "Dermatolojik/Nadir",
+     "symptoms": ["güneş hassasiyeti", "güneşten kaçma", "fotosensitivite"],
+     "causes": ["beddua", "zulum_insan"],
+     "remedy": "Güneşe lanet, güneşle insanlara eziyet edilerek yapılan işkenceler ve o zulme uğrayanların yaptıkları beddualar vampir sendromuna sebep olabilir."},
+
+    # === KALSİYUM EKSİKLİĞİ ===
+
+    {"name": "Kalsiyum Eksikliği", "category": "Metabolik/Kemik",
+     "symptoms": ["kalsiyum eksikliği", "kemik zayıflığı", "osteoporoz"],
+     "causes": ["beddua", "adak_eylem", "adak_hayvan", "zulum_hayvan"],
+     "remedy": "Kalsiyum eksikliğinin sebepleri: Süt ve süt ürünlerine lanet, küfür. Süt ve süt ürünlerini dağıtma adakları. Zulm edilen, taciz edilen hayvanın ve adak hayvanının sütünü içme. Zulüm enerjisi. İliğe, kemiğe okunan lanet ve beddualar."},
+
+    # === DEJAVU TUZAĞI ===
+
+    {"name": "Dejavu Tuzağı", "category": "Psikolojik/Manevi",
+     "symptoms": ["dejavu", "daha önce yaşamış hissi", "tekrar hissi"],
+     "causes": ["zekat"],
+     "remedy": "Dejavu tuzağını genelde zekâtçı şeytan kurar."},
+
+    # === FAİZLİ KREDİ İLE YUVA KURMA ===
+
+    {"name": "Yuva Yıkılması (Faizli Kredi)", "category": "Aile/Mali",
+     "symptoms": ["yuva yıkılması", "evlilik bozulması", "boşanma", "maddi telef"],
+     "causes": ["faiz"],
+     "remedy": "Evlenmek isteyen bir kişi bankaya gitti ve kredi çekti. Bu kredi ile düğününü yaptı, evini kurdu. Böylelikle şeytanın yuva yıkma tuzağına düştü. Faiz o yuvayı yıkar maddi telef yapar."},
+
+    # === MİDE ÜLSERİ VE KANSERİ ===
+
+    {"name": "Mide Ülseri ve Mide Kanseri", "category": "Onkolojik/Sindirim",
+     "symptoms": ["mide ülseri", "mide kanseri", "mide yanması"],
+     "causes": ["zulum_insan", "adak_eti", "zekat"],
+     "remedy": "Mide ülserinin ve kanserinin üç ana maddesi: Karından bıçaklama, yenmiş adakların çokluğu, zekâtsızlık."},
+
+    # === ERKEN BOŞALMA ===
+
+    {"name": "Erken Boşalma", "category": "Cinsel/Ürolojik",
+     "symptoms": ["erken boşalma", "prematür ejakülasyon"],
+     "causes": ["adak_eylem", "beddua"],
+     "remedy": "Erken boşalma sebepleri: Adaklar sebep olabilir, adak tespiti yaptırılmalı. Kişinin organına aldığı beddualardan olur."},
+
+    # === EVLATLARDAN AYRI YAŞAMA ===
+
+    {"name": "Evlatlardan Ayrı Yaşama / Ayrılık Ruhsatı", "category": "Aile/Sosyal",
+     "symptoms": ["çocuklardan ayrı kalma", "evlatları görememe", "aile ayrılığı"],
+     "causes": ["zulum_anne_baba", "narsist_zulum"],
+     "remedy": "Bir kişi evlatlarından ayrı yaşamak zorunda kalıyorsa soydan anneyi, babayı evlatlarından koparma zulmü, ayrılık ruhsatı vardır üzerinde."},
+
+    # === VİTİLİGO ===
+
+    {"name": "Vitiligo (Detaylı)", "category": "Dermatolojik",
+     "symptoms": ["vitiligo", "deri renk kaybı", "beyaz lekeler"],
+     "causes": ["zulum_insan", "aniz_yakma"],
+     "remedy": "Vitiligo'nun günah sebepleri: Bir kişinin evini, tarlasını, hayvanlarını ve bir insanı yakma ile olabilmekte."},
+
+    # === TRAFİK KAZASI ===
+
+    {"name": "Trafik Kazası", "category": "Kaza/Manevi",
+     "symptoms": ["trafik kazası", "araba kazası", "kaza yapma"],
+     "causes": ["adak_eylem", "beddua"],
+     "remedy": "Bir insan neden trafik kazası geçirir? Kaza bela gelmesin diye adanan adak veya araba üzerine adanıp kesilmeyen adaklar ve 'arabaların altında kalasın' bedduası, trafik kazası geçirmeye sebep olabilir."},
+
+    # === TRAFİKTE BEKLEME ===
+
+    {"name": "Trafikte Bekletilme / Kilitlenme", "category": "Sosyal/Manevi",
+     "symptoms": ["trafikte bekleme", "yolda tıkanma", "işlerin gecikmesi"],
+     "causes": ["zulum_insan", "hak_haram"],
+     "remedy": "Kilitlenmiş bir trafik ve bekleme sıkıntısı neden gelir? Soydan yol kesme, insanları bekletme, eşkıyalık, insanların işlerini bozma ve beklemelerine sebep olma varsa trafikte beklemelerine sebep olur."},
+
+    # === YERSİZ YURTSUZLUK ===
+
+    {"name": "Bir Yerde Barınamama / Sürekli Taşınma", "category": "Sosyal/Manevi",
+     "symptoms": ["bir yerde duramama", "sürekli taşınma", "barınamama", "yersiz yurtsuzluk"],
+     "causes": ["zulum_insan", "beddua"],
+     "remedy": "Bir aile bir yerde barınamıyorsa, sürekli taşınıyorsa bunun sebebi: Soydan insanları yerinden yurdundan etme olabilir. 'Yersiz yurtsuz kalasınız' bedduaları bu zulümle alınmış olabilir."},
 ]
 
 # ============================================================
