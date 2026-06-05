@@ -14,9 +14,8 @@ ADAK_HAYVANLARI = """
 ADAK HAYVANLARININ ÖZELLİKLERİ:
 - Adak hayvanı adanır ve usulüne uygun kesilmezse, bedenden ayrılmayan ve hastalık üreten
   bir 'ruhsat'a (görevli enerji) dönüşür.
-- Erkekte DİŞİ adak (koyun, inek, tavuk) çoksa: cinsel isteksizlik, eşine soğukluk, hemcinse meyil
-  riskleri artar.
-- Kadında ERKEK adak (koç, boğa, horoz) çoksa: aynı şekilde ters cinsiyet etkisi.
+- Erkekte DİŞİ adak çoksa: cinsel isteksizlik, eşine soğukluk, hemcinse meyil riskleri artar.
+- Kadında ERKEK adak çoksa: aynı şekilde ters cinsiyet etkisi.
 - Adak yerine getirilmemiş ise: 'açıkta kalmış adak' olarak vücuda yerleşir.
 - Adak hayvanı çalındı / başkası yedi / usulsüz kesildi ise: kefareti tekrar verilmelidir.
 - 5-6 adetten fazla adak (çoklu adak) ağır hastalık tetikleyebilir (örn. ensefalit, bipolar, otizm).
@@ -25,75 +24,65 @@ ADAK HAYVANLARININ ÖZELLİKLERİ:
 - Rüyada sıçrama olursa büyükbaş hayvan adağı işaretidir.
 - Büyükbaş hayvan adakları gece uyutmaz.
 
-KOYUN / DİŞİ KUZU ADAĞI BELİRTİLERİ:
-- Çok uyutur, tembellik yapar
+HAYVAN ADAĞI TESPİTİ İÇİN SEANS ALINMASI GEREKİR.
+Aşağıdaki belirtiler hayvan adağına işaret edebilir:
+
+DAVRANIŞSAL BELİRTİLER:
+- Uyku, tembellik, duygusallık, hayır diyememe
+- İnatçılık, kadında erkeksi yapı, kıskançlık
+- Yüksek yer sevgisi, yalnızlık, küsme
+- Öfke patlaması, şehvet, şiddet eğilimi
+- Şüphecilik, vesvese, göğüs büyümesi, şehvet
+- Tembellik, çok konuşma, kekemelik
+- Kıskançlık, pelteklik, S harfi zorluğu
+- Sinirlilik, kincilik
+- Çok uyutur, tembeldir
 - Harama çağırıldığında hemen gider
 - Aşırı duygusaldır ve ağlar
 - Hayır diyemez, boyun eğer
-- İntihara teşvik ederek yüksek yerden atlatır
-- Koyun sayısı arttıkça duygusallık ve uyku etkisi artar
-
-KOÇ / ERKEK KUZU ADAĞI BELİRTİLERİ:
-- Kadında bazen erkek sesi çıkartır
-- Kadının alnında sivilce çıkartır
-- Erkekte şehvet yapar, kadında cinsel soğukluk yapar
 - Kafa atar, inatçıdır, kincidir
 - Geçmişi hatırlatır, gösterişi sever
-- Kadınlarda erkeksi yapıya sebep olur
-- Erkeklerde dik başlılık yapar
 - Affedemez, geçmişi unutmaz, helallik veremez
-- İntihara teşvik ederek yüksek yerden atlatır
-
-KEÇİ ADAĞI BELİRTİLERİ:
-- Küser, aşırı inatçıdır
-- Yüksek yerleri sever, yeşilliği sever
-- Çocuklarda belirtisi: yüksek yerlere çıkma, koltuklarda zıplama
-- İnsan içine çıkmak istememeye, sıkılmaya sebep olur
-- Yemeklere tuz atmayı sever
 - Çabuk kalbi kırılır, hemen küser, boynunu büker
 - Yalnız kalmayı sever
-- Yüksek yerden intihara teşvik ettirir
-
-BOĞA / TOSUN ADAĞI BELİRTİLERİ:
 - Kafasını duvara vurarak sinirlenir
-- Erkeklerde aşırı şehvete neden olur
-- Kadında erkeksi yapı ve cinsel soğukluk yapar
 - Aniden öfke patlamasına neden olur
 - Eliyle temas eder (kavga eder, vurar, kırar)
 - Öfkelendiğinde evi yıkar, kendini durduramaz, sonra pişman olur ağlar
 - "Ben erkek değil miyim? Benim sözüm neden tutulmuyor?" der
-
-İNEK ADAĞI BELİRTİLERİ:
-- Aşırı şüphecidir
-- "Büyük memeli inek keseceğim" sözü göğüs irileşmesine sebep olur
-- "Kız gibi oğlum olsun inek keseceğim" sözü erkeklerde hormon bozukluğu ve yumuşak göğüse sebep olur
-- Kadında yüksek şehvet yapar, zinaya sevk eder
-- Kadınların üst baldırlarında (basende) genişlemeye neden olur
 - Takıntı yapar, vesvese yapar, gözüyle gördüğüne inanmaz
 - Gök bilimleri, astroloji merakı yapar
 - İmanda şüpheye düşürmeye çalışır
-
-EŞEK ADAĞI BELİRTİLERİ:
-- Eli kolu kalkmama, yavaş hareket etme, tembellik yapar
+- Eli kolu kalkmama, yavaş hareket etme
 - Gece yemek yeme isteği yapar
-- Sürekli şüpheye yönlendirmek ister
 - Susmayan konuşmaya sebep olur, çok konuşturur
 - Bir konuyu bir cümleyle anlatacağına yüz cümleyle anlatır
-- Kekemeliğe sebep olabilir
 - Aniden parlayıp çok konuşturur
-
-HOROZ ADAĞI BELİRTİLERİ:
 - Eşini aşırı kıskanmaya sebep olur
 - "S" harfini söylemede sıkıntı olur
 - Dövüşürken ısırır
 - Konuşmada pelteklik yapar
-- (Peltek insanları kınamak da peltekliğe sebep olabilir)
 - İnsanı gıcık eder, dalga geçer
-
-KÖPEK ADAĞI BELİRTİLERİ:
-- Çok sinirli olabilir
-- Kincidir, inatçıdır
 - Tükürür
+
+FİZİKSEL BELİRTİLER:
+- Kadında bazen erkek sesi çıkartır
+- Kadının alnında sivilce çıkartır
+- Erkekte şehvet yapar, kadında cinsel soğukluk yapar
+- Kadınlarda erkeksi yapıya sebep olur
+- Erkeklerde dik başlılık yapar
+- Erkeklerde aşırı şehvete neden olur
+- Kadında erkeksi yapı ve cinsel soğukluk yapar
+- Göğüs irileşmesine sebep olur ("Büyük memeli inek keseceğim" sözü)
+- Erkeklerde hormon bozukluğu ve yumuşak göğüs ("Kız gibi oğlum olsun" sözü)
+- Kadında yüksek şehvet yapar, zinaya sevk eder
+- Kadınların üst baldırlarında (basende) genişlemeye neden olur
+- Kekemeliğe sebep olabilir
+
+TEHLİKELİ BELİRTİLER:
+- İntihara teşvik ederek yüksek yerden atlatır
+- Yüksek yerleri sever, yüksek yerlere çıkma isteği
+- Çocuklarda belirtisi: yüksek yerlere çıkma, koltuklarda zıplama
 
 KELLE PAÇA ADAĞI BELİRTİLERİ:
 - İnsanın yüzünde, boynunda, kafasında kızarıklıklara ve kaşıntıya sebep olur
@@ -135,6 +124,9 @@ KUR'AN-I KERİM OKUMA ADAĞI:
 
 AĞAÇ DİKME ADAĞI:
 - Ciltte kuruluk, susuzluk yapabilir
+
+ALTIN TAKMA ADAĞI:
+- Yerine getirilmezse bebeklerde sarılık olabilir
 
 UYKU HARAM OLSUN SÖZÜ:
 - "Uyku bana/sana haram olsun" sözü uyutmaz
@@ -747,6 +739,53 @@ DISEASE_PATTERNS = [
      "symptoms": ["cilt kuruluğu", "susuzluk", "kuru cilt"],
      "causes": ["adak_eylem"],
      "remedy": "Ağaç dikme adağı ciltte kuruluk ve susuzluk yapabilir."},
+
+    # === YENİ EKLENEN BİLGİLER ===
+
+    {"name": "Göz Titremesi / Göz Hareketi", "category": "Oftalmolojik",
+     "symptoms": ["göz titremesi", "gözlerin sürekli hareketi", "nistagmus"],
+     "causes": ["adak_eylem"],
+     "remedy": "Soydan veya kendisinin adayıp yerine getirmediği hatim ve Yasin okuma adaklarıdır."},
+
+    {"name": "Migren / Baş Ağrısı (Köpek Zulmü + Gusül)", "category": "Nörolojik",
+     "symptoms": ["baş ağrısı", "migren", "şiddetli baş ağrısı"],
+     "causes": ["kopek_zulum", "sirk"],
+     "remedy": "Köpeğe zulüm ve eksik gusül baş ağrısı ve migren yapar."},
+
+    {"name": "Bebeklerde Sarılık", "category": "Pediatrik",
+     "symptoms": ["yenidoğan sarılığı", "bebek sarılığı", "sarılık"],
+     "causes": ["adak_eylem"],
+     "remedy": "Atalarının 'altın takacağım' sözü verip yerine getirmemelerinden dolayı bebek sarılık olmaktadır."},
+
+    {"name": "Ciğer Rahatsızlıkları (Detaylı)", "category": "İç Hastalık",
+     "symptoms": ["ciğer rahatsızlığı", "akciğer problemi", "karaciğer sorunu"],
+     "causes": ["beddua", "adak_eti", "zulum_insan"],
+     "remedy": "Ciğere okunan beddua, adak hayvanının ciğerini yemek ve kişiyi soğukta dondurmak ciğer rahatsızlığı yapar."},
+
+    {"name": "Vertigo / Baş Dönmesi", "category": "Nörolojik",
+     "symptoms": ["vertigo", "baş dönmesi", "denge bozukluğu"],
+     "causes": ["isyan", "zekat"],
+     "remedy": "Yaratılan dünyaya isyan etmek ve zekât vermemekten vertigo olur."},
+
+    {"name": "Kulak Çınlaması", "category": "KBB",
+     "symptoms": ["kulak çınlaması", "tinnitus", "kulakta ses"],
+     "causes": ["sirk", "iftira", "kul_hakki"],
+     "remedy": "Gıybet, iftira, laf taşıma gibi duyarak şirke düşüldüğünde kulak çınlaması yapar. Kulağa yerleşen ruhsatlardır. Bitmeyen kulak çınlamasında sese lânet okuma vardır."},
+
+    {"name": "Ani İflas / Ani Boşanma", "category": "Mali/Aile",
+     "symptoms": ["ani iflas", "ani boşanma", "beklenmedik kayıp"],
+     "causes": ["faiz"],
+     "remedy": "Faiz günahından gelen şeytan çok sinsidir. Belirti göstermeden bekler ve kişiyi birden iflas ettirir veya birden boşanmasına sebep olur. 'Allah ve Resulüne savaş açmıştır' ayeti gereği ruhsatı büyüktür."},
+
+    {"name": "Şirk Ruhsatı Belirtileri", "category": "Manevi",
+     "symptoms": ["kafanın arkasında ağrı", "ense ağrısı", "manevi ağırlık"],
+     "causes": ["sirk", "muska"],
+     "remedy": "Şirk günahından gelen şeytan vücuttaki diğer şeytanların patronudur, çok ağır bir ruhsattır. Kafanın arka bölgesine yerleşir. Allah'a ait esma ve sıfatları bir insana veya maddeye yüklemek (hocam beni her yerde görür, muska beni korur gibi) şirke düşürür."},
+
+    {"name": "İsyan Belirtileri", "category": "Manevi/Psikolojik",
+     "symptoms": ["bıktım hissi", "dayanamama", "ölmek isteme"],
+     "causes": ["isyan", "intihar"],
+     "remedy": "İsyanın en ufak kelimesi 'Bıktım artık, dayanamıyorum!'dur. Ölmek istemek ve intihara teşebbüs etmek isyanın zirvesidir."},
 ]
 
 # ============================================================
