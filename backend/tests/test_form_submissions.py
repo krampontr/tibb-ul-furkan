@@ -13,7 +13,7 @@ import requests
 # Public backend URL is exposed via EXPO_PUBLIC_BACKEND_URL in /app/frontend/.env
 BASE_URL = (
     os.environ.get("EXPO_PUBLIC_BACKEND_URL")
-    or "https://furkan-diagnosis.preview.emergentagent.com"
+    or "https://furkan-medical.preview.emergentagent.com"
 ).rstrip("/")
 API = f"{BASE_URL}/api"
 
