@@ -193,26 +193,25 @@ def _causes_to_labels(causes: List[str], short: bool = False) -> str:
         labels = labels[:3]
     
     if short:
-        # Parantez içlerini kaldır ve kısalt
+        # Parantez içlerini KORU, sadece çok uzun olanları kısalt
         clean_labels = []
         for l in labels:
-            # Parantez içini kaldır
-            if '(' in l:
-                l = l.split('(')[0].strip()
-            # / ile ayrılmış ise sadece ilkini al
+            # / ile ayrılmış ise sadece ilkini al (örn: "Beddua / Lânet" → "Beddua")
             if ' / ' in l:
                 l = l.split(' / ')[0].strip()
-            # "ve taciz" gibi ekleri kaldır
-            if ' ve ' in l:
-                l = l.split(' ve ')[0].strip()
+            # "ve taciz" gibi ekleri kaldır (ana kavramı koru)
+            if ' ve taciz' in l.lower():
+                l = l.lower().replace(' ve taciz', '').strip()
             clean_labels.append(l.lower())
         
         # Tekrar eden kelimeleri temizle
         seen = set()
         unique_labels = []
         for label in clean_labels:
-            if label not in seen:
-                seen.add(label)
+            # Ana kelimeyi al (parantez öncesi)
+            base = label.split('(')[0].strip() if '(' in label else label
+            if base not in seen:
+                seen.add(base)
                 unique_labels.append(label)
         clean_labels = unique_labels[:3]
         
@@ -277,14 +276,26 @@ def build_rahatsizlik(doc: Dict) -> List[str]:
         remedy = d.get('remedy', '')
         causes_text = _causes_to_labels(d['causes'], short=True)
         
-        # Kısa ve net cümle yapısı
-        # Remedy'yi ilk cümle olarak al (nokta veya 120 karaktere kadar)
-        first_sentence = remedy.split('.')[0] if '.' in remedy else remedy[:120]
-        if len(first_sentence) > 120:
-            first_sentence = first_sentence[:120] + '...'
+        # Remedy'den anlamlı bir açıklama çıkar
+        # İlk cümleyi al, nokta veya 150 karaktere kadar
+        if '.' in remedy:
+            parts = remedy.split('.')
+            first_sentence = parts[0].strip()
+            # Eğer ilk cümle çok kısaysa ikinci cümleyi de ekle
+            if len(first_sentence) < 40 and len(parts) > 1 and parts[1].strip():
+                first_sentence = f"{first_sentence}. {parts[1].strip()}"
+        else:
+            first_sentence = remedy[:150]
         
+        if len(first_sentence) > 150:
+            first_sentence = first_sentence[:147] + '...'
+        
+        # Sondaki gereksiz nokta ve boşlukları temizle
+        first_sentence = first_sentence.rstrip('. ')
+        
+        # Daha zengin ve profesyonel cümle yapısı
         bullets.append(
-            f"**{d['name']}**: {causes_text.capitalize()} sebebiyle oluşabilir. {first_sentence}."
+            f"**{d['name']}**: Bu rahatsızlık, soyda {causes_text} ile ilişkilendirilebilir. {first_sentence}."
         )
     return bullets
 
