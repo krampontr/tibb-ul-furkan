@@ -186,11 +186,43 @@ def _match_diseases(text: str) -> List[Dict]:
     return matched
 
 
-def _causes_to_labels(causes: List[str]) -> str:
-    """['zekat', 'beddua'] → 'Zekat, Beddua' (Türkçe başlık listesi)"""
+def _causes_to_labels(causes: List[str], short: bool = False) -> str:
+    """['zekat', 'beddua'] → 'Zekat, Beddua' veya kısa format için 'zekat ve beddua'"""
     labels = [CAUSE_CATEGORIES.get(c, c) for c in causes]
-    if len(labels) > 4:
-        labels = labels[:4]
+    if len(labels) > 3:
+        labels = labels[:3]
+    
+    if short:
+        # Parantez içlerini kaldır ve kısalt
+        clean_labels = []
+        for l in labels:
+            # Parantez içini kaldır
+            if '(' in l:
+                l = l.split('(')[0].strip()
+            # / ile ayrılmış ise sadece ilkini al
+            if ' / ' in l:
+                l = l.split(' / ')[0].strip()
+            # "ve taciz" gibi ekleri kaldır
+            if ' ve ' in l:
+                l = l.split(' ve ')[0].strip()
+            clean_labels.append(l.lower())
+        
+        # Tekrar eden kelimeleri temizle
+        seen = set()
+        unique_labels = []
+        for label in clean_labels:
+            if label not in seen:
+                seen.add(label)
+                unique_labels.append(label)
+        clean_labels = unique_labels[:3]
+        
+        if len(clean_labels) == 1:
+            return clean_labels[0]
+        elif len(clean_labels) == 2:
+            return f"{clean_labels[0]} ve {clean_labels[1]}"
+        else:
+            return f"{clean_labels[0]}, {clean_labels[1]} ve {clean_labels[2]}"
+    
     return ", ".join(labels)
 
 
@@ -242,12 +274,17 @@ def build_rahatsizlik(doc: Dict) -> List[str]:
     ordered_diseases = detailed_diseases[:10] + simple_diseases[:5]
     
     for d in ordered_diseases[:15]:
-        remedy_short = d.get('remedy', '')[:150]
-        if len(d.get('remedy', '')) > 150:
-            remedy_short += '...'
+        remedy = d.get('remedy', '')
+        causes_text = _causes_to_labels(d['causes'], short=True)
+        
+        # Kısa ve net cümle yapısı
+        # Remedy'yi ilk cümle olarak al (nokta veya 120 karaktere kadar)
+        first_sentence = remedy.split('.')[0] if '.' in remedy else remedy[:120]
+        if len(first_sentence) > 120:
+            first_sentence = first_sentence[:120] + '...'
+        
         bullets.append(
-            f"**{d['name']}** ile uyumlu işaretler; bilgi tabanında _{_causes_to_labels(d['causes'])}_ "
-            f"kategorileriyle ilişkilendirilebilir. Öneri: {remedy_short}"
+            f"**{d['name']}**: {causes_text.capitalize()} sebebiyle oluşabilir. {first_sentence}."
         )
     return bullets
 
