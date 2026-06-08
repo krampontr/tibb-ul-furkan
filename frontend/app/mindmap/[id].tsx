@@ -175,14 +175,18 @@ export default function MindMapScreen() {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.bgPrimary }}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => router.back()} testID="back-btn">
-          <Body style={{ color: colors.accentSage }}>‹ Geri</Body>
+        <TouchableOpacity 
+          onPress={() => router.back()} 
+          testID="back-btn"
+          style={styles.backButton}
+        >
+          <Body style={{ color: colors.bgPrimary, fontWeight: '600' }}>← Geri</Body>
         </TouchableOpacity>
-        <View style={{ alignItems: 'center' }}>
+        <View style={{ alignItems: 'center', flex: 1 }}>
           <Caption style={{ color: colors.accentSage, letterSpacing: 2 }}>ZİHİN HARİTASI</Caption>
           <H3>Soy Yükü Ağı</H3>
         </View>
-        <View style={{ width: 60 }} />
+        <View style={{ width: 70 }} />
       </View>
 
       <View style={styles.legend}>
@@ -399,6 +403,13 @@ function NodeDetailModal({ node, onClose }: { node: MindMapNode | null; onClose:
 
 const styles = StyleSheet.create({
   header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: spacing.lg, paddingVertical: spacing.sm },
+  backButton: {
+    backgroundColor: colors.accentSage,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    borderRadius: radius.md,
+    minWidth: 70,
+  },
   legend: { flexDirection: 'row', justifyContent: 'center', gap: spacing.lg, paddingBottom: spacing.sm },
   legendItem: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   dot: { width: 8, height: 8, borderRadius: 4 },
