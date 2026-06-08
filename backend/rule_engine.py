@@ -234,10 +234,11 @@ def build_aile_hastalik(doc: Dict) -> List[str]:
         diseases = _match_diseases(txt)
         if diseases:
             for d in diseases[:2]:  # Bir alan için en fazla 2 hastalık göster
+                desc = d.get('description', '')
                 bullets.append(
                     f"{who} bildirilen **{d['name']}** durumu; bilgi tabanında "
                     f"_{_causes_to_labels(d['causes'])}_ kategorileriyle ilişkilendirilebilir. "
-                    f"Öneri: {d['remedy']}"
+                    f"Açıklama: {desc}"
                 )
         else:
             # Eşleşme yok ama dolu — genel ifade
@@ -265,27 +266,27 @@ def build_rahatsizlik(doc: Dict) -> List[str]:
         )
         return bullets
 
-    # En spesifik hastalıkları öncelikli göster (remedy uzunluğu > 50 = daha detaylı)
-    detailed_diseases = [d for d in diseases if len(d.get('remedy', '')) > 80]
-    simple_diseases = [d for d in diseases if len(d.get('remedy', '')) <= 80]
+    # En spesifik hastalıkları öncelikli göster (description uzunluğu > 50 = daha detaylı)
+    detailed_diseases = [d for d in diseases if len(d.get('description', '')) > 80]
+    simple_diseases = [d for d in diseases if len(d.get('description', '')) <= 80]
     
     # Önce detaylı, sonra basit - toplam 15 hastalık göster
     ordered_diseases = detailed_diseases[:10] + simple_diseases[:5]
     
     for d in ordered_diseases[:15]:
-        remedy = d.get('remedy', '')
+        description = d.get('description', '')
         causes_text = _causes_to_labels(d['causes'], short=True)
         
-        # Remedy'den anlamlı bir açıklama çıkar
+        # Description'dan anlamlı bir açıklama çıkar
         # İlk cümleyi al, nokta veya 150 karaktere kadar
-        if '.' in remedy:
-            parts = remedy.split('.')
+        if '.' in description:
+            parts = description.split('.')
             first_sentence = parts[0].strip()
             # Eğer ilk cümle çok kısaysa ikinci cümleyi de ekle
             if len(first_sentence) < 40 and len(parts) > 1 and parts[1].strip():
                 first_sentence = f"{first_sentence}. {parts[1].strip()}"
         else:
-            first_sentence = remedy[:150]
+            first_sentence = description[:150]
         
         if len(first_sentence) > 150:
             first_sentence = first_sentence[:147] + '...'
