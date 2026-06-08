@@ -58,9 +58,9 @@ export default function ProfileDetail() {
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.bgPrimary }}>
       <Screen>
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: spacing.xl }}>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: spacing.sm }}>
-            <TouchableOpacity onPress={() => router.replace('/')} testID="home-btn">
-              <Body style={{ color: colors.accentSage }}>‹ Ana sayfa</Body>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: spacing.sm, alignItems: 'center' }}>
+            <TouchableOpacity onPress={() => router.replace('/')} testID="home-btn" style={styles.backButton}>
+              <Body style={{ color: colors.textSecondary }}>← Geri</Body>
             </TouchableOpacity>
             <TouchableOpacity onPress={handleDelete} testID="delete-btn">
               <Caption style={{ color: colors.errorVow }}>Sil</Caption>
@@ -118,4 +118,8 @@ const styles = StyleSheet.create({
   row: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   statCol: { alignItems: 'center', flex: 1 },
   dot: { width: 12, height: 12, borderRadius: 6 },
+  backButton: {
+    paddingVertical: 8,
+    paddingHorizontal: 4,
+  },
 });

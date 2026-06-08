@@ -180,7 +180,7 @@ export default function MindMapScreen() {
           testID="back-btn"
           style={styles.backButton}
         >
-          <Body style={{ color: colors.bgPrimary, fontWeight: '600' }}>← Geri</Body>
+          <Body style={{ color: colors.textSecondary }}>← Geri</Body>
         </TouchableOpacity>
         <View style={{ alignItems: 'center', flex: 1 }}>
           <Caption style={{ color: colors.accentSage, letterSpacing: 2 }}>ZİHİN HARİTASI</Caption>
@@ -404,10 +404,8 @@ function NodeDetailModal({ node, onClose }: { node: MindMapNode | null; onClose:
 const styles = StyleSheet.create({
   header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: spacing.lg, paddingVertical: spacing.sm },
   backButton: {
-    backgroundColor: colors.accentSage,
-    paddingHorizontal: 16,
-    paddingVertical: 10,
-    borderRadius: radius.md,
+    paddingVertical: 8,
+    paddingHorizontal: 4,
     minWidth: 70,
   },
   legend: { flexDirection: 'row', justifyContent: 'center', gap: spacing.lg, paddingBottom: spacing.sm },

@@ -24,7 +24,14 @@ export default function PersonalStage() {
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.bgPrimary }}>
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={{ flex: 1 }}>
         <Screen>
-          <View style={{ paddingTop: spacing.md }}>
+          {/* Header with back button */}
+          <View style={styles.header}>
+            <TouchableOpacity onPress={() => router.back()} style={styles.backBtn} testID="back-btn">
+              <Body style={styles.backText}>← Geri</Body>
+            </TouchableOpacity>
+          </View>
+
+          <View style={{ paddingTop: spacing.xs }}>
             <Caption style={{ color: colors.accentSage }}>1. AŞAMA / 3</Caption>
             <View style={{ marginTop: spacing.xs, marginBottom: spacing.lg }}>
               <ProgressBar step={1} total={3} />
@@ -75,6 +82,21 @@ export default function PersonalStage() {
 }
 
 const styles = StyleSheet.create({
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingTop: spacing.sm,
+    marginBottom: spacing.xs,
+  },
+  backBtn: {
+    paddingVertical: spacing.xs,
+    paddingRight: spacing.md,
+  },
+  backText: {
+    color: colors.textPrimary,
+    fontFamily: fonts.bodySemi,
+    fontSize: 16,
+  },
   genderBtn: {
     flex: 1,
     paddingVertical: 16,
